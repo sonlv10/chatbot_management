@@ -184,9 +184,13 @@ class RasaTrainingService:
         
         return str(rules_file)
     
-    def train_model(self, bot_id: int, language: str = "vi") -> Dict:
+    def train_model(self, bot_id: int, language: str = "vi", use_finetune: bool = True) -> Dict:
         """
         Train Rasa model for bot
+        Args:
+            bot_id: Bot ID
+            language: Language code
+            use_finetune: If True and existing model found, use incremental training (faster)
         Returns: dict with status, model_path, accuracy, etc.
         """
         bot_folder = self.get_bot_folder(bot_id)
@@ -194,16 +198,34 @@ class RasaTrainingService:
         model_folder.mkdir(exist_ok=True)
         
         model_name = f"bot_{bot_id}"
+        existing_model = model_folder / f"{model_name}.tar.gz"
         
-        # Rasa train command
-        cmd = [
-            "rasa", "train",
-            "--data", str(bot_folder / "data"),
-            "--domain", str(bot_folder / "domain.yml"),
-            "--config", str(bot_folder / "config.yml"),
-            "--out", str(model_folder),
-            "--fixed-model-name", model_name
-        ]
+        # Check if we can use finetune
+        can_finetune = use_finetune and existing_model.exists()
+        
+        # Build Rasa command
+        if can_finetune:
+            # Incremental training - faster, preserves old knowledge
+            cmd = [
+                "rasa", "train",
+                "--data", str(bot_folder / "data"),
+                "--domain", str(bot_folder / "domain.yml"),
+                "--config", str(bot_folder / "config.yml"),
+                "--out", str(model_folder),
+                "--fixed-model-name", model_name,
+                "--finetune", str(existing_model),
+                "--epoch-fraction", "0.5"  # Train 50% of epochs for incremental
+            ]
+        else:
+            # Full training from scratch
+            cmd = [
+                "rasa", "train",
+                "--data", str(bot_folder / "data"),
+                "--domain", str(bot_folder / "domain.yml"),
+                "--config", str(bot_folder / "config.yml"),
+                "--out", str(model_folder),
+                "--fixed-model-name", model_name
+            ]
         
         try:
             # Run training
@@ -222,6 +244,7 @@ class RasaTrainingService:
                 output = result.stdout
                 accuracy = None
                 vocab_size = None
+                training_mode = "finetune" if can_finetune else "full"
                 
                 # Extract metrics from output
                 for line in output.split('\n'):
@@ -241,6 +264,7 @@ class RasaTrainingService:
                     "model_path": str(model_path),
                     "accuracy": accuracy,
                     "vocabulary_size": vocab_size,
+                    "training_mode": training_mode,
                     "output": output
                 }
             else:
@@ -261,7 +285,7 @@ class RasaTrainingService:
                 "error_message": str(e)
             }
     
-    def prepare_and_train(self, bot_id: int, training_data: List[Dict], language: str = "vi") -> Dict:
+    def prepare_and_train(self, bot_id: int, training_data: List[Dict], language: str = "vi", use_finetune: bool = True) -> Dict:
         """
         Full pipeline: generate all files and train model
         
@@ -269,6 +293,7 @@ class RasaTrainingService:
             bot_id: Bot ID
             training_data: List of dicts with keys: user_message, bot_response, intent
             language: Language code (default: vi)
+            use_finetune: If True, use incremental training when possible (default: True)
         
         Returns:
             Dict with training results
@@ -286,8 +311,8 @@ class RasaTrainingService:
             # 4. Generate rules.yml
             self.generate_rules_yml(bot_id, training_data)
             
-            # 5. Train model
-            result = self.train_model(bot_id, language)
+            # 5. Train model (with finetune if available)
+            result = self.train_model(bot_id, language, use_finetune=use_finetune)
             
             return result
         

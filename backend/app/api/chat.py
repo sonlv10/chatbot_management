@@ -56,11 +56,12 @@ def train_bot_background(bot_id: int, db: Session):
         for item in training_data
     ]
     
-    # Train model
+    # Train model (always use incremental training if model exists)
     result = rasa_training.prepare_and_train(
         bot_id=bot_id,
         training_data=data_list,
-        language=bot.language
+        language=bot.language,
+        use_finetune=True  # Always train tiếp từ model cũ nếu có
     )
     
     # Update session
