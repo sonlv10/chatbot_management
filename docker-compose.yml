@@ -1,0 +1,75 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:14
+    container_name: chatbot_postgres
+    environment:
+      POSTGRES_USER: chatbot_user
+      POSTGRES_PASSWORD: chatbot_pass
+      POSTGRES_DB: chatbot_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - chatbot_network
+
+  # FastAPI Backend
+  backend:
+    build: ./backend
+    container_name: chatbot_backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://chatbot_user:chatbot_pass@postgres:5432/chatbot_db
+      - SECRET_KEY=your-secret-key-change-this-in-production
+      - RASA_SERVER_URL=http://rasa:5005
+    depends_on:
+      - postgres
+    volumes:
+      - ./backend:/app
+      - rasa_models:/app/models
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    networks:
+      - chatbot_network
+
+  # Rasa Server
+  rasa:
+    build: ./rasa
+    container_name: chatbot_rasa
+    ports:
+      - "5005:5005"
+    volumes:
+      - ./rasa:/app
+      - rasa_models:/models
+    networks:
+      - chatbot_network
+
+  # React Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    container_name: chatbot_frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - backend
+    networks:
+      - chatbot_network
+
+volumes:
+  postgres_data:
+  rasa_models:
+
+networks:
+  chatbot_network:
+    driver: bridge

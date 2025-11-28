@@ -1,0 +1,6 @@
+user,bot,intent
+Xin chào,Chào bạn! Tôi có thể giúp gì cho bạn?,chao_hoi
+Giá sản phẩm bao nhiêu?,Giá dao động từ 100k-500k tùy loại,hoi_gia
+Làm sao liên hệ?,Bạn có thể gọi 0123456789 hoặc email contact@example.com,lien_he
+Tính năng gì?,Chúng tôi có 3 tính năng chính: A B C,tinh_nang
+Cảm ơn,Rất vui được hỗ trợ bạn!,cam_on

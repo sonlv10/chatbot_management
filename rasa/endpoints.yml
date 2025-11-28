@@ -1,0 +1,16 @@
+# Rasa Endpoints Configuration
+# This file defines the endpoints for the Rasa server
+
+# Action server endpoint (if using custom actions)
+# action_endpoint:
+#   url: "http://action-server:5055/webhook"
+
+# Tracker store endpoint (optional - for conversation history)
+# tracker_store:
+#   type: sql
+#   dialect: postgresql
+#   url: postgres
+#   port: 5432
+#   db: rasa
+#   username: rasa_user
+#   password: rasa_pass

@@ -1,0 +1,36 @@
+nlu:
+- intent: chao_hoi
+  examples: |
+    - xin chào
+    - chào bạn
+    - hi
+    - hello
+    - hey
+
+- intent: hoi_gia
+  examples: |
+    - giá bao nhiêu
+    - giá sản phẩm
+    - bao nhiêu tiền
+    - chi phí ra sao
+
+- intent: lien_he
+  examples: |
+    - làm sao liên hệ
+    - số điện thoại
+    - email là gì
+    - địa chỉ ở đâu
+
+- intent: tinh_nang
+  examples: |
+    - có tính năng gì
+    - chức năng gì
+    - làm được gì
+    - hỗ trợ gì
+
+- intent: cam_on
+  examples: |
+    - cảm ơn
+    - thanks
+    - cảm ơn bạn
+    - thank you

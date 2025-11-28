@@ -1,0 +1,23 @@
+User: Xin chào
+Bot: Chào bạn! Tôi có thể giúp gì cho bạn?
+
+User: Sản phẩm của các bạn giá bao nhiêu?
+Bot: Giá dao động từ 100.000đ đến 500.000đ tùy vào loại sản phẩm bạn chọn.
+
+User: Tôi muốn mua hàng thì liên hệ như thế nào?
+Bot: Bạn có thể gọi hotline 0123456789 hoặc gửi email về contact@example.com nhé!
+
+User: Các bạn có tính năng gì đặc biệt không?
+Bot: Chúng tôi có 3 tính năng nổi bật: tự động hóa, báo cáo chi tiết, và hỗ trợ 24/7.
+
+User: Giao hàng mất bao lâu?
+Bot: Thời gian giao hàng từ 2-3 ngày làm việc trong nội thành, 3-5 ngày ngoại thành.
+
+User: Thanh toán như thế nào?
+Bot: Chúng tôi hỗ trợ thanh toán COD, chuyển khoản, và thẻ tín dụng.
+
+User: Có bảo hành không?
+Bot: Có bạn nhé, chúng tôi bảo hành 12 tháng cho tất cả sản phẩm.
+
+User: Cảm ơn nhé
+Bot: Rất vui được hỗ trợ bạn! Chúc bạn một ngày tốt lành.

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat to JSON Converter</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        .header {
+            background: #667eea;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 { margin-bottom: 10px; }
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 30px;
+        }
+        .panel {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .panel h2 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        textarea {
+            width: 100%;
+            min-height: 400px;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            resize: vertical;
+        }
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        button {
+            flex: 1;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-convert {
+            background: #667eea;
+            color: white;
+        }
+        .btn-convert:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+        .btn-copy {
+            background: #48bb78;
+            color: white;
+        }
+        .btn-copy:hover {
+            background: #38a169;
+        }
+        .btn-download {
+            background: #ed8936;
+            color: white;
+        }
+        .btn-download:hover {
+            background: #dd6b20;
+        }
+        .stats {
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+        }
+        .stats p {
+            margin: 5px 0;
+            color: #4a5568;
+        }
+        .format-guide {
+            background: #fff5f5;
+            border-left: 4px solid #fc8181;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+        .format-guide h3 {
+            color: #c53030;
+            margin-bottom: 10px;
+        }
+        .format-guide code {
+            background: #fed7d7;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 Chat to JSON Converter</h1>
+            <p>Convert chat conversations to training data JSON</p>
+        </div>
+        
+        <div class="content">
+            <div class="panel">
+                <h2>📝 Input (Chat Text)</h2>
+                
+                <div class="format-guide">
+                    <h3>Supported Formats:</h3>
+                    <p><strong>Format 1 (with intent):</strong><br>
+                    <code>User:</code> question<br>
+                    <code>Bot:</code> answer<br>
+                    <code>Intent:</code> intent_name</p>
+                    
+                    <p style="margin-top: 10px;"><strong>Format 2 (without intent - Auto-detect):</strong><br>
+                    <code>User:</code> question<br>
+                    <code>Bot:</code> answer<br>
+                    <span style="color: #48bb78;">✨ Intent will be auto-detected!</span></p>
+                    
+                    <p style="margin-top: 10px;"><strong>Simple format:</strong><br>
+                    <code>Q:</code> question<br>
+                    <code>A:</code> answer</p>
+                </div>
+                
+                <textarea id="input" placeholder="User: xin chào&#10;Bot: Xin chào! Tôi có thể giúp gì cho bạn?&#10;Intent: chao_hoi&#10;&#10;User: giá bao nhiêu&#10;Bot: Giá sản phẩm là 2 triệu đồng&#10;Intent: hoi_gia"></textarea>
+                
+                <div class="buttons">
+                    <button class="btn-convert" onclick="convert()">🔄 Convert</button>
+                </div>
+            </div>
+            
+            <div class="panel">
+                <h2>📦 Output (JSON)</h2>
+                <textarea id="output" readonly placeholder="JSON will appear here..."></textarea>
+                
+                <div class="buttons">
+                    <button class="btn-copy" onclick="copyJSON()">📋 Copy JSON</button>
+                    <button class="btn-download" onclick="downloadJSON()">💾 Download JSON</button>
+                </div>
+                
+                <div class="stats" id="stats" style="display: none;">
+                    <p><strong>📊 Statistics:</strong></p>
+                    <p id="count">Examples: 0</p>
+                    <p id="intents">Intents: 0</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function convert() {
+            const input = document.getElementById('input').value;
+            const lines = input.split('\n');
+            
+            const trainingData = [];
+            let currentItem = {};
+            
+            for (let line of lines) {
+                line = line.trim();
+                
+                if (!line) {
+                    if (Object.keys(currentItem).length > 0) {
+                        if (currentItem.user && currentItem.bot) {
+                            if (!currentItem.intent) {
+                                currentItem.intent = autoDetectIntent(currentItem.user);
+                            }
+                            trainingData.push(currentItem);
+                        }
+                        currentItem = {};
+                    }
+                    continue;
+                }
+                
+                if (line.toLowerCase().startsWith('user:') || line.toLowerCase().startsWith('q:')) {
+                    currentItem.user = line.replace(/^(user:|q:)/i, '').trim();
+                } else if (line.toLowerCase().startsWith('bot:') || line.toLowerCase().startsWith('a:')) {
+                    currentItem.bot = line.replace(/^(bot:|a:)/i, '').trim();
+                } else if (line.toLowerCase().startsWith('intent:') || line.startsWith('#')) {
+                    currentItem.intent = line.replace(/^(intent:|#)/i, '').trim();
+                }
+            }
+            
+            // Add last item
+            if (Object.keys(currentItem).length > 0 && currentItem.user && currentItem.bot) {
+                if (!currentItem.intent) {
+                    currentItem.intent = autoDetectIntent(currentItem.user);
+                }
+                trainingData.push(currentItem);
+            }
+            
+            // Display JSON
+            const output = document.getElementById('output');
+            output.value = JSON.stringify(trainingData, null, 2);
+            
+            // Show stats
+            const uniqueIntents = new Set(trainingData.map(item => item.intent));
+            document.getElementById('stats').style.display = 'block';
+            document.getElementById('count').textContent = `Examples: ${trainingData.length}`;
+            document.getElementById('intents').textContent = `Intents: ${uniqueIntents.size} (${Array.from(uniqueIntents).join(', ')})`;
+        }
+        
+        function autoDetectIntent(userText) {
+            const text = userText.toLowerCase();
+            
+            // Greeting
+            if (/^(xin )?chào|^hi$|^hello/.test(text)) return 'chao_hoi';
+            
+            // Pricing
+            if (/giá|bao nhiêu|tiền|chi phí|phí|tốn/.test(text)) return 'hoi_gia';
+            
+            // Contact
+            if (/liên hệ|liên lạc|số điện thoại|hotline|email|địa chỉ|ở đâu|facebook/.test(text)) return 'lien_he';
+            
+            // Features
+            if (/tính năng|chức năng|làm gì|làm được|có thể|hỗ trợ|dùng để/.test(text)) return 'tinh_nang';
+            
+            // Product info
+            if (/là gì|giới thiệu|thông tin|sản phẩm|dịch vụ/.test(text)) return 'gioi_thieu';
+            
+            // Download/Install
+            if (/tải|download|cài đặt|install|link|setup/.test(text)) return 'tai_phan_mem';
+            
+            // How to use
+            if (/hướng dẫn|cách dùng|sử dụng|dùng như thế nào|hỏi|hỏi đáp/.test(text)) return 'huong_dan';
+            
+            // Stock/Availability
+            if (/còn hàng|còn không|có sẵn|available|tồn kho/.test(text)) return 'kiem_tra_hang';
+            
+            // Shipping
+            if (/giao hàng|ship|vận chuyển|nhận hàng|mất bao lâu/.test(text)) return 'van_chuyen';
+            
+            // Payment
+            if (/thanh toán|trả tiền|payment|chuyển khoản|cod|momo/.test(text)) return 'thanh_toan';
+            
+            // Warranty/Return
+            if (/bảo hành|đổi trả|hoàn tiền|warranty|return/.test(text)) return 'bao_hanh';
+            
+            // Order tracking
+            if (/đơn hàng|order|theo dõi|tracking|kiểm tra đơn/.test(text)) return 'don_hang';
+            
+            // Promotion
+            if (/khuyến mãi|giảm giá|sale|voucher|mã|coupon/.test(text)) return 'khuyen_mai';
+            
+            // Thanks
+            if (/cảm ơn|thanks|thank you|cám ơn/.test(text)) return 'cam_on';
+            
+            // Goodbye
+            if (/tạm biệt|bye|goodbye|thôi|hẹn gặp/.test(text)) return 'tam_biet';
+            
+            // Default
+            return 'other';
+        }
+        
+        function copyJSON() {
+            const output = document.getElementById('output');
+            output.select();
+            document.execCommand('copy');
+            
+            const btn = event.target;
+            const originalText = btn.textContent;
+            btn.textContent = '✅ Copied!';
+            setTimeout(() => {
+                btn.textContent = originalText;
+            }, 2000);
+        }
+        
+        function downloadJSON() {
+            const output = document.getElementById('output').value;
+            if (!output) {
+                alert('Please convert first!');
+                return;
+            }
+            
+            const blob = new Blob([output], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'training_data.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        
+        // Auto-convert on page load if there's sample data
+        window.onload = function() {
+            const input = document.getElementById('input');
+            if (input.placeholder) {
+                // Keep placeholder as example
+            }
+        };
+    </script>
+</body>
+</html>

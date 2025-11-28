@@ -1,0 +1,232 @@
+[
+  {
+    "user": "xin chào",
+    "bot": "Xin chào! Chào mừng bạn đến với AutoNuoi - phần mềm quảng cáo tự động cho doanh nghiệp. Tôi có thể giúp gì cho bạn?",
+    "intent": "chao_hoi"
+  },
+  {
+    "user": "hello",
+    "bot": "Xin chào! Chào mừng bạn đến với AutoNuoi - phần mềm quảng cáo tự động cho doanh nghiệp. Tôi có thể giúp gì cho bạn?",
+    "intent": "chao_hoi"
+  },
+  {
+    "user": "chào bạn",
+    "bot": "Xin chào! Chào mừng bạn đến với AutoNuoi - phần mềm quảng cáo tự động cho doanh nghiệp. Tôi có thể giúp gì cho bạn?",
+    "intent": "chao_hoi"
+  },
+  {
+    "user": "hi",
+    "bot": "Xin chào! Chào mừng bạn đến với AutoNuoi - phần mềm quảng cáo tự động cho doanh nghiệp. Tôi có thể giúp gì cho bạn?",
+    "intent": "chao_hoi"
+  },
+  {
+    "user": "AutoNuoi là gì",
+    "bot": "AutoNuoi là phần mềm tự động hóa marketing Facebook cao cấp, giúp bạn:\n- Quản lý hàng nghìn tài khoản Facebook cùng lúc\n- Đăng bài, nhắn tin, bình luận tự động\n- Tăng like, follow, share, mắt xem\n- Khai thác khách hàng tiềm năng\n- Tối ưu quảng cáo và tiếp cận khách hàng 24/7",
+    "intent": "gioi_thieu_san_pham"
+  },
+  {
+    "user": "phần mềm này làm gì",
+    "bot": "AutoNuoi là phần mềm tự động hóa marketing Facebook cao cấp, giúp bạn:\n- Quản lý hàng nghìn tài khoản Facebook cùng lúc\n- Đăng bài, nhắn tin, bình luận tự động\n- Tăng like, follow, share, mắt xem\n- Khai thác khách hàng tiềm năng\n- Tối ưu quảng cáo và tiếp cận khách hàng 24/7",
+    "intent": "gioi_thieu_san_pham"
+  },
+  {
+    "user": "AutoNuoi có tính năng gì",
+    "bot": "AutoNuoi có 10 tính năng chính:\n1. Quản lý tự động hàng nghìn tài khoản\n2. Xây dựng hành động chạy tài khoản thông minh\n3. Tương tác tự động (like, comment, share)\n4. Đăng bài quảng cáo hàng loạt\n5. Bình luận tự động tiếp cận khách hàng\n6. Nhắn tin tự động cho bạn bè, page, UID\n7. Tìm nhóm, tham gia, mời thành viên\n8. Tăng like, follow, mắt xem, seeding\n9. Quét khách hàng tiềm năng theo đa tiêu chí\n10. Hẹn giờ và lập lịch tự động",
+    "intent": "tinh_nang"
+  },
+  {
+    "user": "có những chức năng nào",
+    "bot": "AutoNuoi có 10 tính năng chính:\n1. Quản lý tự động hàng nghìn tài khoản\n2. Xây dựng hành động chạy tài khoản thông minh\n3. Tương tác tự động (like, comment, share)\n4. Đăng bài quảng cáo hàng loạt\n5. Bình luận tự động tiếp cận khách hàng\n6. Nhắn tin tự động cho bạn bè, page, UID\n7. Tìm nhóm, tham gia, mời thành viên\n8. Tăng like, follow, mắt xem, seeding\n9. Quét khách hàng tiềm năng theo đa tiêu chí\n10. Hẹn giờ và lập lịch tự động",
+    "intent": "tinh_nang"
+  },
+  {
+    "user": "phần mềm làm được gì",
+    "bot": "AutoNuoi có 10 tính năng chính:\n1. Quản lý tự động hàng nghìn tài khoản\n2. Xây dựng hành động chạy tài khoản thông minh\n3. Tương tác tự động (like, comment, share)\n4. Đăng bài quảng cáo hàng loạt\n5. Bình luận tự động tiếp cận khách hàng\n6. Nhắn tin tự động cho bạn bè, page, UID\n7. Tìm nhóm, tham gia, mời thành viên\n8. Tăng like, follow, mắt xem, seeding\n9. Quét khách hàng tiềm năng theo đa tiêu chí\n10. Hẹn giờ và lập lịch tự động",
+    "intent": "tinh_nang"
+  },
+  {
+    "user": "giá bao nhiêu",
+    "bot": "AutoNuoi có 2 gói bản quyền:\n\n📦 GÓI 6 THÁNG: 2.000.000đ/1 tài khoản\n📦 GÓI 1 NĂM: 3.450.000đ/1 tài khoản\n\nBao gồm:\n✅ Sử dụng đầy đủ tất cả tính năng\n✅ Hướng dẫn và hỗ trợ kỹ thuật\n✅ Cập nhật phiên bản mới miễn phí\n✅ Hỗ trợ thay đổi máy móc làm việc\n\nBạn quan tâm gói nào ạ?",
+    "intent": "hoi_gia"
+  },
+  {
+    "user": "bao nhiêu tiền",
+    "bot": "AutoNuoi có 2 gói bản quyền:\n\n📦 GÓI 6 THÁNG: 2.000.000đ/1 tài khoản\n📦 GÓI 1 NĂM: 3.450.000đ/1 tài khoản\n\nBao gồm:\n✅ Sử dụng đầy đủ tất cả tính năng\n✅ Hướng dẫn và hỗ trợ kỹ thuật\n✅ Cập nhật phiên bản mới miễn phí\n✅ Hỗ trợ thay đổi máy móc làm việc\n\nBạn quan tâm gói nào ạ?",
+    "intent": "hoi_gia"
+  },
+  {
+    "user": "giá cả như thế nào",
+    "bot": "AutoNuoi có 2 gói bản quyền:\n\n📦 GÓI 6 THÁNG: 2.000.000đ/1 tài khoản\n📦 GÓI 1 NĂM: 3.450.000đ/1 tài khoản\n\nBao gồm:\n✅ Sử dụng đầy đủ tất cả tính năng\n✅ Hướng dẫn và hỗ trợ kỹ thuật\n✅ Cập nhật phiên bản mới miễn phí\n✅ Hỗ trợ thay đổi máy móc làm việc\n\nBạn quan tâm gói nào ạ?",
+    "intent": "hoi_gia"
+  },
+  {
+    "user": "có bảng giá không",
+    "bot": "AutoNuoi có 2 gói bản quyền:\n\n📦 GÓI 6 THÁNG: 2.000.000đ/1 tài khoản\n📦 GÓI 1 NĂM: 3.450.000đ/1 tài khoản\n\nBao gồm:\n✅ Sử dụng đầy đủ tất cả tính năng\n✅ Hướng dẫn và hỗ trợ kỹ thuật\n✅ Cập nhật phiên bản mới miễn phí\n✅ Hỗ trợ thay đổi máy móc làm việc\n\nBạn quan tâm gói nào ạ?",
+    "intent": "hoi_gia"
+  },
+  {
+    "user": "liên hệ như thế nào",
+    "bot": "Bạn có thể liên hệ với chúng tôi qua:\n\n📞 Hotline: 0964.386.780 - 0914.107.789\n📧 Email: tudongsohar@gmail.com\n📍 Địa chỉ 1: 239B Nguyễn Phước Nguyên, P.Thanh Khê, TP Đà Nẵng\n📍 Địa chỉ 2: 33 Phần Lăng 2, P.An Khê, TP Đà Nẵng\n🌐 Facebook: fb.com/AutoNuoi\n\nChúng tôi hỗ trợ 24/7. Bạn cần tư vấn về vấn đề gì ạ?",
+    "intent": "lien_he"
+  },
+  {
+    "user": "số điện thoại",
+    "bot": "Bạn có thể liên hệ với chúng tôi qua:\n\n📞 Hotline: 0964.386.780 - 0914.107.789\n📧 Email: tudongsohar@gmail.com\n📍 Địa chỉ 1: 239B Nguyễn Phước Nguyên, P.Thanh Khê, TP Đà Nẵng\n📍 Địa chỉ 2: 33 Phần Lăng 2, P.An Khê, TP Đà Nẵng\n🌐 Facebook: fb.com/AutoNuoi\n\nChúng tôi hỗ trợ 24/7. Bạn cần tư vấn về vấn đề gì ạ?",
+    "intent": "lien_he"
+  },
+  {
+    "user": "địa chỉ ở đâu",
+    "bot": "Bạn có thể liên hệ với chúng tôi qua:\n\n📞 Hotline: 0964.386.780 - 0914.107.789\n📧 Email: tudongsohar@gmail.com\n📍 Địa chỉ 1: 239B Nguyễn Phước Nguyên, P.Thanh Khê, TP Đà Nẵng\n📍 Địa chỉ 2: 33 Phần Lăng 2, P.An Khê, TP Đà Nẵng\n🌐 Facebook: fb.com/AutoNuoi\n\nChúng tôi hỗ trợ 24/7. Bạn cần tư vấn về vấn đề gì ạ?",
+    "intent": "lien_he"
+  },
+  {
+    "user": "email là gì",
+    "bot": "Bạn có thể liên hệ với chúng tôi qua:\n\n📞 Hotline: 0964.386.780 - 0914.107.789\n📧 Email: tudongsohar@gmail.com\n📍 Địa chỉ 1: 239B Nguyễn Phước Nguyên, P.Thanh Khê, TP Đà Nẵng\n📍 Địa chỉ 2: 33 Phần Lăng 2, P.An Khê, TP Đà Nẵng\n🌐 Facebook: fb.com/AutoNuoi\n\nChúng tôi hỗ trợ 24/7. Bạn cần tư vấn về vấn đề gì ạ?",
+    "intent": "lien_he"
+  },
+  {
+    "user": "tải phần mềm ở đâu",
+    "bot": "Bạn có thể tải AutoNuoi miễn phí tại:\n\n💻 Phiên bản 64bit: https://www.autonuoi.com/download/AutoNuoix64.zip\n💻 Phiên bản 32bit: https://www.autonuoi.com/download/AutoNuoi.zip\n\nYêu cầu hệ thống: Windows 7 trở lên\n📖 Hướng dẫn sử dụng: autonuoi.com/help-autonuoi.html\n\nSau khi tải về, bạn cần mua bản quyền để kích hoạt đầy đủ tính năng nhé!",
+    "intent": "tai_phan_mem"
+  },
+  {
+    "user": "download như thế nào",
+    "bot": "Bạn có thể tải AutoNuoi miễn phí tại:\n\n💻 Phiên bản 64bit: https://www.autonuoi.com/download/AutoNuoix64.zip\n💻 Phiên bản 32bit: https://www.autonuoi.com/download/AutoNuoi.zip\n\nYêu cầu hệ thống: Windows 7 trở lên\n📖 Hướng dẫn sử dụng: autonuoi.com/help-autonuoi.html\n\nSau khi tải về, bạn cần mua bản quyền để kích hoạt đầy đủ tính năng nhé!",
+    "intent": "tai_phan_mem"
+  },
+  {
+    "user": "cài đặt thế nào",
+    "bot": "Bạn có thể tải AutoNuoi miễn phí tại:\n\n💻 Phiên bản 64bit: https://www.autonuoi.com/download/AutoNuoix64.zip\n💻 Phiên bản 32bit: https://www.autonuoi.com/download/AutoNuoi.zip\n\nYêu cầu hệ thống: Windows 7 trở lên\n📖 Hướng dẫn sử dụng: autonuoi.com/help-autonuoi.html\n\nSau khi tải về, bạn cần mua bản quyền để kích hoạt đầy đủ tính năng nhé!",
+    "intent": "tai_phan_mem"
+  },
+  {
+    "user": "có hướng dẫn không",
+    "bot": "Có ạ! AutoNuoi có hệ thống hướng dẫn rất chi tiết:\n\n📖 Hướng dẫn trực tuyến: autonuoi.com/help-autonuoi.html\n🎥 Video hướng dẫn chi tiết từng tính năng\n⌨️ Nhấn phím F1 trong phần mềm để xem HDSD\n👨‍💻 Hỗ trợ trực tiếp qua Hotline: 0964.386.780\n\nĐội ngũ support nhiệt tình 24/7. Bạn cần hướng dẫn về tính năng nào ạ?",
+    "intent": "huong_dan"
+  },
+  {
+    "user": "hướng dẫn sử dụng",
+    "bot": "Có ạ! AutoNuoi có hệ thống hướng dẫn rất chi tiết:\n\n📖 Hướng dẫn trực tuyến: autonuoi.com/help-autonuoi.html\n🎥 Video hướng dẫn chi tiết từng tính năng\n⌨️ Nhấn phím F1 trong phần mềm để xem HDSD\n👨‍💻 Hỗ trợ trực tiếp qua Hotline: 0964.386.780\n\nĐội ngũ support nhiệt tình 24/7. Bạn cần hướng dẫn về tính năng nào ạ?",
+    "intent": "huong_dan"
+  },
+  {
+    "user": "cách dùng ra sao",
+    "bot": "Có ạ! AutoNuoi có hệ thống hướng dẫn rất chi tiết:\n\n📖 Hướng dẫn trực tuyến: autonuoi.com/help-autonuoi.html\n🎥 Video hướng dẫn chi tiết từng tính năng\n⌨️ Nhấn phím F1 trong phần mềm để xem HDSD\n👨‍💻 Hỗ trợ trực tiếp qua Hotline: 0964.386.780\n\nĐội ngũ support nhiệt tình 24/7. Bạn cần hướng dẫn về tính năng nào ạ?",
+    "intent": "huong_dan"
+  },
+  {
+    "user": "có checkpoint không",
+    "bot": "AutoNuoi được thiết kế đặc biệt để GIẢM THIỂU checkpoint:\n\n✅ Hành động khác biệt cho từng tài khoản\n✅ Tự động phát hiện bất thường và chuyển trạng thái\n✅ Quản lý logic, thông minh cho tài khoản\n✅ Hành động ngẫu nhiên theo tỉ lệ thiết lập\n✅ Tỉ lệ checkpoint là HI HỮU\n\nPhần mềm được tối ưu để bảo vệ tài khoản tốt nhất. Bạn yên tâm sử dụng nhé!",
+    "intent": "checkpoint"
+  },
+  {
+    "user": "tài khoản có bị khóa không",
+    "bot": "AutoNuoi được thiết kế đặc biệt để GIẢM THIỂU checkpoint:\n\n✅ Hành động khác biệt cho từng tài khoản\n✅ Tự động phát hiện bất thường và chuyển trạng thái\n✅ Quản lý logic, thông minh cho tài khoản\n✅ Hành động ngẫu nhiên theo tỉ lệ thiết lập\n✅ Tỉ lệ checkpoint là HI HỮU\n\nPhần mềm được tối ưu để bảo vệ tài khoản tốt nhất. Bạn yên tâm sử dụng nhé!",
+    "intent": "checkpoint"
+  },
+  {
+    "user": "có an toàn không",
+    "bot": "AutoNuoi được thiết kế đặc biệt để GIẢM THIỂU checkpoint:\n\n✅ Hành động khác biệt cho từng tài khoản\n✅ Tự động phát hiện bất thường và chuyển trạng thái\n✅ Quản lý logic, thông minh cho tài khoản\n✅ Hành động ngẫu nhiên theo tỉ lệ thiết lập\n✅ Tỉ lệ checkpoint là HI HỮU\n\nPhần mềm được tối ưu để bảo vệ tài khoản tốt nhất. Bạn yên tâm sử dụng nhé!",
+    "intent": "checkpoint"
+  },
+  {
+    "user": "quản lý được bao nhiêu tài khoản",
+    "bot": "AutoNuoi có thể quản lý số lượng tài khoản KHÔNG GIỚI HẠN:\n\n✨ 100, 1000, 50.000, thậm chí 100.000 tài khoản\n✨ Chạy đa luồng nhiều nick cùng lúc\n✨ Mỗi tài khoản có hành động riêng biệt\n✨ Tự động kiểm tra trạng thái từng tài khoản\n✨ Chỉ cần 1 click đăng nhập cả trăm tài khoản\n\nBạn đang có bao nhiêu tài khoản cần quản lý ạ?",
+    "intent": "quan_ly_tai_khoan"
+  },
+  {
+    "user": "chạy được bao nhiêu nick",
+    "bot": "AutoNuoi có thể quản lý số lượng tài khoản KHÔNG GIỚI HẠN:\n\n✨ 100, 1000, 50.000, thậm chí 100.000 tài khoản\n✨ Chạy đa luồng nhiều nick cùng lúc\n✨ Mỗi tài khoản có hành động riêng biệt\n✨ Tự động kiểm tra trạng thái từng tài khoản\n✨ Chỉ cần 1 click đăng nhập cả trăm tài khoản\n\nBạn đang có bao nhiêu tài khoản cần quản lý ạ?",
+    "intent": "quan_ly_tai_khoan"
+  },
+  {
+    "user": "có đăng bài tự động không",
+    "bot": "Có ạ! AutoNuoi hỗ trợ đăng bài TỰ ĐỘNG mạnh mẽ:\n\n📝 Đăng lên tường cá nhân nhiều tài khoản cùng lúc\n📝 Đăng tường bạn bè tự động\n📝 Đăng bài vào nhóm số lượng lớn\n📝 Đăng lên nhiều Page cùng lúc\n📝 Share bài viết, share Livestream tự động\n📝 Hẹn giờ đăng bài theo lịch\n📝 Random hình ảnh, video khi đăng\n\nBạn muốn tìm hiểu thêm về tính năng đăng bài không ạ?",
+    "intent": "dang_bai"
+  },
+  {
+    "user": "đăng group tự động",
+    "bot": "Có ạ! AutoNuoi hỗ trợ đăng bài TỰ ĐỘNG mạnh mẽ:\n\n📝 Đăng lên tường cá nhân nhiều tài khoản cùng lúc\n📝 Đăng tường bạn bè tự động\n📝 Đăng bài vào nhóm số lượng lớn\n📝 Đăng lên nhiều Page cùng lúc\n📝 Share bài viết, share Livestream tự động\n📝 Hẹn giờ đăng bài theo lịch\n📝 Random hình ảnh, video khi đăng\n\nBạn muốn tìm hiểu thêm về tính năng đăng bài không ạ?",
+    "intent": "dang_bai"
+  },
+  {
+    "user": "nhắn tin tự động được không",
+    "bot": "Được ạ! AutoNuoi có tính năng nhắn tin TỰ ĐỘNG rất mạnh:\n\n💬 Nhắn tin hàng loạt cho bạn bè\n💬 Nhắn tin cho nhiều Page\n💬 Nhắn tin cho UserID chưa là bạn bè\n💬 Hẹn giờ nhắn tin theo lịch\n💬 Nhắn tin ngẫu nhiên hoặc theo thứ tự\n💬 Random nội dung tin nhắn\n\nRất hiệu quả cho chăm sóc khách hàng và marketing!",
+    "intent": "nhan_tin"
+  },
+  {
+    "user": "inbox tự động",
+    "bot": "Được ạ! AutoNuoi có tính năng nhắn tin TỰ ĐỘNG rất mạnh:\n\n💬 Nhắn tin hàng loạt cho bạn bè\n💬 Nhắn tin cho nhiều Page\n💬 Nhắn tin cho UserID chưa là bạn bè\n💬 Hẹn giờ nhắn tin theo lịch\n💬 Nhắn tin ngẫu nhiên hoặc theo thứ tự\n💬 Random nội dung tin nhắn\n\nRất hiệu quả cho chăm sóc khách hàng và marketing!",
+    "intent": "nhan_tin"
+  },
+  {
+    "user": "tăng like được không",
+    "bot": "Được ạ! AutoNuoi hỗ trợ đầy đủ tính năng TĂNG TƯƠNG TÁC:\n\n👍 Tăng like Fanpage\n👥 Tăng follow tài khoản cá nhân\n❤️ Tăng like bài viết bất kỳ\n💬 Tăng comment bài viết\n👁️ Tăng mắt xem Livestream\n📈 Seeding bài viết chuyên nghiệp\n\nPhù hợp cho chiến dịch marketing và xây dựng uy tín!",
+    "intent": "tang_tuong_tac"
+  },
+  {
+    "user": "tăng view livestream",
+    "bot": "Được ạ! AutoNuoi hỗ trợ đầy đủ tính năng TĂNG TƯƠNG TÁC:\n\n👍 Tăng like Fanpage\n👥 Tăng follow tài khoản cá nhân\n❤️ Tăng like bài viết bất kỳ\n💬 Tăng comment bài viết\n👁️ Tăng mắt xem Livestream\n📈 Seeding bài viết chuyên nghiệp\n\nPhù hợp cho chiến dịch marketing và xây dựng uy tín!",
+    "intent": "tang_tuong_tac"
+  },
+  {
+    "user": "quét khách hàng được không",
+    "bot": "Được ạ! AutoNuoi có tính năng QUÉT KHÁCH HÀNG rất mạnh:\n\n🎯 Quét theo khu vực, độ tuổi, giới tính\n🎯 Quét theo ngành nghề, sở thích\n🎯 Quét bạn của bạn bè\n🎯 Quét khách của đối thủ\n🎯 Quét khách realtime đang online\n🎯 Dữ liệu lớn, chính xác, đầy đủ thông tin\n\nGiúp bạn tìm đúng khách hàng tiềm năng để tiếp cận!",
+    "intent": "quet_khach_hang"
+  },
+  {
+    "user": "tìm khách hàng tiềm năng",
+    "bot": "Được ạ! AutoNuoi có tính năng QUÉT KHÁCH HÀNG rất mạnh:\n\n🎯 Quét theo khu vực, độ tuổi, giới tính\n🎯 Quét theo ngành nghề, sở thích\n🎯 Quét bạn của bạn bè\n🎯 Quét khách của đối thủ\n🎯 Quét khách realtime đang online\n🎯 Dữ liệu lớn, chính xác, đầy đủ thông tin\n\nGiúp bạn tìm đúng khách hàng tiềm năng để tiếp cận!",
+    "intent": "quet_khach_hang"
+  },
+  {
+    "user": "yêu cầu cấu hình máy",
+    "bot": "AutoNuoi rất NHẸ, không cần máy cấu hình cao:\n\n💻 Hệ điều hành: Windows 7 trở lên\n💻 RAM: 2GB trở lên (khuyến nghị 4GB)\n💻 CPU: Intel Core i3 trở lên\n💻 Ổ cứng: 500MB dung lượng trống\n💻 Kết nối Internet ổn định\n\nPhần mềm tối ưu, chạy mượt mà trên hầu hết máy tính!",
+    "intent": "cau_hinh"
+  },
+  {
+    "user": "chạy trên máy gì",
+    "bot": "AutoNuoi rất NHẸ, không cần máy cấu hình cao:\n\n💻 Hệ điều hành: Windows 7 trở lên\n💻 RAM: 2GB trở lên (khuyến nghị 4GB)\n💻 CPU: Intel Core i3 trở lên\n💻 Ổ cứng: 500MB dung lượng trống\n💻 Kết nối Internet ổn định\n\nPhần mềm tối ưu, chạy mượt mà trên hầu hết máy tính!",
+    "intent": "cau_hinh"
+  },
+  {
+    "user": "có dùng proxy không",
+    "bot": "Có ạ! AutoNuoi hỗ trợ ĐẦY ĐỦ các loại PROXY:\n\n🔐 Proxy HTTPS\n🔐 Proxy SOCKS 4\n🔐 Proxy SOCKS 5\n🔐 Thiết lập proxy riêng cho từng tài khoản\n🔐 Quản lý proxy thông minh\n🔐 Tự động kiểm tra proxy hoạt động\n\nGiúp bảo vệ tài khoản và chạy nhiều nick an toàn hơn!",
+    "intent": "proxy"
+  },
+  {
+    "user": "hỗ trợ proxy nào",
+    "bot": "Có ạ! AutoNuoi hỗ trợ ĐẦY ĐỦ các loại PROXY:\n\n🔐 Proxy HTTPS\n🔐 Proxy SOCKS 4\n🔐 Proxy SOCKS 5\n🔐 Thiết lập proxy riêng cho từng tài khoản\n🔐 Quản lý proxy thông minh\n🔐 Tự động kiểm tra proxy hoạt động\n\nGiúp bảo vệ tài khoản và chạy nhiều nick an toàn hơn!",
+    "intent": "proxy"
+  },
+  {
+    "user": "cảm ơn",
+    "bot": "Rất vui được hỗ trợ bạn! 😊\n\nNếu cần tư vấn thêm về AutoNuoi, đừng ngại liên hệ:\n📞 Hotline: 0964.386.780 - 0914.107.789\n\nChúc bạn thành công với marketing Facebook!",
+    "intent": "cam_on"
+  },
+  {
+    "user": "thank you",
+    "bot": "Rất vui được hỗ trợ bạn! 😊\n\nNếu cần tư vấn thêm về AutoNuoi, đừng ngại liên hệ:\n📞 Hotline: 0964.386.780 - 0914.107.789\n\nChúc bạn thành công với marketing Facebook!",
+    "intent": "cam_on"
+  },
+  {
+    "user": "thanks",
+    "bot": "Rất vui được hỗ trợ bạn! 😊\n\nNếu cần tư vấn thêm về AutoNuoi, đừng ngại liên hệ:\n📞 Hotline: 0964.386.780 - 0914.107.789\n\nChúc bạn thành công với marketing Facebook!",
+    "intent": "cam_on"
+  },
+  {
+    "user": "tạm biệt",
+    "bot": "Tạm biệt! Hẹn gặp lại bạn. Chúc bạn một ngày tốt lành! 👋\n\nNếu cần hỗ trợ, liên hệ ngay: 0964.386.780",
+    "intent": "tam_biet"
+  },
+  {
+    "user": "bye",
+    "bot": "Tạm biệt! Hẹn gặp lại bạn. Chúc bạn một ngày tốt lành! 👋\n\nNếu cần hỗ trợ, liên hệ ngay: 0964.386.780",
+    "intent": "tam_biet"
+  },
+  {
+    "user": "chào tạm biệt",
+    "bot": "Tạm biệt! Hẹn gặp lại bạn. Chúc bạn một ngày tốt lành! 👋\n\nNếu cần hỗ trợ, liên hệ ngay: 0964.386.780",
+    "intent": "tam_biet"
+  }
+]

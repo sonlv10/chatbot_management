@@ -1,0 +1,92 @@
+[
+  {
+    "user": "hi",
+    "bot": "Hello! How can I help you today?",
+    "intent": "greet"
+  },
+  {
+    "user": "hello",
+    "bot": "Hello! How can I help you today?",
+    "intent": "greet"
+  },
+  {
+    "user": "hey",
+    "bot": "Hello! How can I help you today?",
+    "intent": "greet"
+  },
+  {
+    "user": "good morning",
+    "bot": "Hello! How can I help you today?",
+    "intent": "greet"
+  },
+  {
+    "user": "price",
+    "bot": "Our product costs $299. Would you like to know more?",
+    "intent": "ask_price"
+  },
+  {
+    "user": "how much",
+    "bot": "Our product costs $299. Would you like to know more?",
+    "intent": "ask_price"
+  },
+  {
+    "user": "cost",
+    "bot": "Our product costs $299. Would you like to know more?",
+    "intent": "ask_price"
+  },
+  {
+    "user": "what is the price",
+    "bot": "Our product costs $299. Would you like to know more?",
+    "intent": "ask_price"
+  },
+  {
+    "user": "available",
+    "bot": "Yes, we have it in stock! Ready to ship today.",
+    "intent": "check_stock"
+  },
+  {
+    "user": "in stock",
+    "bot": "Yes, we have it in stock! Ready to ship today.",
+    "intent": "check_stock"
+  },
+  {
+    "user": "do you have",
+    "bot": "Yes, we have it in stock! Ready to ship today.",
+    "intent": "check_stock"
+  },
+  {
+    "user": "can i buy",
+    "bot": "Yes, we have it in stock! Ready to ship today.",
+    "intent": "check_stock"
+  },
+  {
+    "user": "thanks",
+    "bot": "You're welcome! Have a great day!",
+    "intent": "thank"
+  },
+  {
+    "user": "thank you",
+    "bot": "You're welcome! Have a great day!",
+    "intent": "thank"
+  },
+  {
+    "user": "thx",
+    "bot": "You're welcome! Have a great day!",
+    "intent": "thank"
+  },
+  {
+    "user": "bye",
+    "bot": "Goodbye! Feel free to come back anytime.",
+    "intent": "goodbye"
+  },
+  {
+    "user": "goodbye",
+    "bot": "Goodbye! Feel free to come back anytime.",
+    "intent": "goodbye"
+  },
+  {
+    "user": "see you",
+    "bot": "Goodbye! Feel free to come back anytime.",
+    "intent": "goodbye"
+  }
+]

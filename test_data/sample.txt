@@ -1,0 +1,21 @@
+User: Xin chào
+Bot: Chào bạn! Tôi có thể giúp gì cho bạn?
+Intent: chao_hoi
+
+User: Giá sản phẩm bao nhiêu?
+Bot: Giá dao động từ 100k-500k tùy loại
+Intent: hoi_gia
+
+Q: Làm sao liên hệ?
+A: Bạn có thể gọi 0123456789 hoặc email contact@example.com
+#lien_he
+
+Q: Tính năng gì?
+A: Chúng tôi có 3 tính năng chính:
+- Tính năng A
+- Tính năng B
+- Tính năng C
+#tinh_nang
+
+User: Cảm ơn
+Bot: Rất vui được hỗ trợ bạn!
