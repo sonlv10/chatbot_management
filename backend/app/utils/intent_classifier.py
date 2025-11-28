@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 class IntentClassifier:
     """Use Rasa NLU to classify intents intelligently"""
     
-    def __init__(self, rasa_url: str = "http://rasa:5005"):
+    def __init__(self, rasa_url: str = "http://localhost:5005"):
         self.rasa_url = rasa_url
     
     def classify_batch(

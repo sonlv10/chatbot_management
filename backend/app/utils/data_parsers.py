@@ -342,7 +342,7 @@ class TrainingDataParser:
     def enhance_with_intelligent_classification(
         data: List[Dict],
         bot_id: int,
-        rasa_url: str = "http://rasa:5005"
+        rasa_url: str = "http://localhost:5005"
     ) -> List[Dict]:
         """
         Enhance training data with intelligent intent classification using Rasa

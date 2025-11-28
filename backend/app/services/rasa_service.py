@@ -1,6 +1,7 @@
 """
 Rasa interaction service - Chat with trained models
 """
+import os
 import requests
 from typing import Dict, List, Optional
 
@@ -8,7 +9,7 @@ from typing import Dict, List, Optional
 class RasaService:
     """Service to interact with Rasa server"""
     
-    def __init__(self, rasa_url: str = "http://rasa:5005"):
+    def __init__(self, rasa_url: str = os.getenv("RASA_SERVER_URL", "http://localhost:5005")):
         self.rasa_url = rasa_url.rstrip('/')
         # Track currently loaded model to avoid reloading
         self._loaded_model_path = None
