@@ -46,8 +46,11 @@ GRANT ALL PRIVILEGES ON DATABASE chatbot_db TO chatbot_user;
 # Chạy init script
 psql -U chatbot_user -d chatbot_db -f database/init.sql
 
-# Chạy migration
+# Chạy migration conversation messages
 psql -U chatbot_user -d chatbot_db -f database/migration_002_conversation_messages.sql
+
+# Chạy migration cleanup conversations (FIX lỗi user_message NULL)
+psql -U chatbot_user -d chatbot_db -f database/migration_003_cleanup_conversations.sql
 ```
 
 ---
