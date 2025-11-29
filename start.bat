@@ -10,7 +10,7 @@ echo ========================================
 echo.
 
 REM Kiem tra PostgreSQL service
-echo [1/5] Kiem tra PostgreSQL...
+echo [1/3] Kiem tra PostgreSQL...
 sc query postgresql-x64-14 | find "RUNNING" >nul
 if %errorlevel% neq 0 (
     echo PostgreSQL chua chay. Dang khoi dong...
@@ -20,34 +20,33 @@ if %errorlevel% neq 0 (
     echo PostgreSQL da chay.
 )
 
-REM Kiem tra database
-echo.
-echo [2/5] Kiem tra database...
-psql -U chatbot_user -d chatbot_db -c "SELECT 1;" >nul 2>&1
-if %errorlevel% neq 0 (
-    echo Database chua ton tai. Vui long chay setup truoc!
-    echo Chi tiet: xem file SETUP_WITHOUT_DOCKER.md
-    pause
-    exit /b 1
-)
-echo Database OK.
+REM Tao thu muc logs neu chua co
+if not exist "logs" mkdir logs
 
 REM Khoi dong Backend
 echo.
-echo [3/5] Khoi dong Backend API...
-start "Chatbot Backend" cmd /k "cd /d %~dp0backend && venv\Scripts\activate && echo Backend dang khoi dong... && uvicorn app.main:app --reload --host 0.0.0.0 --port 8000"
+echo [2/3] Khoi dong Backend API...
+cd /d %~dp0backend
+call venv\Scripts\activate
+start /B cmd /c "uvicorn app.main:app --reload --host 0.0.0.0 --port 8000 > ..\logs\backend.log 2>&1"
+cd ..
 timeout /t 3 >nul
 
 REM Khoi dong Rasa
 echo.
-echo [4/5] Khoi dong Rasa Server...
-start "Chatbot Rasa" cmd /k "cd /d %~dp0backend && venv\Scripts\activate && echo Rasa dang khoi dong... && rasa run --enable-api --cors * --port 5005"
+echo [3/3] Khoi dong Rasa Server...
+cd /d %~dp0backend
+call venv\Scripts\activate
+start /B cmd /c "rasa run --enable-api --cors * --port 5005 > ..\logs\rasa.log 2>&1"
+cd ..
 timeout /t 5 >nul
 
 REM Khoi dong Frontend
 echo.
-echo [5/5] Khoi dong Frontend...
-start "Chatbot Frontend" cmd /k "cd /d %~dp0frontend && echo Frontend dang khoi dong... && npm run dev"
+echo [4/4] Khoi dong Frontend...
+cd /d %~dp0frontend
+start /B cmd /c "npm run dev > ..\logs\frontend.log 2>&1"
+cd ..
 timeout /t 3 >nul
 
 echo.
@@ -60,7 +59,18 @@ echo API Docs:     http://localhost:8000/docs
 echo Rasa Server:  http://localhost:5005
 echo Frontend:     http://localhost:5173
 echo.
+echo Logs duoc luu trong thu muc: logs\
+echo   - backend.log
+echo   - rasa.log
+echo   - frontend.log
+echo.
+echo De xem logs real-time, mo file logs hoac dung:
+echo   Get-Content logs\backend.log -Wait    (PowerShell)
+echo   type logs\backend.log                 (CMD)
+echo.
+echo De dung tat ca services, chay: stop.bat
+echo.
 echo Nhan phim bat ky de dong cua so nay...
-echo Cac service se tiep tuc chay trong cac cua so rieng.
+echo Cac service se tiep tuc chay trong background.
 echo.
 pause

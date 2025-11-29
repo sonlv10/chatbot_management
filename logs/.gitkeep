@@ -1,0 +1,38 @@
+# Logs Directory
+
+Thư mục này chứa log files của các services khi chạy bằng `start.bat`:
+
+- `backend.log` - Logs của Backend API (FastAPI)
+- `rasa.log` - Logs của Rasa Server
+- `frontend.log` - Logs của Frontend (Vite)
+
+## Xem Logs
+
+### Windows CMD
+```cmd
+type logs\backend.log
+type logs\rasa.log
+type logs\frontend.log
+```
+
+### Windows PowerShell (Real-time)
+```powershell
+Get-Content logs\backend.log -Wait
+Get-Content logs\rasa.log -Wait
+Get-Content logs\frontend.log -Wait
+```
+
+### Git Bash
+```bash
+tail -f logs/backend.log
+tail -f logs/rasa.log
+tail -f logs/frontend.log
+```
+
+## Xóa Logs Cũ
+
+```cmd
+del logs\*.log
+```
+
+Hoặc xóa thủ công các file trong thư mục này.
