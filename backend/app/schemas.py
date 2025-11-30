@@ -60,7 +60,12 @@ class TrainingDataItem(BaseModel):
     bot_response: str
     intent: Optional[str] = None
 
-class TrainingDataCreate(BaseModel):
+class TrainingDataCreate(TrainingDataItem):
+    """Schema for creating or updating a single training data item"""
+    pass
+
+class TrainingDataBulkCreate(BaseModel):
+    """Schema for bulk creating training data items"""
     data: List[TrainingDataItem]
 
 class TrainingData(TrainingDataItem):
