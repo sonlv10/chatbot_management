@@ -294,7 +294,30 @@ rules:
             if model_files:
                 # Sort by modification time, newest first
                 model_files.sort(key=lambda f: os.path.getmtime(os.path.join(bot_dir, f)), reverse=True)
-                model_path = os.path.join(bot_dir, model_files[0])
+                newest_model = model_files[0]
+                model_path = os.path.join(bot_dir, newest_model)
+                
+                # Delete old model files (keep only the newest one)
+                if len(model_files) > 1:
+                    deleted_count = 0
+                    for old_model in model_files[1:]:
+                        try:
+                            old_model_path = os.path.join(bot_dir, old_model)
+                            os.remove(old_model_path)
+                            deleted_count += 1
+                        except Exception as e:
+                            cursor.execute(
+                                "INSERT INTO training_logs (training_job_id, log_level, message) VALUES (%s, %s, %s)",
+                                (job_id, "WARNING", f"Could not delete old model {old_model}: {str(e)}")
+                            )
+                            conn.commit()
+                    
+                    if deleted_count > 0:
+                        cursor.execute(
+                            "INSERT INTO training_logs (training_job_id, log_level, message) VALUES (%s, %s, %s)",
+                            (job_id, "INFO", f"🗑️ Cleaned up {deleted_count} old model file(s)")
+                        )
+                        conn.commit()
                 
                 # Calculate duration
                 cursor.execute(
