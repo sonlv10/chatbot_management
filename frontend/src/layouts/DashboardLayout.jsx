@@ -33,7 +33,7 @@ const DashboardLayout = () => {
     {
       key: '/dashboard/training',
       icon: <DatabaseOutlined />,
-      label: 'Training Data',
+      label: 'Training',
     },
     {
       key: '/dashboard/chat',

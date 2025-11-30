@@ -78,7 +78,7 @@ const DashboardHome = () => {
         <Col xs={24} sm={12} lg={6}>
           <Card>
             <Statistic
-              title="Training Data"
+              title="Training"
               value={totalTrainingData}
               prefix={<DatabaseOutlined />}
             />

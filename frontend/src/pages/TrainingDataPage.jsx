@@ -15,6 +15,7 @@ import {
   Input,
   Tooltip,
   Tag,
+  Tabs,
 } from 'antd';
 import {
   UploadOutlined,
@@ -24,9 +25,14 @@ import {
   EditOutlined,
   ExportOutlined,
   SearchOutlined,
+  RocketOutlined,
+  HistoryOutlined,
 } from '@ant-design/icons';
 import { botsAPI } from '../api/bots';
 import { trainingAPI } from '../api/training';
+import { startTraining } from '../api/trainingJobs';
+import TrainingProgressModal from '../components/TrainingProgressModal';
+import TrainingHistory from '../components/TrainingHistory';
 
 const { Title } = Typography;
 const { TextArea } = Input;
@@ -57,6 +63,12 @@ const TrainingDataPage = () => {
     sort_order: 'desc'
   });
   const [form] = Form.useForm();
+  
+  // Training states
+  const [trainingJobId, setTrainingJobId] = useState(null);
+  const [trainingModalVisible, setTrainingModalVisible] = useState(false);
+  const [refreshHistory, setRefreshHistory] = useState(0);
+  const [activeTab, setActiveTab] = useState('data');
 
   // Get unique intents for filter
   const uniqueIntents = useMemo(() => {
@@ -83,6 +95,22 @@ const TrainingDataPage = () => {
       }
     } catch (error) {
       message.error('Failed to load bots');
+    }
+  };
+
+  const handleTrain = async () => {
+    if (!selectedBotId) {
+      message.warning('Please select a bot first');
+      return;
+    }
+    
+    try {
+      const job = await startTraining(selectedBotId);
+      setTrainingJobId(job.id);
+      setTrainingModalVisible(true);
+      message.success('Training started!');
+    } catch (error) {
+      message.error(error.response?.data?.detail || 'Failed to start training');
     }
   };
 
@@ -738,7 +766,7 @@ const TrainingDataPage = () => {
   return (
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 16 }}>
-        <Title level={2}>Training Data</Title>
+        <Title level={2}>Training</Title>
         <Space>
           <Button 
             icon={<DownloadOutlined />} 
@@ -758,7 +786,7 @@ const TrainingDataPage = () => {
 
       <Card style={{ marginBottom: 16 }}>
         <Space style={{ width: '100%' }} direction="vertical">
-          <div>
+          <Space>
             <strong>Select Bot: </strong>
             <Select
               style={{ width: 300 }}
@@ -769,7 +797,15 @@ const TrainingDataPage = () => {
                 value: bot.id,
               }))}
             />
-          </div>
+            <Button 
+              type="primary"
+              icon={<RocketOutlined />}
+              onClick={handleTrain}
+              disabled={!selectedBotId}
+            >
+              Train Bot
+            </Button>
+          </Space>
 
           {selectedBotId && (
             <Space>
@@ -809,27 +845,40 @@ const TrainingDataPage = () => {
       </Card>
 
       {selectedBotId && (
-        <Card 
-          title={`Training Data (${trainingData.length} items)`}
-          extra={
-            selectedRowKeys.length > 0 && (
-              <Space>
-                <span style={{ marginRight: 8 }}>
-                  Selected {selectedRowKeys.length} items
+        <Tabs
+          activeKey={activeTab}
+          onChange={setActiveTab}
+          items={[
+            {
+              key: 'data',
+              label: (
+                <span>
+                  <EditOutlined style={{ marginRight: 8 }} />
+                  Data
                 </span>
-                <Button 
-                  icon={<ExportOutlined />}
-                  onClick={handleExport}
-                >
-                  Export Selected
-                </Button>
-                <Popconfirm
-                  title={`Delete ${selectedRowKeys.length} selected items?`}
-                  description="This action cannot be undone."
-                  onConfirm={handleDeleteSelected}
-                  okText="Yes"
-                  cancelText="No"
-                >
+              ),
+              children: (
+                <Card 
+                  title={`Training Data (${trainingData.length} items)`}
+                  extra={
+                    selectedRowKeys.length > 0 && (
+                      <Space>
+                        <span style={{ marginRight: 8 }}>
+                          Selected {selectedRowKeys.length} items
+                        </span>
+                        <Button 
+                          icon={<ExportOutlined />}
+                          onClick={handleExport}
+                        >
+                          Export Selected
+                        </Button>
+                        <Popconfirm
+                          title={`Delete ${selectedRowKeys.length} selected items?`}
+                          description="This action cannot be undone."
+                          onConfirm={handleDeleteSelected}
+                          okText="Yes"
+                          cancelText="No"
+                        >
                   <Button 
                     danger
                     icon={<DeleteOutlined />}
@@ -861,7 +910,42 @@ const TrainingDataPage = () => {
             />
           )}
         </Card>
+              ),
+            },
+            {
+              key: 'history',
+              label: (
+                <span>
+                  <HistoryOutlined style={{ marginRight: 8 }} />
+                  History
+                </span>
+              ),
+              children: (
+                <Card>
+                  <TrainingHistory 
+                    botId={selectedBotId} 
+                    refreshTrigger={refreshHistory}
+                  />
+                </Card>
+              ),
+            },
+          ]}
+        />
       )}
+
+      {/* Training Progress Modal */}
+      <TrainingProgressModal
+        visible={trainingModalVisible}
+        jobId={trainingJobId}
+        onClose={() => {
+          setTrainingModalVisible(false);
+          setTrainingJobId(null);
+        }}
+        onComplete={(job) => {
+          message.success('Training completed successfully!');
+          setRefreshHistory(prev => prev + 1);
+        }}
+      />
 
       <Modal
         title={editingRecord ? 'Edit Training Data' : 'Add New Training Data'}
