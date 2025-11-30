@@ -143,6 +143,7 @@ const BotsPage = () => {
           draft: 'default',
           training: 'processing',
           active: 'success',
+          trained: 'success',
           error: 'error',
         };
         return <Tag color={colors[status]}>{status.toUpperCase()}</Tag>;
@@ -180,7 +181,7 @@ const BotsPage = () => {
             size="small"
             icon={<MessageOutlined />}
             onClick={() => navigate(`/dashboard/chat/${record.id}`)}
-            disabled={record.status !== 'active'}
+            disabled={record.status !== 'active' && record.status !== 'trained'}
           >
             Chat
           </Button>

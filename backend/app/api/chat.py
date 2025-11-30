@@ -178,7 +178,7 @@ async def chat_with_bot(
         raise HTTPException(status_code=404, detail="Bot not found")
     
     # Check if bot is trained
-    if bot.status != 'active' or not bot.model_path:
+    if bot.status not in ['active', 'trained'] or not bot.model_path:
         raise HTTPException(
             status_code=400,
             detail="Bot is not trained yet. Please train the bot first."

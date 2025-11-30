@@ -40,21 +40,37 @@ GRANT ALL PRIVILEGES ON DATABASE chatbot_db TO chatbot_user;
 \q
 ```
 
-### 1.2. Chạy Migration
+### 1.2. Chạy Migration với Alembic
+
+**Lưu ý:** Dự án sử dụng Alembic để quản lý database migrations thay vì raw SQL.
+
+Migrations sẽ được chạy tự động khi start backend server (bước 2.4), hoặc bạn có thể chạy thủ công:
 
 ```bash
-# Chạy init script
-psql -U chatbot_user -d chatbot_db -f database/init.sql
+# Windows:
+migrate.bat upgrade
 
-# Chạy migration conversation messages
-psql -U chatbot_user -d chatbot_db -f database/migration_002_conversation_messages.sql
-
-# Chạy migration cleanup conversations (FIX lỗi user_message NULL)
-psql -U chatbot_user -d chatbot_db -f database/migration_003_cleanup_conversations.sql
-
-# Chạy migration thêm log train
-psql -U chatbot_user -d chatbot_db -f database/migration_004_training_jobs.sql
+# Linux/Mac:
+./migrate.sh upgrade
 ```
+
+Hoặc chạy trực tiếp với Alembic:
+
+```bash
+cd backend
+alembic upgrade head
+```
+
+**Kiểm tra migration status:**
+```bash
+# Windows:
+migrate.bat current
+
+# Linux/Mac:
+./migrate.sh current
+```
+
+Xem thêm chi tiết tại: [MIGRATIONS.md](MIGRATIONS.md)
 
 ---
 
@@ -99,7 +115,23 @@ ACCESS_TOKEN_EXPIRE_MINUTES=30
 RASA_SERVER_URL=http://localhost:5005
 ```
 
-### 2.4. Chạy Backend Server
+### 2.4. Chạy Database Migrations
+
+```bash
+# Từ thư mục backend/
+alembic upgrade head
+```
+
+Hoặc sử dụng script tiện lợi từ root folder:
+```bash
+# Windows:
+migrate.bat upgrade
+
+# Linux/Mac:
+./migrate.sh upgrade
+```
+
+### 2.5. Chạy Backend Server
 
 ```bash
 # Từ thư mục backend/
@@ -108,11 +140,57 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 
 Backend sẽ chạy tại: **http://localhost:8000**
 
+**Lưu ý:** Backend sẽ tự động kết nối đến PostgreSQL. Đảm bảo database đã được tạo và migrations đã chạy (bước 2.4).
+
 ---
 
-## Bước 3: Setup Rasa Server
+## Bước 3: Quản lý Database Migrations (Optional)
 
-### 3.1. Tạo Virtual Environment riêng cho Rasa
+### 3.1. Các lệnh Alembic thường dùng
+
+```bash
+# Xem current migration version
+migrate.bat current        # Windows
+./migrate.sh current       # Linux/Mac
+
+# Xem lịch sử migrations
+migrate.bat history
+./migrate.sh history
+
+# Tạo migration mới (manual)
+migrate.bat create add_new_feature
+./migrate.sh create add_new_feature
+
+# Auto-generate migration từ SQLAlchemy models
+migrate.bat autogenerate describe_changes
+./migrate.sh autogenerate describe_changes
+
+# Rollback migration
+migrate.bat downgrade
+./migrate.sh downgrade
+```
+
+### 3.2. Workflow khi thay đổi Database Schema
+
+1. **Cập nhật SQLAlchemy models** trong `backend/app/models/`
+2. **Auto-generate migration:**
+   ```bash
+   cd backend
+   alembic revision --autogenerate -m "describe your changes"
+   ```
+3. **Review migration file** trong `backend/alembic/versions/`
+4. **Apply migration:**
+   ```bash
+   alembic upgrade head
+   ```
+
+Xem chi tiết tại: [MIGRATIONS.md](MIGRATIONS.md)
+
+---
+
+## Bước 4: Setup Rasa Server
+
+### 4.1. Tạo Virtual Environment riêng cho Rasa
 
 ```bash
 cd rasa
@@ -127,20 +205,20 @@ venv_rasa\Scripts\activate
 source venv_rasa/bin/activate
 ```
 
-### 3.2. Cài đặt Rasa
+### 4.2. Cài đặt Rasa
 
 ```bash
 pip install rasa==3.6.20
 ```
 
-### 3.3. Train Model mẫu (Optional)
+### 4.3. Train Model mẫu (Optional)
 
 ```bash
 # Từ thư mục rasa/
 rasa train
 ```
 
-### 3.4. Chạy Rasa Server
+### 4.4. Chạy Rasa Server
 
 ```bash
 # Từ thư mục rasa/
@@ -151,16 +229,16 @@ Rasa server sẽ chạy tại: **http://localhost:5005**
 
 ---
 
-## Bước 4: Setup Frontend (React + Vite)
+## Bước 5: Setup Frontend (React + Vite)
 
-### 4.1. Cài đặt Dependencies
+### 5.1. Cài đặt Dependencies
 
 ```bash
 cd frontend
 npm install
 ```
 
-### 4.2. Cấu hình API URL
+### 5.2. Cấu hình API URL
 
 Tạo file `.env` trong thư mục `frontend/`:
 
@@ -174,7 +252,7 @@ Hoặc cập nhật `frontend/src/api/axios.js` nếu cần:
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
 ```
 
-### 4.3. Chạy Development Server
+### 5.3. Chạy Development Server
 
 ```bash
 # Từ thư mục frontend/
@@ -185,16 +263,16 @@ Frontend sẽ chạy tại: **http://localhost:5173**
 
 ---
 
-## Bước 5: Kiểm tra hệ thống
+## Bước 6: Kiểm tra hệ thống
 
-### 5.1. Kiểm tra các service đang chạy
+### 6.1. Kiểm tra các service đang chạy
 
 - PostgreSQL: `localhost:5432`
 - Backend API: `http://localhost:8000`
 - Rasa Server: `http://localhost:5005`
 - Frontend: `http://localhost:5173`
 
-### 5.2. Test API
+### 6.2. Test API
 
 ```bash
 # Health check backend
@@ -204,7 +282,7 @@ curl http://localhost:8000/
 curl http://localhost:5005/
 ```
 
-### 5.3. Truy cập ứng dụng
+### 6.3. Truy cập ứng dụng
 
 Mở trình duyệt và truy cập: **http://localhost:5173**
 
@@ -219,6 +297,11 @@ Mở trình duyệt và truy cập: **http://localhost:5173**
 cd backend
 venv\Scripts\activate  # Windows
 # source venv/bin/activate  # Linux/Mac
+
+# Chạy migrations (nếu có thay đổi)
+alembic upgrade head
+
+# Start server
 uvicorn app.main:app --reload --port 8000
 ```
 
@@ -329,26 +412,37 @@ chatbot_management/
 │   │   ├── pages/         # Page components
 │   │   └── contexts/      # React contexts
 │   ├── package.json
-│   └── .env
-├── rasa/                  # Rasa NLU server
-│   ├── data/             # Training data
+├── database/             # SQL scripts (deprecated - chỉ reference)
+└── alembic/             # Alembic migrations (hiện tại)
+    ├── versions/        # Migration files
+    │   ├── 001_initial.py
+    │   └── 002_triggers.py
+    └── env.py          # Alembic config
 │   ├── models/           # Trained models
 │   └── config.yml        # Rasa configuration
 └── database/             # SQL scripts
-    ├── init.sql
-    └── migration_002_conversation_messages.sql
-```
-
----
-
-## Ghi chú
-
 - **Development**: Tất cả services chạy với hot-reload
 - **Production**: Cần build frontend (`npm run build`) và deploy với nginx/apache
-- **Database**: Backup định kỳ với `pg_dump`
+- **Database**: 
+  - Sử dụng Alembic cho migrations (không dùng raw SQL nữa)
+  - Backup định kỳ với `pg_dump`
+  - Migration files: `backend/alembic/versions/`
 - **Rasa Models**: Lưu trong thư mục `backend/models/` để persistent storage
-
 ---
+
+Nếu gặp vấn đề, kiểm tra:
+1. Logs của từng service
+2. Database connection string
+3. Port conflicts
+4. Virtual environment activation
+5. Environment variables
+6. Alembic migration status (`alembic current`)
+
+**Tài liệu tham khảo:**
+- [MIGRATIONS.md](MIGRATIONS.md) - Hướng dẫn chi tiết về Alembic
+- [MIGRATION_GUIDE.md](MIGRATION_GUIDE.md) - Hướng dẫn chuyển đổi từ raw SQL
+
+Chúc bạn setup thành công! 🎉
 
 ## Hỗ trợ
 

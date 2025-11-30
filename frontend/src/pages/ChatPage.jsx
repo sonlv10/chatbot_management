@@ -76,7 +76,8 @@ const ChatPage = () => {
   const loadBots = async () => {
     try {
       const data = await botsAPI.getAllBots();
-      const activeBots = data.filter((bot) => bot.status === 'active');
+      // Allow both 'active' and 'trained' bots for chat
+      const activeBots = data.filter((bot) => bot.status === 'active' || bot.status === 'trained');
       setBots(activeBots);
       
       if (activeBots.length > 0 && !selectedBotId) {

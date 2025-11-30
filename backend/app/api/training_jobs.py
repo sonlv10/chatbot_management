@@ -51,12 +51,12 @@ def run_rasa_training(job_id: int, bot_id: int, db_connection_string: str):
         conn.commit()
         
         # Create bot-specific training directory
-        bot_dir = f"/app/rasa_bots/bot_{bot_id}"
+        bot_dir = f"/app/models/bot_{bot_id}"
         os.makedirs(bot_dir, exist_ok=True)
         
         # Export training data from database to NLU format
         cursor.execute(
-            "SELECT user_message, intent FROM training_data WHERE bot_id = %s",
+            "SELECT user_message, bot_response, intent FROM training_data WHERE bot_id = %s",
             (bot_id,)
         )
         training_data = cursor.fetchall()
@@ -136,21 +136,59 @@ policies:
         with open(config_file, "w", encoding="utf-8") as f:
             f.write(config_content)
         
-        # Create minimal domain.yml
+        # Create minimal domain.yml with responses for each intent
         intents = list(set([item['intent'] or 'unknown' for item in training_data]))
-        domain_content = f"""
-version: "3.1"
+        
+        # Group responses by intent
+        intent_responses = {}
+        for item in training_data:
+            intent = item['intent'] or 'unknown'
+            if intent not in intent_responses:
+                intent_responses[intent] = []
+            response_text = item['bot_response']
+            if response_text and response_text not in [r['text'] for r in intent_responses[intent]]:
+                intent_responses[intent].append({'text': response_text})
+        
+        # Build responses section
+        responses_content = ""
+        for intent in intents:
+            responses_content += f"  utter_{intent}:\n"
+            if intent in intent_responses and intent_responses[intent]:
+                for response in intent_responses[intent]:
+                    responses_content += f"    - text: \"{response['text']}\"\n"
+            else:
+                responses_content += f"    - text: \"Xin lỗi, tôi chưa có câu trả lời cho {intent}.\"\n"
+        
+        domain_content = f"""version: "3.1"
 
 intents:
 {chr(10).join(f'  - {intent}' for intent in intents)}
 
 responses:
+{responses_content}
   utter_default:
     - text: "Xin lỗi, tôi chưa hiểu câu hỏi của bạn."
 """
         domain_file = os.path.join(bot_dir, "domain.yml")
         with open(domain_file, "w", encoding="utf-8") as f:
             f.write(domain_content)
+        
+        # Create rules.yml to map intents to responses
+        rules_content = """version: "3.1"
+
+rules:
+"""
+        for intent in intents:
+            rules_content += f"""
+- rule: Respond to {intent}
+  steps:
+    - intent: {intent}
+    - action: utter_{intent}
+"""
+        
+        rules_file = os.path.join(bot_dir, "data", "rules.yml")
+        with open(rules_file, "w", encoding="utf-8") as f:
+            f.write(rules_content)
         
         # Update progress - Configuration ready (15%)
         cursor.execute(
@@ -251,9 +289,11 @@ responses:
         
         # Check if training was successful
         if process.returncode == 0:
-            # Find the generated model file
+            # Find the generated model file (get the newest one)
             model_files = [f for f in os.listdir(bot_dir) if f.endswith('.tar.gz')]
             if model_files:
+                # Sort by modification time, newest first
+                model_files.sort(key=lambda f: os.path.getmtime(os.path.join(bot_dir, f)), reverse=True)
                 model_path = os.path.join(bot_dir, model_files[0])
                 
                 # Calculate duration

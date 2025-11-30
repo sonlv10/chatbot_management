@@ -13,12 +13,13 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./database/init.sql:/docker-entrypoint-initdb.d/01_init.sql
-      - ./database/migration_002_conversation_messages.sql:/docker-entrypoint-initdb.d/02_migration.sql
-      - ./database/migration_003_cleanup_conversations.sql:/docker-entrypoint-initdb.d/03_migration.sql
-      - ./database/migration_004_training_jobs.sql:/docker-entrypoint-initdb.d/04_migration.sql
     networks:
       - chatbot_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U chatbot_user -d chatbot_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   # FastAPI Backend
   backend:
@@ -31,11 +32,14 @@ services:
       - SECRET_KEY=your-secret-key-change-this-in-production
       - RASA_SERVER_URL=http://rasa:5005
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     volumes:
       - ./backend:/app
       - rasa_models:/app/models
-    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    command: >
+      bash -c "alembic upgrade head &&
+               uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
     networks:
       - chatbot_network
 
