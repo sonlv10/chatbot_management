@@ -10,16 +10,25 @@ import {
   Select,
   message,
   Empty,
+  Layout,
+  Badge,
+  Tooltip,
+  Spin,
 } from 'antd';
 import {
   SendOutlined,
   RobotOutlined,
   UserOutlined,
+  PlusOutlined,
+  DeleteOutlined,
+  MessageOutlined,
 } from '@ant-design/icons';
 import { useParams } from 'react-router-dom';
 import { botsAPI } from '../api/bots';
+import axios from '../api/axios';
 
 const { Title, Text } = Typography;
+const { Sider, Content } = Layout;
 
 const ChatPage = () => {
   // Add cursor blink animation style
@@ -39,12 +48,16 @@ const ChatPage = () => {
   const [loading, setLoading] = useState(false);
   const [streamingMessage, setStreamingMessage] = useState('');
   const [isStreaming, setIsStreaming] = useState(false);
+  const [conversations, setConversations] = useState([]);
+  const [selectedConversationId, setSelectedConversationId] = useState(null);
+  const [loadingConversations, setLoadingConversations] = useState(false);
   const messagesEndRef = useRef(null);
   const streamingIntervalRef = useRef(null);
 
   // Create new session when bot changes
   useEffect(() => {
     if (selectedBotId) {
+      loadConversations();
       createNewSession();
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -94,7 +107,77 @@ const ChatPage = () => {
     const newSessionId = `session_${selectedBotId}_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
     setSessionId(newSessionId);
     setMessages([]); // Clear messages for new session
+    setSelectedConversationId(null);
     console.log('[Session] Created new session:', newSessionId);
+  };
+
+  const loadConversations = async () => {
+    if (!selectedBotId) return;
+    
+    setLoadingConversations(true);
+    try {
+      const response = await axios.get(`api/conversations/bot/${selectedBotId}/history?limit=50`);
+      const convs = response.data;
+      setConversations(convs);
+      
+      // If we have a sessionId but no selectedConversationId, find and select the matching conversation
+      if (sessionId && !selectedConversationId && convs.length > 0) {
+        const matchingConv = convs.find(c => c.session_id === sessionId);
+        if (matchingConv) {
+          setSelectedConversationId(matchingConv.conversation_id);
+        }
+      }
+    } catch (err) {
+      console.error('Failed to load conversations:', err);
+    } finally {
+      setLoadingConversations(false);
+    }
+  };
+
+  const loadConversationMessages = async (conversationId) => {
+    try {
+      const response = await axios.get(`api/conversations/${conversationId}`);
+      const conv = response.data;
+      
+      // Set session ID from conversation
+      setSessionId(conv.session_id);
+      setSelectedConversationId(conversationId);
+      
+      // Convert conversation messages to chat messages format
+      const chatMessages = conv.messages.map((msg) => ({
+        id: msg.id,
+        type: msg.sender,
+        content: msg.message,
+        intent: msg.intent,
+        confidence: msg.confidence,
+        timestamp: new Date(msg.timestamp).toLocaleTimeString(),
+      }));
+      
+      setMessages(chatMessages);
+    } catch (err) {
+      message.error('Failed to load conversation');
+      console.error('Load conversation error:', err);
+    }
+  };
+
+  const deleteConversation = async (conversationId, e) => {
+    e.stopPropagation();
+    
+    try {
+      await axios.delete(`api/conversations/${conversationId}`);
+      message.success('Conversation deleted');
+      
+      // Reload conversations list
+      await loadConversations();
+      
+      // If deleted conversation was selected, create new session
+      if (selectedConversationId === conversationId) {
+        createNewSession();
+      }
+    } catch (err) {
+      message.error('Failed to delete conversation');
+      console.error('Delete conversation error:', err);
+    }
   };
 
   const scrollToBottom = () => {
@@ -117,6 +200,13 @@ const ChatPage = () => {
 
     try {
       const response = await botsAPI.chatWithBot(selectedBotId, inputValue, sessionId);
+      
+      // If this is the first message in a new session, reload conversations
+      if (messages.length === 0 && !selectedConversationId) {
+        setTimeout(() => {
+          loadConversations();
+        }, 500); // Small delay to ensure backend has created the conversation
+      }
       
       // Start streaming effect
       setIsStreaming(true);
@@ -195,14 +285,93 @@ const ChatPage = () => {
       </div>
 
       {selectedBotId ? (
-        <Card
-          title={
-            <Space>
-              <RobotOutlined />
-              <span>{selectedBot?.name || 'Bot'}</span>
-            </Space>
-          }
-        >
+        <Layout style={{ background: '#fff', minHeight: 600 }}>
+          {/* Conversation List Sidebar */}
+          <Sider width={280} theme="light" style={{ borderRight: '1px solid #f0f0f0' }}>
+            <div style={{ padding: '16px', borderBottom: '1px solid #f0f0f0' }}>
+              <Button
+                type="primary"
+                icon={<PlusOutlined />}
+                block
+                onClick={createNewSession}
+              >
+                New Conversation
+              </Button>
+            </div>
+            
+            <div style={{ padding: '8px 0', maxHeight: 'calc(100vh - 300px)', overflowY: 'auto' }}>
+              {loadingConversations ? (
+                <div style={{ textAlign: 'center', padding: 20 }}>
+                  <Spin />
+                </div>
+              ) : conversations.length === 0 ? (
+                <Empty
+                  image={Empty.PRESENTED_IMAGE_SIMPLE}
+                  description="No conversations yet"
+                  style={{ marginTop: 50 }}
+                />
+              ) : (
+                <List
+                  dataSource={conversations}
+                  renderItem={(conv) => (
+                    <List.Item
+                      key={conv.conversation_id}
+                      style={{
+                        cursor: 'pointer',
+                        padding: '12px 16px',
+                        background: selectedConversationId === conv.conversation_id ? '#e6f7ff' : 'transparent',
+                        borderLeft: selectedConversationId === conv.conversation_id ? '3px solid #1890ff' : '3px solid transparent',
+                      }}
+                      onClick={() => loadConversationMessages(conv.conversation_id)}
+                      actions={[
+                        <Tooltip title="Delete" key="delete">
+                          <Button
+                            type="text"
+                            danger
+                            size="small"
+                            icon={<DeleteOutlined />}
+                            onClick={(e) => deleteConversation(conv.conversation_id, e)}
+                          />
+                        </Tooltip>
+                      ]}
+                    >
+                      <List.Item.Meta
+                        avatar={<Avatar icon={<MessageOutlined />} />}
+                        title={
+                          <Space>
+                            <Text ellipsis style={{ maxWidth: 150 }}>
+                              {conv.preview || 'New conversation'}
+                            </Text>
+                            <Badge count={conv.message_count} />
+                          </Space>
+                        }
+                        description={
+                          <Text type="secondary" style={{ fontSize: 11 }}>
+                            {new Date(conv.started_at).toLocaleDateString()} {new Date(conv.started_at).toLocaleTimeString()}
+                          </Text>
+                        }
+                      />
+                    </List.Item>
+                  )}
+                />
+              )}
+            </div>
+          </Sider>
+
+          {/* Chat Content */}
+          <Content style={{ padding: 0 }}>
+            <Card
+              title={
+                <Space>
+                  <RobotOutlined />
+                  <span>{selectedBot?.name || 'Bot'}</span>
+                  {selectedConversationId && (
+                    <Badge status="processing" text="Active conversation" />
+                  )}
+                </Space>
+              }
+              bordered={false}
+            >
           <div
             style={{
               height: 500,
@@ -332,6 +501,8 @@ const ChatPage = () => {
             </Button>
           </Space.Compact>
         </Card>
+          </Content>
+        </Layout>
       ) : (
         <Empty description="No active bots available. Please train a bot first." />
       )}

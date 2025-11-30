@@ -79,14 +79,66 @@ def run_rasa_training(job_id: int, bot_id: int, db_connection_string: str):
         )
         conn.commit()
         
-        # Generate NLU data in YAML format
+        # Generate NLU data in YAML format with entities
         nlu_content = "version: \"3.1\"\n\nnlu:\n"
         current_intent = None
+        
+        # First pass: collect all examples by intent
+        intent_examples = {}
         for item in training_data:
-            if item['intent'] != current_intent:
-                current_intent = item['intent']
-                nlu_content += f"\n- intent: {current_intent or 'unknown'}\n  examples: |\n"
-            nlu_content += f"    - {item['user_message']}\n"
+            intent = item['intent'] or 'unknown'
+            if intent not in intent_examples:
+                intent_examples[intent] = []
+            intent_examples[intent].append(item['user_message'])
+        
+        # Second pass: write NLU with entity annotations
+        for intent, examples in intent_examples.items():
+            nlu_content += f"\n- intent: {intent}\n  examples: |\n"
+            for example in examples:
+                # Try to detect and annotate entities automatically
+                annotated_example = example
+                
+                # Simple entity detection patterns (can be enhanced)
+                import re
+                
+                # Phone number pattern
+                phone_pattern = r'(\d{10,11}|\d{3}[-.\s]?\d{3}[-.\s]?\d{4})'
+                if re.search(phone_pattern, example):
+                    annotated_example = re.sub(phone_pattern, r'[\1](phone_number)', annotated_example)
+                
+                # Email pattern
+                email_pattern = r'([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})'
+                if re.search(email_pattern, example):
+                    annotated_example = re.sub(email_pattern, r'[\1](email)', annotated_example)
+                
+                nlu_content += f"    - {annotated_example}\n"
+        
+        # Add lookup tables for common entities
+        nlu_content += """
+- lookup: product_name
+  examples: |
+    - áo
+    - quần
+    - giày
+    - túi
+    - mũ
+    - váy
+    - đồng hồ
+    - điện thoại
+    - laptop
+    - máy tính
+
+- lookup: location
+  examples: |
+    - Hà Nội
+    - Hồ Chí Minh
+    - Đà Nẵng
+    - Hải Phòng
+    - Cần Thơ
+    - Nha Trang
+    - Huế
+    - Vũng Tàu
+"""
         
         # Write NLU file
         nlu_file = os.path.join(bot_dir, "data", "nlu.yml")
@@ -107,7 +159,7 @@ def run_rasa_training(job_id: int, bot_id: int, db_connection_string: str):
         )
         conn.commit()
         
-        # Create minimal config.yml
+        # Create enhanced config.yml with entity extraction and better context handling
         config_content = """
 language: vi
 pipeline:
@@ -122,15 +174,27 @@ pipeline:
   - name: DIETClassifier
     epochs: 100
     constrain_similarities: true
+    entity_recognition: true
+    use_masked_language_model: true
+  - name: EntitySynonymMapper
+  - name: ResponseSelector
+    epochs: 100
   - name: FallbackClassifier
     threshold: 0.7
 
 policies:
   - name: MemoizationPolicy
+    max_history: 5
   - name: TEDPolicy
     max_history: 5
     epochs: 100
+    constrain_similarities: true
   - name: RulePolicy
+    core_fallback_threshold: 0.4
+    core_fallback_action_name: "action_default_fallback"
+  - name: UnexpecTEDIntentPolicy
+    max_history: 5
+    epochs: 100
 """
         config_file = os.path.join(bot_dir, "config.yml")
         with open(config_file, "w", encoding="utf-8") as f:
@@ -159,15 +223,83 @@ policies:
             else:
                 responses_content += f"    - text: \"Xin lỗi, tôi chưa có câu trả lời cho {intent}.\"\n"
         
+        # Create slots for context memory
+        slots_content = """
+slots:
+  user_name:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: user_name
+  
+  product_name:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: product_name
+  
+  location:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: location
+  
+  phone_number:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: phone_number
+  
+  email:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: email
+  
+  previous_intent:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: custom
+  
+  context_info:
+    type: any
+    influence_conversation: false
+    mappings:
+      - type: custom
+"""
+        
+        # Create entities list
+        entities_content = """
+entities:
+  - user_name
+  - product_name
+  - location
+  - phone_number
+  - email
+"""
+        
         domain_content = f"""version: "3.1"
 
 intents:
 {chr(10).join(f'  - {intent}' for intent in intents)}
 
+{entities_content}
+{slots_content}
+
 responses:
 {responses_content}
   utter_default:
     - text: "Xin lỗi, tôi chưa hiểu câu hỏi của bạn."
+
+actions:
+  - action_remember_context
+  - action_use_context
 """
         domain_file = os.path.join(bot_dir, "domain.yml")
         with open(domain_file, "w", encoding="utf-8") as f:
@@ -189,6 +321,50 @@ rules:
         rules_file = os.path.join(bot_dir, "data", "rules.yml")
         with open(rules_file, "w", encoding="utf-8") as f:
             f.write(rules_content)
+        
+        # Create stories.yml for conversation flows with context
+        stories_content = """version: "3.1"
+
+stories:
+"""
+        # Generate basic stories from training data
+        # Group by intent to create conversation patterns
+        intent_groups = {}
+        for item in training_data:
+            intent = item['intent'] or 'unknown'
+            if intent not in intent_groups:
+                intent_groups[intent] = []
+            intent_groups[intent].append(item)
+        
+        # Create multi-turn conversation stories
+        story_id = 1
+        for intent, items in intent_groups.items():
+            if len(items) > 0:
+                stories_content += f"""
+- story: conversation_{story_id}_{intent}
+  steps:
+    - intent: {intent}
+    - action: utter_{intent}
+"""
+                story_id += 1
+        
+        # Add context-aware stories
+        if len(intents) > 1:
+            # Create stories where one intent follows another
+            intent_list = list(intents)
+            for i in range(min(3, len(intent_list)-1)):  # Create a few multi-turn stories
+                stories_content += f"""
+- story: multi_turn_{i+1}
+  steps:
+    - intent: {intent_list[i]}
+    - action: utter_{intent_list[i]}
+    - intent: {intent_list[i+1]}
+    - action: utter_{intent_list[i+1]}
+"""
+        
+        stories_file = os.path.join(bot_dir, "data", "stories.yml")
+        with open(stories_file, "w", encoding="utf-8") as f:
+            f.write(stories_content)
         
         # Update progress - Configuration ready (15%)
         cursor.execute(
