@@ -145,3 +145,67 @@ class ConversationHistory(BaseModel):
     started_at: datetime
     ended_at: Optional[datetime] = None
     preview: Optional[str] = None  # First user message
+
+# Training job schemas
+class TrainingJobBase(BaseModel):
+    config: Optional[dict] = None
+
+
+class TrainingJobCreate(TrainingJobBase):
+    """Schema for creating a new training job"""
+    pass
+
+
+class TrainingJobUpdate(BaseModel):
+    status: Optional[str] = None
+    progress: Optional[int] = None
+    model_path: Optional[str] = None
+    metrics: Optional[dict] = None
+    error_message: Optional[str] = None
+
+
+class TrainingJobResponse(TrainingJobBase):
+    """Schema for training job response"""
+    id: int
+    bot_id: int
+    status: str  # pending, running, completed, failed, cancelled
+    progress: int  # 0-100
+    started_at: Optional[datetime] = None
+    completed_at: Optional[datetime] = None
+    model_path: Optional[str] = None
+    metrics: Optional[dict] = None
+    error_message: Optional[str] = None
+    created_at: datetime
+    updated_at: Optional[datetime] = None
+    
+    class Config:
+        orm_mode = True
+
+
+# Training log schemas
+class TrainingLogBase(BaseModel):
+    log_level: str
+    message: str
+    source: Optional[str] = None
+
+
+class TrainingLogCreate(TrainingLogBase):
+    training_job_id: int
+
+
+class TrainingLogResponse(TrainingLogBase):
+    """Schema for training log entry"""
+    id: int
+    training_job_id: int
+    timestamp: datetime
+    
+    class Config:
+        orm_mode = True
+
+
+class TrainingJobWithLogs(TrainingJobResponse):
+    """Schema for training job including logs"""
+    logs: List[TrainingLogResponse] = []
+    
+    class Config:
+        orm_mode = True

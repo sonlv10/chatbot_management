@@ -51,6 +51,9 @@ psql -U chatbot_user -d chatbot_db -f database/migration_002_conversation_messag
 
 # Chạy migration cleanup conversations (FIX lỗi user_message NULL)
 psql -U chatbot_user -d chatbot_db -f database/migration_003_cleanup_conversations.sql
+
+# Chạy migration thêm log train
+psql -U chatbot_user -d chatbot_db -f database/migration_004_training_jobs.sql
 ```
 
 ---

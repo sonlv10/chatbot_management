@@ -11,6 +11,7 @@ import {
   Form,
   Input,
   Select,
+  Tabs,
 } from 'antd';
 import {
   PlusOutlined,
@@ -18,9 +19,13 @@ import {
   DeleteOutlined,
   RocketOutlined,
   MessageOutlined,
+  HistoryOutlined,
 } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import { botsAPI } from '../api/bots';
+import { startTraining } from '../api/trainingJobs';
+import TrainingProgressModal from '../components/TrainingProgressModal';
+import TrainingHistory from '../components/TrainingHistory';
 
 const { Title } = Typography;
 const { TextArea } = Input;
@@ -32,6 +37,13 @@ const BotsPage = () => {
   const [editingBot, setEditingBot] = useState(null);
   const [form] = Form.useForm();
   const navigate = useNavigate();
+  
+  // Training states
+  const [trainingJobId, setTrainingJobId] = useState(null);
+  const [trainingModalVisible, setTrainingModalVisible] = useState(false);
+  const [historyModalVisible, setHistoryModalVisible] = useState(false);
+  const [selectedBotForHistory, setSelectedBotForHistory] = useState(null);
+  const [refreshHistory, setRefreshHistory] = useState(0);
 
   useEffect(() => {
     loadBots();
@@ -73,12 +85,18 @@ const BotsPage = () => {
 
   const handleTrain = async (botId) => {
     try {
-      await botsAPI.trainBot(botId);
-      message.success('Training started in background');
-      setTimeout(loadBots, 1000);
+      const job = await startTraining(botId);
+      setTrainingJobId(job.id);
+      setTrainingModalVisible(true);
+      message.success('Training started!');
     } catch (error) {
       message.error(error.response?.data?.detail || 'Failed to start training');
     }
+  };
+
+  const handleViewHistory = (bot) => {
+    setSelectedBotForHistory(bot);
+    setHistoryModalVisible(true);
   };
 
   const handleSubmit = async (values) => {
@@ -133,7 +151,7 @@ const BotsPage = () => {
     {
       title: 'Actions',
       key: 'actions',
-      width: 300,
+      width: 400,
       render: (_, record) => (
         <Space>
           <Button
@@ -150,6 +168,13 @@ const BotsPage = () => {
             disabled={record.status === 'training'}
           >
             Train
+          </Button>
+          <Button
+            size="small"
+            icon={<HistoryOutlined />}
+            onClick={() => handleViewHistory(record)}
+          >
+            History
           </Button>
           <Button
             size="small"
@@ -221,6 +246,46 @@ const BotsPage = () => {
             </Select>
           </Form.Item>
         </Form>
+      </Modal>
+
+      {/* Training Progress Modal */}
+      <TrainingProgressModal
+        visible={trainingModalVisible}
+        jobId={trainingJobId}
+        onClose={() => {
+          setTrainingModalVisible(false);
+          setTrainingJobId(null);
+          loadBots(); // Refresh bots list
+        }}
+        onComplete={(job) => {
+          message.success('Training completed successfully!');
+          loadBots();
+          setRefreshHistory(prev => prev + 1);
+        }}
+      />
+
+      {/* Training History Modal */}
+      <Modal
+        title={
+          <Space>
+            <HistoryOutlined style={{ color: '#1890ff' }} />
+            <span>Training History - {selectedBotForHistory?.name}</span>
+          </Space>
+        }
+        open={historyModalVisible}
+        onCancel={() => {
+          setHistoryModalVisible(false);
+          setSelectedBotForHistory(null);
+        }}
+        footer={null}
+        width={1200}
+      >
+        {selectedBotForHistory && (
+          <TrainingHistory 
+            botId={selectedBotForHistory.id} 
+            refreshTrigger={refreshHistory}
+          />
+        )}
       </Modal>
     </div>
   );

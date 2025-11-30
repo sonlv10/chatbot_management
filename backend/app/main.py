@@ -4,7 +4,7 @@ FastAPI main application
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.database import engine, Base
-from app.api import auth, bots, training, chat, conversations
+from app.api import auth, bots, training, chat, conversations, training_jobs
 
 # Create database tables
 Base.metadata.create_all(bind=engine)
@@ -25,7 +25,10 @@ app.add_middleware(
 )
 
 # Include routers
+# Register training_jobs before bots to avoid route conflicts
+# (more specific /bots/{bot_id}/train must come before generic /bots/{bot_id})
 app.include_router(auth.router, prefix="/api")
+app.include_router(training_jobs.router, prefix="/api")
 app.include_router(bots.router, prefix="/api")
 app.include_router(training.router, prefix="/api")
 app.include_router(chat.router, prefix="/api")

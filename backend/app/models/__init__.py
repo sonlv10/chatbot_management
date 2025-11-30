@@ -94,3 +94,36 @@ class TrainingSession(Base):
     completed_at = Column(DateTime(timezone=True))
     
     bot = relationship("Bot", back_populates="training_sessions")
+
+
+class TrainingJob(Base):
+    __tablename__ = "training_jobs"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    bot_id = Column(Integer, ForeignKey("bots.id", ondelete="CASCADE"), nullable=False)
+    status = Column(String(20), default='pending')  # pending, running, completed, failed, cancelled
+    progress = Column(Integer, default=0)  # 0-100
+    started_at = Column(DateTime(timezone=True))
+    completed_at = Column(DateTime(timezone=True))
+    model_path = Column(String(500))
+    config = Column(JSON)  # training configuration
+    metrics = Column(JSON)  # training metrics (accuracy, f1-score, etc.)
+    error_message = Column(Text)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    updated_at = Column(DateTime(timezone=True), onupdate=func.now())
+    
+    bot = relationship("Bot")
+    logs = relationship("TrainingLog", back_populates="training_job", cascade="all, delete-orphan")
+
+
+class TrainingLog(Base):
+    __tablename__ = "training_logs"
+    
+    id = Column(Integer, primary_key=True, index=True)
+    training_job_id = Column(Integer, ForeignKey("training_jobs.id", ondelete="CASCADE"), nullable=False)
+    log_level = Column(String(10), nullable=False)  # DEBUG, INFO, WARNING, ERROR
+    message = Column(Text, nullable=False)
+    timestamp = Column(DateTime(timezone=True), server_default=func.now())
+    source = Column(String(50))  # stdout, stderr, rasa, custom
+    
+    training_job = relationship("TrainingJob", back_populates="logs")
