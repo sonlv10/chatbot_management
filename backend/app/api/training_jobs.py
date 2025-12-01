@@ -608,7 +608,7 @@ async def start_training(
     
     # Get database connection string from environment
     import os
-    db_url = os.getenv("DATABASE_URL", "postgresql://chatbot_user:chatbot_pass@postgres:5432/chatbot_db")
+    db_url = os.getenv("DATABASE_URL", "postgresql://chatbot_user:chatbot_pass@localhost:5432/chatbot_db")
     
     # Start training in background
     background_tasks.add_task(run_rasa_training, job.id, bot_id, db_url)
