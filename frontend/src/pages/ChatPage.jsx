@@ -26,19 +26,12 @@ import {
 import { useParams } from 'react-router-dom';
 import { botsAPI } from '../api/bots';
 import axios from '../api/axios';
+import rasaSocket from '../api/socket';
 
 const { Title, Text } = Typography;
 const { Sider, Content } = Layout;
 
 const ChatPage = () => {
-  // Add cursor blink animation style
-  const cursorStyle = `
-    @keyframes blink {
-      0%, 50% { opacity: 1; }
-      51%, 100% { opacity: 0; }
-    }
-  `;
-
   const { botId: urlBotId } = useParams();
   const [bots, setBots] = useState([]);
   const [selectedBotId, setSelectedBotId] = useState(urlBotId || null);
@@ -46,13 +39,37 @@ const ChatPage = () => {
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [loading, setLoading] = useState(false);
-  const [streamingMessage, setStreamingMessage] = useState('');
-  const [isStreaming, setIsStreaming] = useState(false);
   const [conversations, setConversations] = useState([]);
   const [selectedConversationId, setSelectedConversationId] = useState(null);
   const [loadingConversations, setLoadingConversations] = useState(false);
+  const [socketConnected, setSocketConnected] = useState(false);
   const messagesEndRef = useRef(null);
-  const streamingIntervalRef = useRef(null);
+
+  // SocketIO connection - connect when sessionId is available
+  useEffect(() => {
+    if (selectedBotId && sessionId) {
+      rasaSocket.connect(selectedBotId, sessionId);
+      setSocketConnected(true);
+
+      // Listen for bot messages
+      rasaSocket.onMessage((data) => {
+        if (data.text) {
+          // Add bot message instantly from SocketIO
+          const botMessage = {
+            text: data.text,
+            sender: 'bot',
+            timestamp: new Date().toISOString(),
+          };
+          setMessages((prev) => [...prev, botMessage]);
+        }
+      });
+
+      return () => {
+        rasaSocket.disconnect();
+        setSocketConnected(false);
+      };
+    }
+  }, [selectedBotId, sessionId]);
 
   // Create new session when bot changes
   useEffect(() => {
@@ -76,15 +93,7 @@ const ChatPage = () => {
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages, streamingMessage]);
-
-  useEffect(() => {
-    return () => {
-      if (streamingIntervalRef.current) {
-        clearInterval(streamingIntervalRef.current);
-      }
-    };
-  }, []);
+  }, [messages]);
 
   const loadBots = async () => {
     try {
@@ -146,11 +155,9 @@ const ChatPage = () => {
       // Convert conversation messages to chat messages format
       const chatMessages = conv.messages.map((msg) => ({
         id: msg.id,
-        type: msg.sender,
-        content: msg.message,
-        intent: msg.intent,
-        confidence: msg.confidence,
-        timestamp: new Date(msg.timestamp).toLocaleTimeString(),
+        sender: msg.sender,
+        text: msg.message,
+        timestamp: msg.timestamp,
       }));
       
       setMessages(chatMessages);
@@ -189,17 +196,24 @@ const ChatPage = () => {
 
     const userMessage = {
       id: Date.now(),
-      type: 'user',
-      content: inputValue,
-      timestamp: new Date().toLocaleTimeString(),
+      sender: 'user',
+      text: inputValue,
+      timestamp: new Date().toISOString(),
     };
 
-    setMessages([...messages, userMessage]);
+    setMessages((prev) => [...prev, userMessage]);
+    const messageText = inputValue;
     setInputValue('');
     setLoading(true);
 
     try {
-      const response = await botsAPI.chatWithBot(selectedBotId, inputValue, sessionId);
+      // Send via SocketIO for instant response
+      if (socketConnected && sessionId) {
+        rasaSocket.sendMessage(messageText, sessionId);
+      }
+
+      // Also save to database via HTTP (ignore response, use SocketIO for UI)
+      await botsAPI.chatWithBot(selectedBotId, messageText, sessionId);
       
       // If this is the first message in a new session, reload conversations
       if (messages.length === 0 && !selectedConversationId) {
@@ -208,46 +222,11 @@ const ChatPage = () => {
         }, 500); // Small delay to ensure backend has created the conversation
       }
       
-      // Start streaming effect
-      setIsStreaming(true);
-      setStreamingMessage('');
-      
-      const fullMessage = response.message;
-      let currentIndex = 0;
-      
-      // Clear any existing interval
-      if (streamingIntervalRef.current) {
-        clearInterval(streamingIntervalRef.current);
-      }
-      
-      // Stream characters one by one
-      streamingIntervalRef.current = setInterval(() => {
-        if (currentIndex < fullMessage.length) {
-          setStreamingMessage(fullMessage.substring(0, currentIndex + 1));
-          currentIndex++;
-        } else {
-          // Streaming complete
-          clearInterval(streamingIntervalRef.current);
-          setIsStreaming(false);
-          setStreamingMessage('');
-          
-          const botMessage = {
-            id: Date.now() + 1,
-            type: 'bot',
-            content: response.message,
-            intent: response.intent,
-            confidence: response.confidence,
-            timestamp: new Date().toLocaleTimeString(),
-          };
-          
-          setMessages((prev) => [...prev, botMessage]);
-        }
-      }, 20); // 20ms per character
+      // Note: Bot response will be handled by SocketIO listener (instant)
+      // HTTP response is just for database persistence
       
     } catch (err) {
       message.error(err?.response?.data?.detail || 'Failed to send message');
-      setIsStreaming(false);
-      setStreamingMessage('');
     } finally {
       setLoading(false);
     }
@@ -264,7 +243,6 @@ const ChatPage = () => {
 
   return (
     <div>
-      <style>{cursorStyle}</style>
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 16 }}>
         <Title level={2}>Test Chat</Title>
         <Space>
@@ -382,65 +360,18 @@ const ChatPage = () => {
               borderRadius: 8,
             }}
           >
-            {messages.length === 0 && !isStreaming ? (
+            {messages.length === 0 ? (
               <Empty
                 description="Start chatting with your bot"
                 style={{ marginTop: 150 }}
               />
             ) : (
-              <>
-                <List
-                  dataSource={messages}
-                  renderItem={(item) => (
-                    <List.Item
-                      style={{
-                        justifyContent: item.type === 'user' ? 'flex-end' : 'flex-start',
-                        border: 'none',
-                      }}
-                    >
-                      <div
-                        style={{
-                          maxWidth: '70%',
-                          display: 'flex',
-                          gap: 8,
-                          flexDirection: item.type === 'user' ? 'row-reverse' : 'row',
-                        }}
-                      >
-                        <Avatar
-                          icon={item.type === 'user' ? <UserOutlined /> : <RobotOutlined />}
-                          style={{
-                            backgroundColor: item.type === 'user' ? '#1890ff' : '#52c41a',
-                          }}
-                        />
-                        <div>
-                          <div
-                            style={{
-                              padding: '8px 12px',
-                              borderRadius: 8,
-                              background: item.type === 'user' ? '#1890ff' : '#fff',
-                              color: item.type === 'user' ? '#fff' : '#000',
-                              boxShadow: '0 1px 2px rgba(0,0,0,0.1)',
-                              whiteSpace: 'pre-wrap',
-                              wordBreak: 'break-word',
-                            }}
-                          >
-                            {item.content}
-                          </div>
-                          <div style={{ fontSize: 11, color: '#999', marginTop: 4 }}>
-                            {item.timestamp}
-                            {item.intent && ` • ${item.intent}`}
-                            {item.confidence && ` • ${(item.confidence * 100).toFixed(1)}%`}
-                          </div>
-                        </div>
-                      </div>
-                    </List.Item>
-                  )}
-                />
-                
-                {isStreaming && (
+              <List
+                dataSource={messages}
+                renderItem={(item) => (
                   <List.Item
                     style={{
-                      justifyContent: 'flex-start',
+                      justifyContent: item.sender === 'user' ? 'flex-end' : 'flex-start',
                       border: 'none',
                     }}
                   >
@@ -449,32 +380,37 @@ const ChatPage = () => {
                         maxWidth: '70%',
                         display: 'flex',
                         gap: 8,
+                        flexDirection: item.sender === 'user' ? 'row-reverse' : 'row',
                       }}
                     >
                       <Avatar
-                        icon={<RobotOutlined />}
-                        style={{ backgroundColor: '#52c41a' }}
+                        icon={item.sender === 'user' ? <UserOutlined /> : <RobotOutlined />}
+                        style={{
+                          backgroundColor: item.sender === 'user' ? '#1890ff' : '#52c41a',
+                        }}
                       />
                       <div>
                         <div
                           style={{
                             padding: '8px 12px',
                             borderRadius: 8,
-                            background: '#fff',
-                            color: '#000',
+                            background: item.sender === 'user' ? '#1890ff' : '#fff',
+                            color: item.sender === 'user' ? '#fff' : '#000',
                             boxShadow: '0 1px 2px rgba(0,0,0,0.1)',
                             whiteSpace: 'pre-wrap',
                             wordBreak: 'break-word',
                           }}
                         >
-                          {streamingMessage}
-                          <span style={{ animation: 'blink 1s infinite' }}>▋</span>
+                          {item.text}
+                        </div>
+                        <div style={{ fontSize: 11, color: '#999', marginTop: 4 }}>
+                          {new Date(item.timestamp).toLocaleTimeString()}
                         </div>
                       </div>
                     </div>
                   </List.Item>
                 )}
-              </>
+              />
             )}
             <div ref={messagesEndRef} />
           </div>
@@ -485,7 +421,7 @@ const ChatPage = () => {
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               onKeyPress={handleKeyPress}
-              disabled={loading || isStreaming}
+              disabled={loading}
               size="large"
               autoSize={{ minRows: 1, maxRows: 4 }}
             />
@@ -494,7 +430,6 @@ const ChatPage = () => {
               icon={<SendOutlined />}
               onClick={handleSend}
               loading={loading}
-              disabled={isStreaming}
               size="large"
             >
               Send
