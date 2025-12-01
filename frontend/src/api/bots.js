@@ -43,13 +43,14 @@ export const botsAPI = {
   },
 
   // Chat with bot
-  chatWithBot: async (botId, message, sessionId = null) => {
+  chatWithBot: async (botId, message, sessionId = null, isSave = true) => {
     const params = sessionId ? { session_id: sessionId } : {};
     const response = await apiClient.post(
       `/api/bots/${botId}/chat`,
       {
         message,
         sender_id: sessionId || 'user',
+        isSave: isSave,
       },
       { params }
     );
