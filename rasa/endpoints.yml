@@ -1,10 +1,6 @@
 # Rasa Endpoints Configuration
 # This file defines the endpoints for the Rasa server
 
-# Action server endpoint for custom actions with context handling
-action_endpoint:
-  url: "http://rasa-actions:5055/webhook"
-
 # Tracker store endpoint - stores conversation history in PostgreSQL
 tracker_store:
   type: sql

@@ -296,10 +296,6 @@ responses:
 {responses_content}
   utter_default:
     - text: "Xin lỗi, tôi chưa hiểu câu hỏi của bạn."
-
-actions:
-  - action_remember_context
-  - action_use_context
 """
         domain_file = os.path.join(bot_dir, "domain.yml")
         with open(domain_file, "w", encoding="utf-8") as f:
