@@ -224,10 +224,10 @@ async def chat_with_bot(
             detail=f"Failed to load model: {load_result.get('error_message')}"
         )
     
-    # Log user message only if save_to_db is True
+    # Log user message only if isSave is True
     from app.models import ConversationMessage as ConversationMessageModel
     
-    if message.save_to_db and conversation:
+    if message.isSave and conversation:
         user_msg = ConversationMessageModel(
             conversation_id=conversation.id,
             sender='user',
