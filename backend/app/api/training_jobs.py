@@ -500,6 +500,11 @@ stories:
                 # Make datetime timezone-aware to match database timestamp
                 from datetime import timezone
                 now = datetime.now(timezone.utc)
+                
+                # If started_at is timezone-naive, make it timezone-aware (assuming UTC)
+                if started_at.tzinfo is None:
+                    started_at = started_at.replace(tzinfo=timezone.utc)
+                
                 duration = int((now - started_at).total_seconds())
                 
                 # Update job as completed
