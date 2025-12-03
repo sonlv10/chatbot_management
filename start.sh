@@ -49,6 +49,11 @@ sleep 3
 echo ""
 echo "[3/3] Khoi dong Rasa Server..."
 
+# Load environment variables from .env file
+if [ -f "$SCRIPT_DIR/rasa/.env" ]; then
+    export $(cat "$SCRIPT_DIR/rasa/.env" | grep -v '^#' | xargs)
+fi
+
 if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" || "$OSTYPE" == "cygwin" ]]; then
     # Windows (Git Bash) - Background mode with logs
     cd "$SCRIPT_DIR/backend"
