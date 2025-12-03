@@ -184,26 +184,32 @@ async def chat_with_bot(
             detail="Bot is not trained yet. Please train the bot first."
         )
     
-    # Get or create conversation session
+    # Get or create conversation session only if isSave is True
     conversation = None
-    if session_id:
-        conversation = db.query(Conversation).filter(
-            Conversation.session_id == session_id,
-            Conversation.bot_id == bot_id
-        ).first()
-    
-    if not conversation:
-        # Create new conversation
-        import uuid
-        session_id = session_id or f"session_{bot_id}_{uuid.uuid4().hex[:12]}"
-        conversation = Conversation(
-            bot_id=bot_id,
-            session_id=session_id,
-            message_count=0
-        )
-        db.add(conversation)
-        db.commit()
-        db.refresh(conversation)
+    if message.isSave:
+        if session_id:
+            conversation = db.query(Conversation).filter(
+                Conversation.session_id == session_id,
+                Conversation.bot_id == bot_id
+            ).first()
+        
+        if not conversation:
+            # Create new conversation
+            import uuid
+            session_id = session_id or f"session_{bot_id}_{uuid.uuid4().hex[:12]}"
+            conversation = Conversation(
+                bot_id=bot_id,
+                session_id=session_id,
+                message_count=0
+            )
+            db.add(conversation)
+            db.commit()
+            db.refresh(conversation)
+    else:
+        # Generate session_id for Rasa tracking even if not saving to DB
+        if not session_id:
+            import uuid
+            session_id = f"temp_{bot_id}_{uuid.uuid4().hex[:12]}"
     
     # Ensure correct model is loaded in Rasa
     import time
@@ -218,16 +224,17 @@ async def chat_with_bot(
             detail=f"Failed to load model: {load_result.get('error_message')}"
         )
     
-    # Log user message
+    # Log user message only if isSave is True
     from app.models import ConversationMessage as ConversationMessageModel
     
-    user_msg = ConversationMessageModel(
-        conversation_id=conversation.id,
-        sender='user',
-        message=message.message
-    )
-    db.add(user_msg)
-    db.commit()
+    if message.isSave and conversation:
+        user_msg = ConversationMessageModel(
+            conversation_id=conversation.id,
+            sender='user',
+            message=message.message
+        )
+        db.add(user_msg)
+        db.commit()
     
     # Send message to Rasa with session tracking
     t2 = time.time()
@@ -245,17 +252,18 @@ async def chat_with_bot(
             detail=f"Error communicating with bot: {response.get('error_message')}"
         )
     
-    # Log bot response
-    bot_msg = ConversationMessageModel(
-        conversation_id=conversation.id,
-        sender='bot',
-        message=response.get('message', ''),
-        intent=response.get('intent'),
-        confidence=response.get('confidence'),
-        extra_data={'entities': response.get('entities', [])}
-    )
-    db.add(bot_msg)
-    db.commit()
+    # Log bot response only if isSave is True
+    if message.isSave and conversation:
+        bot_msg = ConversationMessageModel(
+            conversation_id=conversation.id,
+            sender='bot',
+            message=response.get('message', ''),
+            intent=response.get('intent'),
+            confidence=response.get('confidence'),
+            extra_data={'entities': response.get('entities', [])}
+        )
+        db.add(bot_msg)
+        db.commit()
     
     return ChatResponse(
         message=response.get('message', 'No response'),

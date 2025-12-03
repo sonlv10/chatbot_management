@@ -35,9 +35,20 @@ timeout /t 3 >nul
 REM Khoi dong Rasa
 echo.
 echo [3/3] Khoi dong Rasa Server...
+
+REM Load environment variables from .env file
+if exist "%~dp0rasa\.env" (
+    for /f "usebackq tokens=* delims=" %%a in ("%~dp0rasa\.env") do (
+        echo %%a | findstr /r "^[^#]" >nul
+        if not errorlevel 1 (
+            set %%a
+        )
+    )
+)
+
 cd /d %~dp0backend
 call venv\Scripts\activate
-start /B cmd /c "rasa run --enable-api --cors * --port 5005 > ..\logs\rasa.log 2>&1"
+start /B cmd /c "rasa run --enable-api --cors * --port 5005 > ..\\logs\\rasa.log 2>&1"
 cd ..
 timeout /t 5 >nul
 

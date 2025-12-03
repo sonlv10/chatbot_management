@@ -220,10 +220,31 @@ rasa train
 
 ### 4.4. Chạy Rasa Server
 
+**Cấu hình Environment Variables:**
+
+Tạo file `.env` trong thư mục `rasa/` (hoặc copy từ `.env.example`):
+
+```env
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=chatbot_db
+DB_USER=chatbot_user
+DB_PASSWORD=chatbot_pass
+```
+
+**Chạy Rasa:**
+
 ```bash
 # Từ thư mục rasa/
+# Đảm bảo đã load env vars (tự động khi dùng start.sh/start.bat)
+
 rasa run --enable-api --cors "*" --port 5005
 ```
+
+**Lưu ý:** 
+- File `.env` đã được tạo sẵn với giá trị mặc định
+- Script `start.sh` và `start.bat` sẽ tự động load file `.env`
+- Nếu chạy thủ công, cần set env vars trước (xem `.env.example`)
 
 Rasa server sẽ chạy tại: **http://localhost:5005**
 
@@ -310,6 +331,12 @@ uvicorn app.main:app --reload --port 8000
 cd rasa
 venv_rasa\Scripts\activate  # Windows
 # source venv_rasa/bin/activate  # Linux/Mac
+
+# Environment variables will be loaded automatically from rasa/.env
+# Or you can load manually:
+# Windows: for /f "tokens=*" %a in (rasa\.env) do set %a
+# Linux/Mac: export $(cat rasa/.env | grep -v '^#' | xargs)
+
 rasa run --enable-api --cors "*" --port 5005
 ```
 

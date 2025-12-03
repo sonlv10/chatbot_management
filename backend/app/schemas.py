@@ -80,6 +80,7 @@ class TrainingData(TrainingDataItem):
 class ChatMessage(BaseModel):
     message: str
     sender_id: Optional[str] = "user"
+    isSave: bool = False  # Whether to save conversation to database
 
 class ChatResponse(BaseModel):
     message: str

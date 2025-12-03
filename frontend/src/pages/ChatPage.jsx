@@ -14,6 +14,7 @@ import {
   Badge,
   Tooltip,
   Spin,
+  Switch,
 } from 'antd';
 import {
   SendOutlined,
@@ -22,6 +23,7 @@ import {
   PlusOutlined,
   DeleteOutlined,
   MessageOutlined,
+  SaveOutlined,
 } from '@ant-design/icons';
 import { useParams } from 'react-router-dom';
 import { botsAPI } from '../api/bots';
@@ -42,6 +44,10 @@ const ChatPage = () => {
   const [conversations, setConversations] = useState([]);
   const [selectedConversationId, setSelectedConversationId] = useState(null);
   const [loadingConversations, setLoadingConversations] = useState(false);
+  const [isSave, setIsSave] = useState(() => {
+    const saved = localStorage.getItem('chatIsSave');
+    return saved !== null ? JSON.parse(saved) : true;
+  });
   const [socketConnected, setSocketConnected] = useState(false);
   const messagesEndRef = useRef(null);
 
@@ -94,6 +100,12 @@ const ChatPage = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  // Save isSave to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('chatIsSave', JSON.stringify(isSave));
+  }, [isSave]);
+
 
   const loadBots = async () => {
     try {
@@ -213,10 +225,10 @@ const ChatPage = () => {
       }
 
       // Also save to database via HTTP (ignore response, use SocketIO for UI)
-      await botsAPI.chatWithBot(selectedBotId, messageText, sessionId);
+      await botsAPI.chatWithBot(selectedBotId, messageText, sessionId, isSave);
       
-      // If this is the first message in a new session, reload conversations
-      if (messages.length === 0 && !selectedConversationId) {
+      // If this is the first message in a new session and saving is enabled, reload conversations
+      if (isSave && messages.length === 0 && !selectedConversationId) {
         setTimeout(() => {
           loadConversations();
         }, 500); // Small delay to ensure backend has created the conversation
@@ -246,6 +258,18 @@ const ChatPage = () => {
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 16 }}>
         <Title level={2}>Test Chat</Title>
         <Space>
+          <Tooltip title={isSave ? "Conversation will be saved" : "Conversation won't be saved"}>
+            <Space>
+              <SaveOutlined style={{ color: isSave ? '#52c41a' : '#d9d9d9' }} />
+              <Text>Save to DB:</Text>
+              <Switch 
+                checked={isSave} 
+                onChange={setIsSave}
+                checkedChildren="ON"
+                unCheckedChildren="OFF"
+              />
+            </Space>
+          </Tooltip>
           <Text>Select Bot:</Text>
           <Select
             style={{ width: 250 }}

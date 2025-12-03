@@ -49,6 +49,12 @@ services:
     container_name: chatbot_rasa
     ports:
       - "5005:5005"
+    environment:
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=chatbot_db
+      - DB_USER=chatbot_user
+      - DB_PASSWORD=chatbot_pass
     volumes:
       - ./rasa:/app
       - rasa_models:/models
