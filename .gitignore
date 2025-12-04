@@ -44,6 +44,8 @@ backend/rasa_bots/
 backend/models/
 *.tar.gz
 
+rasa/models/
+
 # Logs
 logs/
 *.log
