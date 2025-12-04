@@ -88,6 +88,18 @@ const TrainingDataPage = () => {
 
   useEffect(() => {
     loadBots();
+    
+    // Reload bots when returning to this page to detect deleted bots
+    const handleVisibilityChange = () => {
+      if (!document.hidden) {
+        loadBots();
+      }
+    };
+    
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
   }, []);
 
   // Handle bot selection from navigation state
@@ -109,8 +121,22 @@ const TrainingDataPage = () => {
     try {
       const data = await botsAPI.getAllBots();
       setBots(data);
-      if (data.length > 0 && !selectedBotId) {
+      
+      if (data.length === 0) {
+        // No bots available, clear selection
+        setSelectedBotId(null);
+        localStorage.removeItem('selectedBotId');
+        setTrainingData([]);
+      } else if (!selectedBotId) {
+        // Has bots but no selection, select first bot
         setSelectedBotId(data[0].id);
+      } else {
+        // Check if selected bot still exists
+        const botExists = data.some(bot => bot.id === selectedBotId);
+        if (!botExists) {
+          // Selected bot was deleted, select first available bot
+          setSelectedBotId(data[0].id);
+        }
       }
     } catch (error) {
       message.error('Failed to load bots');
@@ -134,6 +160,11 @@ const TrainingDataPage = () => {
   };
 
   const loadTrainingData = async () => {
+    if (!selectedBotId) {
+      setTrainingData([]);
+      return;
+    }
+    
     setLoading(true);
     try {
       const data = await trainingAPI.getTrainingData(selectedBotId, serverFilters);
@@ -811,6 +842,8 @@ const TrainingDataPage = () => {
               style={{ width: 300 }}
               value={selectedBotId}
               onChange={setSelectedBotId}
+              placeholder={bots.length === 0 ? "No bots available" : "Select a bot"}
+              disabled={bots.length === 0}
               options={bots.map((bot) => ({
                 label: bot.name,
                 value: bot.id,
@@ -820,7 +853,7 @@ const TrainingDataPage = () => {
               type="primary"
               icon={<RocketOutlined />}
               onClick={handleTrain}
-              disabled={!selectedBotId}
+              disabled={!selectedBotId || bots.length === 0}
             >
               Train Bot
             </Button>
@@ -863,7 +896,16 @@ const TrainingDataPage = () => {
         </Space>
       </Card>
 
-      {selectedBotId && (
+      {bots.length === 0 ? (
+        <Card>
+          <div style={{ textAlign: 'center', padding: '40px 0' }}>
+            <Title level={4} type="secondary">No bots available</Title>
+            <p style={{ color: '#999', marginBottom: 16 }}>
+              Please create a bot first from the "My Bots" page before you can add training data.
+            </p>
+          </div>
+        </Card>
+      ) : selectedBotId && (
         <Tabs
           activeKey={activeTab}
           onChange={setActiveTab}
