@@ -4,6 +4,8 @@ Bot management API endpoints
 from typing import List
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
+import os
+import shutil
 
 from app.database import get_db
 from app.models import User, Bot
@@ -90,7 +92,7 @@ def delete_bot(
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db)
 ):
-    """Delete bot"""
+    """Delete bot and its associated model files"""
     bot = db.query(Bot).filter(
         Bot.id == bot_id,
         Bot.user_id == current_user.id
@@ -99,6 +101,20 @@ def delete_bot(
     if not bot:
         raise HTTPException(status_code=404, detail="Bot not found")
     
+    # Delete bot from database
     db.delete(bot)
     db.commit()
+    
+    # Delete bot's model directory
+    try:
+        project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+        bot_dir = os.path.join(project_root, "rasa", "models", f"bot_{bot_id}")
+        
+        if os.path.exists(bot_dir):
+            shutil.rmtree(bot_dir)
+            print(f"Deleted model directory: {bot_dir}")
+    except Exception as e:
+        # Log the error but don't fail the delete operation
+        print(f"Warning: Failed to delete model directory for bot {bot_id}: {str(e)}")
+    
     return None
