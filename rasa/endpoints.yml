@@ -5,9 +5,9 @@
 tracker_store:
   type: sql
   dialect: postgresql
-  url: ${DB_HOST}
-  port: ${DB_PORT}
-  db: ${DB_NAME}
-  username: ${DB_USER}
-  password: ${DB_PASSWORD}
-  login_db: ${DB_NAME}
+  url: localhost
+  port: 5432
+  db: chatbot_db
+  username: chatbot_user
+  password: chatbot_pass
+  login_db: chatbot_db
