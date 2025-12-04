@@ -39,7 +39,10 @@ const { TextArea } = Input;
 
 const TrainingDataPage = () => {
   const [bots, setBots] = useState([]);
-  const [selectedBotId, setSelectedBotId] = useState(null);
+  const [selectedBotId, setSelectedBotId] = useState(() => {
+    const saved = localStorage.getItem('selectedBotId');
+    return saved ? parseInt(saved) : null;
+  });
   const [trainingData, setTrainingData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -83,6 +86,8 @@ const TrainingDataPage = () => {
   useEffect(() => {
     if (selectedBotId) {
       loadTrainingData();
+      // Save selected bot to localStorage
+      localStorage.setItem('selectedBotId', selectedBotId.toString());
     }
   }, [selectedBotId, serverFilters]);
 
