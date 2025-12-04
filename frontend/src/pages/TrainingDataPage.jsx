@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
+import { useLocation } from 'react-router-dom';
 import {
   Card,
   Table,
@@ -38,8 +39,14 @@ const { Title } = Typography;
 const { TextArea } = Input;
 
 const TrainingDataPage = () => {
+  const location = useLocation();
   const [bots, setBots] = useState([]);
   const [selectedBotId, setSelectedBotId] = useState(() => {
+    // Check if bot ID is passed from navigation state
+    if (location.state?.botId) {
+      return location.state.botId;
+    }
+    // Otherwise, load from localStorage
     const saved = localStorage.getItem('selectedBotId');
     return saved ? parseInt(saved) : null;
   });
@@ -82,6 +89,13 @@ const TrainingDataPage = () => {
   useEffect(() => {
     loadBots();
   }, []);
+
+  // Handle bot selection from navigation state
+  useEffect(() => {
+    if (location.state?.botId && location.state.botId !== selectedBotId) {
+      setSelectedBotId(location.state.botId);
+    }
+  }, [location.state?.botId]);
 
   useEffect(() => {
     if (selectedBotId) {
