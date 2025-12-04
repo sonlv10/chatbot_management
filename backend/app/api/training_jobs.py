@@ -97,23 +97,27 @@ def run_rasa_training(job_id: int, bot_id: int, db_connection_string: str):
         for intent, examples in intent_examples.items():
             nlu_content += f"\n- intent: {intent}\n  examples: |\n"
             for example in examples:
-                # Try to detect and annotate entities automatically
-                annotated_example = example
+                # Split multiline user messages into separate examples
+                lines = [line.strip() for line in example.split('\n') if line.strip()]
                 
-                # Simple entity detection patterns (can be enhanced)
-                import re
-                
-                # Phone number pattern
-                phone_pattern = r'(\d{10,11}|\d{3}[-.\s]?\d{3}[-.\s]?\d{4})'
-                if re.search(phone_pattern, example):
-                    annotated_example = re.sub(phone_pattern, r'[\1](phone_number)', annotated_example)
-                
-                # Email pattern
-                email_pattern = r'([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})'
-                if re.search(email_pattern, example):
-                    annotated_example = re.sub(email_pattern, r'[\1](email)', annotated_example)
-                
-                nlu_content += f"    - {annotated_example}\n"
+                for line in lines:
+                    # Try to detect and annotate entities automatically
+                    annotated_example = line
+                    
+                    # Simple entity detection patterns (can be enhanced)
+                    import re
+                    
+                    # Phone number pattern
+                    phone_pattern = r'(\d{10,11}|\d{3}[-.\s]?\d{3}[-.\s]?\d{4})'
+                    if re.search(phone_pattern, line):
+                        annotated_example = re.sub(phone_pattern, r'[\1](phone_number)', annotated_example)
+                    
+                    # Email pattern
+                    email_pattern = r'([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})'
+                    if re.search(email_pattern, line):
+                        annotated_example = re.sub(email_pattern, r'[\1](email)', annotated_example)
+                    
+                    nlu_content += f"    - {annotated_example}\n"
         
         # Add lookup tables for common entities
         nlu_content += """

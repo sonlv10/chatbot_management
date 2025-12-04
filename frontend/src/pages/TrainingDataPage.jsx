@@ -974,10 +974,10 @@ const TrainingDataPage = () => {
             ]}
           >
             <TextArea 
-              rows={3} 
+              rows={4} 
               placeholder="Enter user message..."
               showCount
-              maxLength={500}
+              maxLength={10000}
             />
           </Form.Item>
 
@@ -990,10 +990,10 @@ const TrainingDataPage = () => {
             ]}
           >
             <TextArea 
-              rows={3} 
+              rows={8} 
               placeholder="Enter bot response..."
               showCount
-              maxLength={500}
+              maxLength={10000}
             />
           </Form.Item>
 
@@ -1011,7 +1011,7 @@ const TrainingDataPage = () => {
             <Input 
               placeholder="e.g., greeting, price_inquiry"
               showCount
-              maxLength={50}
+              maxLength={200}
             />
           </Form.Item>
         </Form>
