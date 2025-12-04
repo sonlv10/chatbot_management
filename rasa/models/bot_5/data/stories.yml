@@ -1,0 +1,289 @@
+version: "3.1"
+
+stories:
+
+- story: conversation_1_tam_biet
+  steps:
+    - intent: tam_biet
+    - action: utter_tam_biet
+
+- story: conversation_2_dang_bai_bao_nhieu_nhom_ngay
+  steps:
+    - intent: dang_bai_bao_nhieu_nhom_ngay
+    - action: utter_dang_bai_bao_nhieu_nhom_ngay
+
+- story: conversation_3_tai_khoan_manh
+  steps:
+    - intent: tai_khoan_manh
+    - action: utter_tai_khoan_manh
+
+- story: conversation_4_Tu_dong_tra_loi_binh_luan
+  steps:
+    - intent: Tu_dong_tra_loi_binh_luan
+    - action: utter_Tu_dong_tra_loi_binh_luan
+
+- story: conversation_5_Tu_dong_ket_ban
+  steps:
+    - intent: Tu_dong_ket_ban
+    - action: utter_Tu_dong_ket_ban
+
+- story: conversation_6_Quan_ly_nhieu_tai_khoan_cung_luc
+  steps:
+    - intent: Quan_ly_nhieu_tai_khoan_cung_luc
+    - action: utter_Quan_ly_nhieu_tai_khoan_cung_luc
+
+- story: conversation_7_Dung_nhieu_proxy
+  steps:
+    - intent: Dung_nhieu_proxy
+    - action: utter_Dung_nhieu_proxy
+
+- story: conversation_8_Ban_proxy
+  steps:
+    - intent: Ban_proxy
+    - action: utter_Ban_proxy
+
+- story: conversation_9_Tiep_can_khach_hang_tiem_nang
+  steps:
+    - intent: Tiep_can_khach_hang_tiem_nang
+    - action: utter_Tiep_can_khach_hang_tiem_nang
+
+- story: conversation_10_Chay_nhieu_noi_dung_cung_luc
+  steps:
+    - intent: Chay_nhieu_noi_dung_cung_luc
+    - action: utter_Chay_nhieu_noi_dung_cung_luc
+
+- story: conversation_11_Dia_chi_cong_ty
+  steps:
+    - intent: Dia_chi_cong_ty
+    - action: utter_Dia_chi_cong_ty
+
+- story: conversation_12_Dung_thu
+  steps:
+    - intent: Dung_thu
+    - action: utter_Dung_thu
+
+- story: conversation_13_chao_hoi
+  steps:
+    - intent: chao_hoi
+    - action: utter_chao_hoi
+
+- story: conversation_14_gioi_thieu_san_pham
+  steps:
+    - intent: gioi_thieu_san_pham
+    - action: utter_gioi_thieu_san_pham
+
+- story: conversation_15_tinh_nang
+  steps:
+    - intent: tinh_nang
+    - action: utter_tinh_nang
+
+- story: conversation_16_hoi_gia
+  steps:
+    - intent: hoi_gia
+    - action: utter_hoi_gia
+
+- story: conversation_17_lien_he
+  steps:
+    - intent: lien_he
+    - action: utter_lien_he
+
+- story: conversation_18_tai_phan_mem
+  steps:
+    - intent: tai_phan_mem
+    - action: utter_tai_phan_mem
+
+- story: conversation_19_huong_dan
+  steps:
+    - intent: huong_dan
+    - action: utter_huong_dan
+
+- story: conversation_20_checkpoint
+  steps:
+    - intent: checkpoint
+    - action: utter_checkpoint
+
+- story: conversation_21_quan_ly_tai_khoan
+  steps:
+    - intent: quan_ly_tai_khoan
+    - action: utter_quan_ly_tai_khoan
+
+- story: conversation_22_dang_bai
+  steps:
+    - intent: dang_bai
+    - action: utter_dang_bai
+
+- story: conversation_23_nhan_tin
+  steps:
+    - intent: nhan_tin
+    - action: utter_nhan_tin
+
+- story: conversation_24_tang_tuong_tac
+  steps:
+    - intent: tang_tuong_tac
+    - action: utter_tang_tuong_tac
+
+- story: conversation_25_quet_khach_hang
+  steps:
+    - intent: quet_khach_hang
+    - action: utter_quet_khach_hang
+
+- story: conversation_26_cau_hinh
+  steps:
+    - intent: cau_hinh
+    - action: utter_cau_hinh
+
+- story: conversation_27_proxy
+  steps:
+    - intent: proxy
+    - action: utter_proxy
+
+- story: conversation_28_cam_on
+  steps:
+    - intent: cam_on
+    - action: utter_cam_on
+
+- story: conversation_29_Su_dung
+  steps:
+    - intent: Su_dung
+    - action: utter_Su_dung
+
+- story: conversation_30_Checkpoint
+  steps:
+    - intent: Checkpoint
+    - action: utter_Checkpoint
+
+- story: conversation_31_Gia_Cac_van_de_ve_gia
+  steps:
+    - intent: Gia_Cac_van_de_ve_gia
+    - action: utter_Gia_Cac_van_de_ve_gia
+
+- story: conversation_32_Hieu_qua
+  steps:
+    - intent: Hieu_qua
+    - action: utter_Hieu_qua
+
+- story: conversation_33_Chua_tin_tuong
+  steps:
+    - intent: Chua_tin_tuong
+    - action: utter_Chua_tin_tuong
+
+- story: conversation_34_Chua_co_nhu_cau
+  steps:
+    - intent: Chua_co_nhu_cau
+    - action: utter_Chua_co_nhu_cau
+
+- story: conversation_35_Co_chi_nhanh_tai_HCM_HN_khong
+  steps:
+    - intent: Co_chi_nhanh_tai_HCM_HN_khong
+    - action: utter_Co_chi_nhanh_tai_HCM_HN_khong
+
+- story: conversation_36_FEEDBACK
+  steps:
+    - intent: FEEDBACK
+    - action: utter_FEEDBACK
+
+- story: conversation_37_Ban_vinh_vien
+  steps:
+    - intent: Ban_vinh_vien
+    - action: utter_Ban_vinh_vien
+
+- story: conversation_38_O_xa_khong_co_chi_nhanh
+  steps:
+    - intent: O_xa_khong_co_chi_nhanh
+    - action: utter_O_xa_khong_co_chi_nhanh
+
+- story: conversation_39_4_kenh_quang_cao
+  steps:
+    - intent: 4_kenh_quang_cao
+    - action: utter_4_kenh_quang_cao
+
+- story: conversation_40_Hoi_khu_vuc
+  steps:
+    - intent: Hoi_khu_vuc
+    - action: utter_Hoi_khu_vuc
+
+- story: conversation_41_Hoi_nganh_nghe
+  steps:
+    - intent: Hoi_nganh_nghe
+    - action: utter_Hoi_nganh_nghe
+
+- story: conversation_42_Tep_khach_hang_cho_nganh_nghe_khac_nhau
+  steps:
+    - intent: Tep_khach_hang_cho_nganh_nghe_khac_nhau
+    - action: utter_Tep_khach_hang_cho_nganh_nghe_khac_nhau
+
+- story: conversation_43_Hoi_Fanpage
+  steps:
+    - intent: Hoi_Fanpage
+    - action: utter_Hoi_Fanpage
+
+- story: conversation_44_Hoi_dang_bai
+  steps:
+    - intent: Hoi_dang_bai
+    - action: utter_Hoi_dang_bai
+
+- story: conversation_45_Hoi_nhan_tin
+  steps:
+    - intent: Hoi_nhan_tin
+    - action: utter_Hoi_nhan_tin
+
+- story: conversation_46_Hoi_quet_SDT
+  steps:
+    - intent: Hoi_quet_SDT
+    - action: utter_Hoi_quet_SDT
+
+- story: conversation_47_Hoi_livestream
+  steps:
+    - intent: Hoi_livestream
+    - action: utter_Hoi_livestream
+
+- story: conversation_48_Hoi_khach_tiem_nang
+  steps:
+    - intent: Hoi_khach_tiem_nang
+    - action: utter_Hoi_khach_tiem_nang
+
+- story: conversation_49_Hoi_bao_mat_5_lop
+  steps:
+    - intent: Hoi_bao_mat_5_lop
+    - action: utter_Hoi_bao_mat_5_lop
+
+- story: conversation_50_Hoi_khach_doi_thu
+  steps:
+    - intent: Hoi_khach_doi_thu
+    - action: utter_Hoi_khach_doi_thu
+
+- story: conversation_51_Hoi_co_che_van_hanh
+  steps:
+    - intent: Hoi_co_che_van_hanh
+    - action: utter_Hoi_co_che_van_hanh
+
+- story: conversation_52_Hoi_mat_tuong_tac
+  steps:
+    - intent: Hoi_mat_tuong_tac
+    - action: utter_Hoi_mat_tuong_tac
+
+- story: conversation_53_Moi_khach_den_Da_Nang
+  steps:
+    - intent: Moi_khach_den_Da_Nang
+    - action: utter_Moi_khach_den_Da_Nang
+
+- story: multi_turn_1
+  steps:
+    - intent: Hoi_co_che_van_hanh
+    - action: utter_Hoi_co_che_van_hanh
+    - intent: Dung_thu
+    - action: utter_Dung_thu
+
+- story: multi_turn_2
+  steps:
+    - intent: Dung_thu
+    - action: utter_Dung_thu
+    - intent: Hoi_khach_tiem_nang
+    - action: utter_Hoi_khach_tiem_nang
+
+- story: multi_turn_3
+  steps:
+    - intent: Hoi_khach_tiem_nang
+    - action: utter_Hoi_khach_tiem_nang
+    - intent: tai_phan_mem
+    - action: utter_tai_phan_mem

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Live Chat Rasa</title>
+</head>
+
+<body>
+
+<h1>Live Chat Rasa</h1>
+
+<script src="https://cdn.jsdelivr.net/npm/socket.io-client@4.5.1/dist/socket.io.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/rasa-webchat/lib/index.js"></script>
+
+<script>
+    WebChat.default({
+        initPayload: '/greet',
+        customData: { language: "vi" },
+        socketUrl: "http://localhost:5005",
+        socketPath: "/socket.io",
+        title: "Trợ lý AI",
+		launcherSubtitle: "Hỏi tôi bất kỳ điều gì",
+        subtitle: "Chat cùng tôi",
+        showMessageDate: true,
+
+		mainColor: "#4e8cff",
+		backgroundColor: "#ffffff",
+		roundedCorners: true,
+
+		// Vị trí
+		inputTextFieldHint: "Nhập tin nhắn...",
+		showFullScreenButton: true,
+
+		openLauncherImage: "https://www.autonuoi.com/assets/images/favicon.png",
+		closeLauncherImage: "https://www.autonuoi.com/assets/images/favicon.png",
+
+		hideWhenNotFilled: false, // Ẩn cửa sổ chat khi chưa có tin nhắn.
+		showCloseButton: true, // Hiển thị nút đóng cửa sổ chat (mặc định là `true`).
+		darkMode: false
+    });
+
+
+</script>
+
+</body>
+</html>

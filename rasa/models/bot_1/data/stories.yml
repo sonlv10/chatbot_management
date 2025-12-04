@@ -1,0 +1,109 @@
+version: "3.1"
+
+stories:
+
+- story: conversation_1_chao_hoi
+  steps:
+    - intent: chao_hoi
+    - action: utter_chao_hoi
+
+- story: conversation_2_gioi_thieu_san_pham
+  steps:
+    - intent: gioi_thieu_san_pham
+    - action: utter_gioi_thieu_san_pham
+
+- story: conversation_3_tinh_nang
+  steps:
+    - intent: tinh_nang
+    - action: utter_tinh_nang
+
+- story: conversation_4_hoi_gia
+  steps:
+    - intent: hoi_gia
+    - action: utter_hoi_gia
+
+- story: conversation_5_lien_he
+  steps:
+    - intent: lien_he
+    - action: utter_lien_he
+
+- story: conversation_6_tai_phan_mem
+  steps:
+    - intent: tai_phan_mem
+    - action: utter_tai_phan_mem
+
+- story: conversation_7_huong_dan
+  steps:
+    - intent: huong_dan
+    - action: utter_huong_dan
+
+- story: conversation_8_checkpoint
+  steps:
+    - intent: checkpoint
+    - action: utter_checkpoint
+
+- story: conversation_9_quan_ly_tai_khoan
+  steps:
+    - intent: quan_ly_tai_khoan
+    - action: utter_quan_ly_tai_khoan
+
+- story: conversation_10_dang_bai
+  steps:
+    - intent: dang_bai
+    - action: utter_dang_bai
+
+- story: conversation_11_nhan_tin
+  steps:
+    - intent: nhan_tin
+    - action: utter_nhan_tin
+
+- story: conversation_12_tang_tuong_tac
+  steps:
+    - intent: tang_tuong_tac
+    - action: utter_tang_tuong_tac
+
+- story: conversation_13_quet_khach_hang
+  steps:
+    - intent: quet_khach_hang
+    - action: utter_quet_khach_hang
+
+- story: conversation_14_cau_hinh
+  steps:
+    - intent: cau_hinh
+    - action: utter_cau_hinh
+
+- story: conversation_15_proxy
+  steps:
+    - intent: proxy
+    - action: utter_proxy
+
+- story: conversation_16_cam_on
+  steps:
+    - intent: cam_on
+    - action: utter_cam_on
+
+- story: conversation_17_tam_biet
+  steps:
+    - intent: tam_biet
+    - action: utter_tam_biet
+
+- story: multi_turn_1
+  steps:
+    - intent: lien_he
+    - action: utter_lien_he
+    - intent: proxy
+    - action: utter_proxy
+
+- story: multi_turn_2
+  steps:
+    - intent: proxy
+    - action: utter_proxy
+    - intent: quet_khach_hang
+    - action: utter_quet_khach_hang
+
+- story: multi_turn_3
+  steps:
+    - intent: quet_khach_hang
+    - action: utter_quet_khach_hang
+    - intent: quan_ly_tai_khoan
+    - action: utter_quan_ly_tai_khoan

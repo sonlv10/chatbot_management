@@ -1,0 +1,124 @@
+version: "3.1"
+
+nlu:
+
+- intent: chao_hoi
+  examples: |
+    - xin chào
+    - hello
+    - chào bạn
+    - hi
+
+- intent: gioi_thieu_san_pham
+  examples: |
+    - AutoNuoi là gì
+    - phần mềm này làm gì
+
+- intent: tinh_nang
+  examples: |
+    - AutoNuoi có tính năng gì
+    - có những chức năng nào
+    - phần mềm làm được gì
+
+- intent: hoi_gia
+  examples: |
+    - giá bao nhiêu
+    - bao nhiêu tiền
+    - giá cả như thế nào
+    - có bảng giá không
+
+- intent: lien_he
+  examples: |
+    - liên hệ như thế nào
+    - số điện thoại
+    - địa chỉ ở đâu
+    - email là gì
+
+- intent: tai_phan_mem
+  examples: |
+    - tải phần mềm ở đâu
+    - download như thế nào
+    - cài đặt thế nào
+
+- intent: huong_dan
+  examples: |
+    - có hướng dẫn không
+    - hướng dẫn sử dụng
+    - cách dùng ra sao
+
+- intent: checkpoint
+  examples: |
+    - có checkpoint không
+    - tài khoản có bị khóa không
+    - có an toàn không
+
+- intent: quan_ly_tai_khoan
+  examples: |
+    - quản lý được bao nhiêu tài khoản
+    - chạy được bao nhiêu nick
+
+- intent: dang_bai
+  examples: |
+    - có đăng bài tự động không
+    - đăng group tự động
+
+- intent: nhan_tin
+  examples: |
+    - nhắn tin tự động được không
+    - inbox tự động
+
+- intent: tang_tuong_tac
+  examples: |
+    - tăng like được không
+    - tăng view livestream
+
+- intent: quet_khach_hang
+  examples: |
+    - quét khách hàng được không
+    - tìm khách hàng tiềm năng
+
+- intent: cau_hinh
+  examples: |
+    - yêu cầu cấu hình máy
+    - chạy trên máy gì
+
+- intent: proxy
+  examples: |
+    - có dùng proxy không
+    - hỗ trợ proxy nào
+
+- intent: cam_on
+  examples: |
+    - cảm ơn
+    - thank you
+    - thanks
+
+- intent: tam_biet
+  examples: |
+    - tạm biệt
+    - bye
+    - chào tạm biệt
+
+- lookup: product_name
+  examples: |
+    - áo
+    - quần
+    - giày
+    - túi
+    - mũ
+    - váy
+    - đồng hồ
+    - điện thoại
+    - laptop
+    - máy tính
+
+- lookup: location
+  examples: |
+    - Hà Nội
+    - Hồ Chí Minh
+    - Đà Nẵng
+    - Hải Phòng
+    - Cần Thơ
+    - Nha Trang
+    - Huế
+    - Vũng Tàu

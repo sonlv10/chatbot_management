@@ -1,0 +1,88 @@
+version: "3.1"
+
+rules:
+
+- rule: Respond to lien_he
+  steps:
+    - intent: lien_he
+    - action: utter_lien_he
+
+- rule: Respond to proxy
+  steps:
+    - intent: proxy
+    - action: utter_proxy
+
+- rule: Respond to quet_khach_hang
+  steps:
+    - intent: quet_khach_hang
+    - action: utter_quet_khach_hang
+
+- rule: Respond to quan_ly_tai_khoan
+  steps:
+    - intent: quan_ly_tai_khoan
+    - action: utter_quan_ly_tai_khoan
+
+- rule: Respond to tam_biet
+  steps:
+    - intent: tam_biet
+    - action: utter_tam_biet
+
+- rule: Respond to dang_bai
+  steps:
+    - intent: dang_bai
+    - action: utter_dang_bai
+
+- rule: Respond to hoi_gia
+  steps:
+    - intent: hoi_gia
+    - action: utter_hoi_gia
+
+- rule: Respond to tinh_nang
+  steps:
+    - intent: tinh_nang
+    - action: utter_tinh_nang
+
+- rule: Respond to nhan_tin
+  steps:
+    - intent: nhan_tin
+    - action: utter_nhan_tin
+
+- rule: Respond to cau_hinh
+  steps:
+    - intent: cau_hinh
+    - action: utter_cau_hinh
+
+- rule: Respond to tai_phan_mem
+  steps:
+    - intent: tai_phan_mem
+    - action: utter_tai_phan_mem
+
+- rule: Respond to checkpoint
+  steps:
+    - intent: checkpoint
+    - action: utter_checkpoint
+
+- rule: Respond to cam_on
+  steps:
+    - intent: cam_on
+    - action: utter_cam_on
+
+- rule: Respond to huong_dan
+  steps:
+    - intent: huong_dan
+    - action: utter_huong_dan
+
+- rule: Respond to gioi_thieu_san_pham
+  steps:
+    - intent: gioi_thieu_san_pham
+    - action: utter_gioi_thieu_san_pham
+
+- rule: Respond to chao_hoi
+  steps:
+    - intent: chao_hoi
+    - action: utter_chao_hoi
+
+- rule: Respond to tang_tuong_tac
+  steps:
+    - intent: tang_tuong_tac
+    - action: utter_tang_tuong_tac

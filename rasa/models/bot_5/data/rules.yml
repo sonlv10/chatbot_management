@@ -1,0 +1,268 @@
+version: "3.1"
+
+rules:
+
+- rule: Respond to Hoi_co_che_van_hanh
+  steps:
+    - intent: Hoi_co_che_van_hanh
+    - action: utter_Hoi_co_che_van_hanh
+
+- rule: Respond to Dung_thu
+  steps:
+    - intent: Dung_thu
+    - action: utter_Dung_thu
+
+- rule: Respond to Hoi_khach_tiem_nang
+  steps:
+    - intent: Hoi_khach_tiem_nang
+    - action: utter_Hoi_khach_tiem_nang
+
+- rule: Respond to tai_phan_mem
+  steps:
+    - intent: tai_phan_mem
+    - action: utter_tai_phan_mem
+
+- rule: Respond to Gia_Cac_van_de_ve_gia
+  steps:
+    - intent: Gia_Cac_van_de_ve_gia
+    - action: utter_Gia_Cac_van_de_ve_gia
+
+- rule: Respond to Moi_khach_den_Da_Nang
+  steps:
+    - intent: Moi_khach_den_Da_Nang
+    - action: utter_Moi_khach_den_Da_Nang
+
+- rule: Respond to Dung_nhieu_proxy
+  steps:
+    - intent: Dung_nhieu_proxy
+    - action: utter_Dung_nhieu_proxy
+
+- rule: Respond to proxy
+  steps:
+    - intent: proxy
+    - action: utter_proxy
+
+- rule: Respond to Hoi_Fanpage
+  steps:
+    - intent: Hoi_Fanpage
+    - action: utter_Hoi_Fanpage
+
+- rule: Respond to Ban_proxy
+  steps:
+    - intent: Ban_proxy
+    - action: utter_Ban_proxy
+
+- rule: Respond to quan_ly_tai_khoan
+  steps:
+    - intent: quan_ly_tai_khoan
+    - action: utter_quan_ly_tai_khoan
+
+- rule: Respond to nhan_tin
+  steps:
+    - intent: nhan_tin
+    - action: utter_nhan_tin
+
+- rule: Respond to Hoi_nhan_tin
+  steps:
+    - intent: Hoi_nhan_tin
+    - action: utter_Hoi_nhan_tin
+
+- rule: Respond to Hoi_khu_vuc
+  steps:
+    - intent: Hoi_khu_vuc
+    - action: utter_Hoi_khu_vuc
+
+- rule: Respond to Chay_nhieu_noi_dung_cung_luc
+  steps:
+    - intent: Chay_nhieu_noi_dung_cung_luc
+    - action: utter_Chay_nhieu_noi_dung_cung_luc
+
+- rule: Respond to Chua_tin_tuong
+  steps:
+    - intent: Chua_tin_tuong
+    - action: utter_Chua_tin_tuong
+
+- rule: Respond to O_xa_khong_co_chi_nhanh
+  steps:
+    - intent: O_xa_khong_co_chi_nhanh
+    - action: utter_O_xa_khong_co_chi_nhanh
+
+- rule: Respond to Tu_dong_ket_ban
+  steps:
+    - intent: Tu_dong_ket_ban
+    - action: utter_Tu_dong_ket_ban
+
+- rule: Respond to Hoi_nganh_nghe
+  steps:
+    - intent: Hoi_nganh_nghe
+    - action: utter_Hoi_nganh_nghe
+
+- rule: Respond to lien_he
+  steps:
+    - intent: lien_he
+    - action: utter_lien_he
+
+- rule: Respond to Tu_dong_tra_loi_binh_luan
+  steps:
+    - intent: Tu_dong_tra_loi_binh_luan
+    - action: utter_Tu_dong_tra_loi_binh_luan
+
+- rule: Respond to tinh_nang
+  steps:
+    - intent: tinh_nang
+    - action: utter_tinh_nang
+
+- rule: Respond to Hieu_qua
+  steps:
+    - intent: Hieu_qua
+    - action: utter_Hieu_qua
+
+- rule: Respond to tam_biet
+  steps:
+    - intent: tam_biet
+    - action: utter_tam_biet
+
+- rule: Respond to dang_bai
+  steps:
+    - intent: dang_bai
+    - action: utter_dang_bai
+
+- rule: Respond to Checkpoint
+  steps:
+    - intent: Checkpoint
+    - action: utter_Checkpoint
+
+- rule: Respond to Co_chi_nhanh_tai_HCM_HN_khong
+  steps:
+    - intent: Co_chi_nhanh_tai_HCM_HN_khong
+    - action: utter_Co_chi_nhanh_tai_HCM_HN_khong
+
+- rule: Respond to checkpoint
+  steps:
+    - intent: checkpoint
+    - action: utter_checkpoint
+
+- rule: Respond to 4_kenh_quang_cao
+  steps:
+    - intent: 4_kenh_quang_cao
+    - action: utter_4_kenh_quang_cao
+
+- rule: Respond to Hoi_quet_SDT
+  steps:
+    - intent: Hoi_quet_SDT
+    - action: utter_Hoi_quet_SDT
+
+- rule: Respond to Hoi_mat_tuong_tac
+  steps:
+    - intent: Hoi_mat_tuong_tac
+    - action: utter_Hoi_mat_tuong_tac
+
+- rule: Respond to Tep_khach_hang_cho_nganh_nghe_khac_nhau
+  steps:
+    - intent: Tep_khach_hang_cho_nganh_nghe_khac_nhau
+    - action: utter_Tep_khach_hang_cho_nganh_nghe_khac_nhau
+
+- rule: Respond to quet_khach_hang
+  steps:
+    - intent: quet_khach_hang
+    - action: utter_quet_khach_hang
+
+- rule: Respond to chao_hoi
+  steps:
+    - intent: chao_hoi
+    - action: utter_chao_hoi
+
+- rule: Respond to Tiep_can_khach_hang_tiem_nang
+  steps:
+    - intent: Tiep_can_khach_hang_tiem_nang
+    - action: utter_Tiep_can_khach_hang_tiem_nang
+
+- rule: Respond to Chua_co_nhu_cau
+  steps:
+    - intent: Chua_co_nhu_cau
+    - action: utter_Chua_co_nhu_cau
+
+- rule: Respond to hoi_gia
+  steps:
+    - intent: hoi_gia
+    - action: utter_hoi_gia
+
+- rule: Respond to tai_khoan_manh
+  steps:
+    - intent: tai_khoan_manh
+    - action: utter_tai_khoan_manh
+
+- rule: Respond to cau_hinh
+  steps:
+    - intent: cau_hinh
+    - action: utter_cau_hinh
+
+- rule: Respond to dang_bai_bao_nhieu_nhom_ngay
+  steps:
+    - intent: dang_bai_bao_nhieu_nhom_ngay
+    - action: utter_dang_bai_bao_nhieu_nhom_ngay
+
+- rule: Respond to Hoi_dang_bai
+  steps:
+    - intent: Hoi_dang_bai
+    - action: utter_Hoi_dang_bai
+
+- rule: Respond to Ban_vinh_vien
+  steps:
+    - intent: Ban_vinh_vien
+    - action: utter_Ban_vinh_vien
+
+- rule: Respond to Hoi_livestream
+  steps:
+    - intent: Hoi_livestream
+    - action: utter_Hoi_livestream
+
+- rule: Respond to Hoi_khach_doi_thu
+  steps:
+    - intent: Hoi_khach_doi_thu
+    - action: utter_Hoi_khach_doi_thu
+
+- rule: Respond to tang_tuong_tac
+  steps:
+    - intent: tang_tuong_tac
+    - action: utter_tang_tuong_tac
+
+- rule: Respond to FEEDBACK
+  steps:
+    - intent: FEEDBACK
+    - action: utter_FEEDBACK
+
+- rule: Respond to gioi_thieu_san_pham
+  steps:
+    - intent: gioi_thieu_san_pham
+    - action: utter_gioi_thieu_san_pham
+
+- rule: Respond to huong_dan
+  steps:
+    - intent: huong_dan
+    - action: utter_huong_dan
+
+- rule: Respond to Su_dung
+  steps:
+    - intent: Su_dung
+    - action: utter_Su_dung
+
+- rule: Respond to cam_on
+  steps:
+    - intent: cam_on
+    - action: utter_cam_on
+
+- rule: Respond to Quan_ly_nhieu_tai_khoan_cung_luc
+  steps:
+    - intent: Quan_ly_nhieu_tai_khoan_cung_luc
+    - action: utter_Quan_ly_nhieu_tai_khoan_cung_luc
+
+- rule: Respond to Hoi_bao_mat_5_lop
+  steps:
+    - intent: Hoi_bao_mat_5_lop
+    - action: utter_Hoi_bao_mat_5_lop
+
+- rule: Respond to Dia_chi_cong_ty
+  steps:
+    - intent: Dia_chi_cong_ty
+    - action: utter_Dia_chi_cong_ty

@@ -46,10 +46,10 @@ if exist "%~dp0rasa\.env" (
     )
 )
 
-cd /d %~dp0backend
-call venv\Scripts\activate
-start /B cmd /c "rasa run --enable-api --cors * --port 5005 > ..\\logs\\rasa.log 2>&1"
-cd ..
+REM Activate venv and run Rasa from project root directory
+cd /d %~dp0
+call backend\venv\Scripts\activate
+start /B cmd /c "rasa run --enable-api --cors * --port 5005 --model rasa\models > logs\\rasa.log 2>&1"
 timeout /t 5 >nul
 
 REM Khoi dong Frontend

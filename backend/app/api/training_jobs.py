@@ -50,8 +50,10 @@ def run_rasa_training(job_id: int, bot_id: int, db_connection_string: str):
         )
         conn.commit()
         
-        # Create bot-specific training directory
-        bot_dir = f"/app/models/bot_{bot_id}"
+        # Create bot-specific training directory in rasa/models
+        # Get project root directory (backend/../rasa/models)
+        project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
+        bot_dir = os.path.join(project_root, "rasa", "models", f"bot_{bot_id}")
         os.makedirs(bot_dir, exist_ok=True)
         
         # Export training data from database to NLU format
@@ -180,7 +182,7 @@ pipeline:
   - name: ResponseSelector
     epochs: 100
   - name: FallbackClassifier
-    threshold: 0.7
+    threshold: 0.3
 
 policies:
   - name: MemoizationPolicy
@@ -190,7 +192,7 @@ policies:
     epochs: 100
     constrain_similarities: true
   - name: RulePolicy
-    core_fallback_threshold: 0.4
+    core_fallback_threshold: 0.2
     core_fallback_action_name: "action_default_fallback"
   - name: UnexpecTEDIntentPolicy
     max_history: 5
