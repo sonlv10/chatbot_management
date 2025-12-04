@@ -30,6 +30,16 @@ import { botsAPI } from '../api/bots';
 import axios from '../api/axios';
 import rasaSocket from '../api/socket';
 
+// Add CSS for blinking cursor animation
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+`;
+document.head.appendChild(style);
+
 const { Title, Text } = Typography;
 const { Sider, Content } = Layout;
 
@@ -49,7 +59,66 @@ const ChatPage = () => {
     return saved !== null ? JSON.parse(saved) : true;
   });
   const [socketConnected, setSocketConnected] = useState(false);
+  const [streamingMessage, setStreamingMessage] = useState(null); // For streaming effect
   const messagesEndRef = useRef(null);
+  const streamingIntervalRef = useRef(null);
+
+  // Cleanup streaming interval on unmount
+  useEffect(() => {
+    return () => {
+      if (streamingIntervalRef.current) {
+        clearInterval(streamingIntervalRef.current);
+      }
+    };
+  }, []);
+
+  // Streaming effect function
+  const streamBotMessage = (fullText) => {
+    let currentIndex = 0;
+    const botMessage = {
+      id: Date.now(),
+      text: '',
+      sender: 'bot',
+      timestamp: new Date().toISOString(),
+      isStreaming: true,
+    };
+
+    // Add empty message first
+    setMessages((prev) => [...prev, botMessage]);
+    setStreamingMessage(botMessage);
+
+    // Clear any existing interval
+    if (streamingIntervalRef.current) {
+      clearInterval(streamingIntervalRef.current);
+    }
+
+    // Stream text character by character
+    streamingIntervalRef.current = setInterval(() => {
+      if (currentIndex < fullText.length) {
+        currentIndex++;
+        const streamedText = fullText.substring(0, currentIndex);
+        
+        setMessages((prev) =>
+          prev.map((msg) =>
+            msg.id === botMessage.id
+              ? { ...msg, text: streamedText }
+              : msg
+          )
+        );
+      } else {
+        // Streaming complete
+        clearInterval(streamingIntervalRef.current);
+        setMessages((prev) =>
+          prev.map((msg) =>
+            msg.id === botMessage.id
+              ? { ...msg, isStreaming: false }
+              : msg
+          )
+        );
+        setStreamingMessage(null);
+      }
+    }, 30); // 30ms per character (adjustable speed)
+  };
 
   // SocketIO connection - connect when sessionId is available
   useEffect(() => {
@@ -60,19 +129,17 @@ const ChatPage = () => {
       // Listen for bot messages
       rasaSocket.onMessage((data) => {
         if (data.text) {
-          // Add bot message instantly from SocketIO
-          const botMessage = {
-            text: data.text,
-            sender: 'bot',
-            timestamp: new Date().toISOString(),
-          };
-          setMessages((prev) => [...prev, botMessage]);
+          // Use streaming effect for bot response
+          streamBotMessage(data.text);
         }
       });
 
       return () => {
         rasaSocket.disconnect();
         setSocketConnected(false);
+        if (streamingIntervalRef.current) {
+          clearInterval(streamingIntervalRef.current);
+        }
       };
     }
   }, [selectedBotId, sessionId]);
@@ -426,6 +493,18 @@ const ChatPage = () => {
                           }}
                         >
                           {item.text}
+                          {item.isStreaming && (
+                            <span
+                              style={{
+                                display: 'inline-block',
+                                width: 8,
+                                height: 16,
+                                backgroundColor: '#52c41a',
+                                marginLeft: 4,
+                                animation: 'blink 1s infinite',
+                              }}
+                            />
+                          )}
                         </div>
                         <div style={{ fontSize: 11, color: '#999', marginTop: 4 }}>
                           {new Date(item.timestamp).toLocaleTimeString()}
