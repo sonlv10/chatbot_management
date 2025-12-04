@@ -32,4 +32,4 @@ policies:
 - name: UnexpecTEDIntentPolicy
   max_history: 5
   epochs: 100
-assistant_id: 20251204-072640-huge-sherry
+assistant_id: 20251204-122907-largo-cylinder

@@ -127,14 +127,16 @@ class RasaService:
         endpoint = f"{self.rasa_url}/model"
         
         # Model path is stored as: C:\chatbot_management\rasa\models\bot_X\modelfile.tar.gz
-        # Need to convert to relative path from project root: rasa/models/bot_X/modelfile.tar.gz
-        # Rasa server should be started from project root for this to work
+        # If Rasa runs from project root: use rasa/models/bot_X/modelfile.tar.gz
+        # If Rasa runs from rasa/ directory: use models/bot_X/modelfile.tar.gz
         
         print(f"[DEBUG] Original model_path: {model_path}")
         
         # Get project root (backend's parent directory)
         project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
+        rasa_dir = os.path.join(project_root, "rasa")
         print(f"[DEBUG] Project root: {project_root}")
+        print(f"[DEBUG] Rasa directory: {rasa_dir}")
         
         # Convert to absolute path first
         if os.path.isabs(model_path):
@@ -144,14 +146,22 @@ class RasaService:
         
         print(f"[DEBUG] Absolute model path: {abs_model_path}")
         
-        # Convert to relative path from project root
+        # Determine if path is inside rasa directory
+        # If yes, make path relative to rasa directory (for when Rasa runs from rasa/)
         try:
-            rasa_model_path = os.path.relpath(abs_model_path, project_root).replace("\\", "/")
+            if abs_model_path.startswith(rasa_dir):
+                # Path is inside rasa/, make it relative to rasa/
+                rasa_model_path = os.path.relpath(abs_model_path, rasa_dir).replace("\\", "/")
+                print(f"[DEBUG] Path relative to rasa/: {rasa_model_path}")
+            else:
+                # Path outside rasa/, make it relative to project root
+                rasa_model_path = os.path.relpath(abs_model_path, project_root).replace("\\", "/")
+                print(f"[DEBUG] Path relative to project: {rasa_model_path}")
         except ValueError:
             # If on different drives, use absolute path
             rasa_model_path = abs_model_path.replace("\\", "/")
         
-        print(f"[DEBUG] Final rasa_model_path (relative to project): {rasa_model_path}")
+        print(f"[DEBUG] Final rasa_model_path: {rasa_model_path}")
         
         # Check if this model is already loaded in memory cache
         if self._loaded_model_path == rasa_model_path:

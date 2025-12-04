@@ -269,21 +269,21 @@ stories:
 
 - story: multi_turn_1
   steps:
-    - intent: Hoi_co_che_van_hanh
-    - action: utter_Hoi_co_che_van_hanh
-    - intent: Dung_thu
-    - action: utter_Dung_thu
+    - intent: Tiep_can_khach_hang_tiem_nang
+    - action: utter_Tiep_can_khach_hang_tiem_nang
+    - intent: quan_ly_tai_khoan
+    - action: utter_quan_ly_tai_khoan
 
 - story: multi_turn_2
   steps:
-    - intent: Dung_thu
-    - action: utter_Dung_thu
-    - intent: Hoi_khach_tiem_nang
-    - action: utter_Hoi_khach_tiem_nang
+    - intent: quan_ly_tai_khoan
+    - action: utter_quan_ly_tai_khoan
+    - intent: Moi_khach_den_Da_Nang
+    - action: utter_Moi_khach_den_Da_Nang
 
 - story: multi_turn_3
   steps:
-    - intent: Hoi_khach_tiem_nang
-    - action: utter_Hoi_khach_tiem_nang
-    - intent: tai_phan_mem
-    - action: utter_tai_phan_mem
+    - intent: Moi_khach_den_Da_Nang
+    - action: utter_Moi_khach_den_Da_Nang
+    - intent: Ban_vinh_vien
+    - action: utter_Ban_vinh_vien

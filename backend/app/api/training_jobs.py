@@ -215,13 +215,24 @@ policies:
             if response_text and response_text not in [r['text'] for r in intent_responses[intent]]:
                 intent_responses[intent].append({'text': response_text})
         
-        # Build responses section
+        # Build responses section with literal block scalar for multiline support
         responses_content = ""
         for intent in intents:
             responses_content += f"  utter_{intent}:\n"
             if intent in intent_responses and intent_responses[intent]:
                 for response in intent_responses[intent]:
-                    responses_content += f"    - text: \"{response['text']}\"\n"
+                    response_text = response['text'].replace('\r\n', '\n').replace('\r', '\n')
+                    # Use literal block scalar for better multiline support
+                    if '\n' in response_text or len(response_text) > 80:
+                        # Multiline or long text - use | format
+                        responses_content += f"    - text: |\n"
+                        for line in response_text.split('\n'):
+                            responses_content += f"        {line}\n"
+                    else:
+                        # Single line short text - use quoted format
+                        # Escape quotes in text
+                        escaped_text = response_text.replace('"', '\\"')
+                        responses_content += f"    - text: \"{escaped_text}\"\n"
             else:
                 responses_content += f"    - text: \"Xin lỗi, tôi chưa có câu trả lời cho {intent}.\"\n"
         

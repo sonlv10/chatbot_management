@@ -42,4 +42,3 @@ echo.
 echo Luu y: PostgreSQL van dang chay.
 echo De dung PostgreSQL, chay: net stop postgresql-x64-14
 echo.
-pause
