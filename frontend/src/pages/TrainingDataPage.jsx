@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import {
   Card,
   Table,
@@ -40,6 +40,8 @@ const { TextArea } = Input;
 
 const TrainingDataPage = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [bots, setBots] = useState([]);
   const [selectedBotId, setSelectedBotId] = useState(() => {
     // Check if bot ID is passed from navigation state
@@ -65,6 +67,14 @@ const TrainingDataPage = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const [filteredInfo, setFilteredInfo] = useState({});
   const [sortedInfo, setSortedInfo] = useState({});
+  const [currentPage, setCurrentPage] = useState(() => {
+    const page = searchParams.get('page');
+    return page ? parseInt(page) : 1;
+  });
+  const [pageSize, setPageSize] = useState(() => {
+    const size = searchParams.get('pageSize');
+    return size ? parseInt(size) : 10;
+  });
   const [serverFilters, setServerFilters] = useState({
     user_message: '',
     bot_response: '',
@@ -108,6 +118,24 @@ const TrainingDataPage = () => {
       setSelectedBotId(location.state.botId);
     }
   }, [location.state?.botId]);
+
+  // Sync URL params with pagination state
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (currentPage > 1) {
+      params.set('page', currentPage.toString());
+    }
+    if (pageSize !== 10) {
+      params.set('pageSize', pageSize.toString());
+    }
+    
+    const newSearch = params.toString();
+    const currentSearch = window.location.search.slice(1);
+    
+    if (newSearch !== currentSearch) {
+      navigate(`${location.pathname}?${newSearch}`, { replace: true });
+    }
+  }, [currentPage, pageSize]);
 
   useEffect(() => {
     if (selectedBotId) {
@@ -593,6 +621,18 @@ const TrainingDataPage = () => {
     setFilteredInfo(filters);
     setSortedInfo(sorter);
     
+    // Update pagination state
+    if (pagination.current) {
+      setCurrentPage(pagination.current);
+    }
+    if (pagination.pageSize) {
+      setPageSize(pagination.pageSize);
+      // Reset to page 1 if page size changes
+      if (pagination.pageSize !== pageSize) {
+        setCurrentPage(1);
+      }
+    }
+    
     // Update server filters for intent
     if (filters.intent && filters.intent.length > 0) {
       setServerFilters(prev => ({ ...prev, intent: filters.intent[0] }));
@@ -620,6 +660,7 @@ const TrainingDataPage = () => {
   const handleResetFilters = () => {
     setFilteredInfo({});
     setSortedInfo({});
+    setCurrentPage(1); // Reset to page 1 when filters reset
     setServerFilters({
       user_message: '',
       bot_response: '',
@@ -638,6 +679,7 @@ const TrainingDataPage = () => {
           onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
           onPressEnter={() => {
             confirm();
+            setCurrentPage(1);
             setServerFilters(prev => ({ ...prev, user_message: selectedKeys[0] || '' }));
           }}
           style={{ marginBottom: 8, display: 'block' }}
@@ -647,6 +689,7 @@ const TrainingDataPage = () => {
             type="primary"
             onClick={() => {
               confirm();
+              setCurrentPage(1);
               setServerFilters(prev => ({ ...prev, user_message: selectedKeys[0] || '' }));
             }}
             icon={<SearchOutlined />}
@@ -659,6 +702,7 @@ const TrainingDataPage = () => {
             onClick={() => {
               clearFilters && clearFilters();
               confirm({ closeDropdown: true });
+              setCurrentPage(1);
               setServerFilters(prev => ({ ...prev, user_message: '' }));
             }}
             size="small"
@@ -686,6 +730,7 @@ const TrainingDataPage = () => {
           onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
           onPressEnter={() => {
             confirm();
+            setCurrentPage(1);
             setServerFilters(prev => ({ ...prev, bot_response: selectedKeys[0] || '' }));
           }}
           style={{ marginBottom: 8, display: 'block' }}
@@ -695,6 +740,7 @@ const TrainingDataPage = () => {
             type="primary"
             onClick={() => {
               confirm();
+              setCurrentPage(1);
               setServerFilters(prev => ({ ...prev, bot_response: selectedKeys[0] || '' }));
             }}
             icon={<SearchOutlined />}
@@ -707,6 +753,7 @@ const TrainingDataPage = () => {
             onClick={() => {
               clearFilters && clearFilters();
               confirm({ closeDropdown: true });
+              setCurrentPage(1);
               setServerFilters(prev => ({ ...prev, bot_response: '' }));
             }}
             size="small"
@@ -963,9 +1010,11 @@ const TrainingDataPage = () => {
               rowKey="id"
               onChange={handleTableChange}
               pagination={{ 
-                pageSize: 10,
+                current: currentPage,
+                pageSize: pageSize,
                 showSizeChanger: true,
                 showTotal: (total) => `Total ${total} items`,
+                pageSizeOptions: ['10', '20', '50', '100'],
               }}
               bordered
             />

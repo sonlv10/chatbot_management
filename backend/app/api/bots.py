@@ -4,6 +4,7 @@ Bot management API endpoints
 from typing import List
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
+from sqlalchemy import text
 import os
 import shutil
 
@@ -104,6 +105,21 @@ def delete_bot(
     # Delete bot from database
     db.delete(bot)
     db.commit()
+    
+    # Check if this was the last bot for the user
+    remaining_bots = db.query(Bot).filter(Bot.user_id == current_user.id).count()
+    
+    # If no bots remain for this user, check if there are any bots at all
+    if remaining_bots == 0:
+        total_bots = db.query(Bot).count()
+        if total_bots == 0:
+            # Reset the bot ID sequence to 1
+            try:
+                db.execute(text("ALTER SEQUENCE bots_id_seq RESTART WITH 1"))
+                db.commit()
+                print("Reset bot ID sequence to 1")
+            except Exception as e:
+                print(f"Warning: Failed to reset bot ID sequence: {str(e)}")
     
     # Delete bot's model directory
     try:

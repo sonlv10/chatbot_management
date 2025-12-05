@@ -1,442 +1,302 @@
 [
   {
-    "user": "xin chào",
+    "user": "xin chào\nhello\nchào bạn\nhi\nhey\nchào cậu\nchào mừng\nchào mọi người\nchào anh\nchào chị\nchào em\nchào các bạn",
     "bot": "Xin chào! Chào mừng bạn đến với AutoNuoi - phần mềm quảng cáo tự động cho doanh nghiệp. Tôi có thể giúp gì cho bạn?",
     "intent": "chao_hoi"
   },
   {
-    "user": "hello",
-    "bot": "Xin chào! Chào mừng bạn đến với AutoNuoi - phần mềm quảng cáo tự động cho doanh nghiệp. Tôi có thể giúp gì cho bạn?",
-    "intent": "chao_hoi"
-  },
-  {
-    "user": "chào bạn",
-    "bot": "Xin chào! Chào mừng bạn đến với AutoNuoi - phần mềm quảng cáo tự động cho doanh nghiệp. Tôi có thể giúp gì cho bạn?",
-    "intent": "chao_hoi"
-  },
-  {
-    "user": "hi",
-    "bot": "Xin chào! Chào mừng bạn đến với AutoNuoi - phần mềm quảng cáo tự động cho doanh nghiệp. Tôi có thể giúp gì cho bạn?",
-    "intent": "chao_hoi"
-  },
-  {
-    "user": "AutoNuoi là gì",
+    "user": "AutoNuoi là gì\nphần mềm này là gì?\nbạn có thể giới thiệu về AutoNuoi không?\nói cho tôi biết về AutoNuoi được không?\nAutoNuoi làm gì?",
     "bot": "AutoNuoi là phần mềm tự động hóa marketing Facebook cao cấp, giúp bạn:\n- Quản lý hàng nghìn tài khoản Facebook cùng lúc\n- Đăng bài, nhắn tin, bình luận tự động\n- Tăng like, follow, share, mắt xem\n- Khai thác khách hàng tiềm năng\n- Tối ưu quảng cáo và tiếp cận khách hàng 24/7",
     "intent": "gioi_thieu_san_pham"
   },
   {
-    "user": "phần mềm này làm gì",
-    "bot": "AutoNuoi là phần mềm tự động hóa marketing Facebook cao cấp, giúp bạn:\n- Quản lý hàng nghìn tài khoản Facebook cùng lúc\n- Đăng bài, nhắn tin, bình luận tự động\n- Tăng like, follow, share, mắt xem\n- Khai thác khách hàng tiềm năng\n- Tối ưu quảng cáo và tiếp cận khách hàng 24/7",
-    "intent": "gioi_thieu_san_pham"
-  },
-  {
-    "user": "AutoNuoi có tính năng gì",
+    "user": "AutoNuoi có tính năng gì?\nphần mềm có những chức năng nào?\nBạn có thể liệt kê các tính năng của AutoNuoi không?\nnhững chức năng chính của phần mềm là gì?\nphần mềm làm được gì",
     "bot": "AutoNuoi có 10 tính năng chính:\n1. Quản lý tự động hàng nghìn tài khoản\n2. Xây dựng hành động chạy tài khoản thông minh\n. Tương tác tự động (like, comment, share)\n4. Đăng bài quảng cáo hàng loạt\n5. Bình luận tự động tiếp cận khách hàng\n6. Nhắn tin tự động cho bạn bè, page, UID\n7. Tìm nhóm, tham gia, mời thành viên\n8. Tăng like, follow, mắt xem, seeding\n9. Quét khách hàng tiềm năng theo đa tiêu chí\n10. Hẹn giờ và lập lịch tự động",
     "intent": "tinh_nang"
   },
   {
-    "user": "có những chức năng nào",
-    "bot": "AutoNuoi có 10 tính năng chính:\n1. Quản lý tự động hàng nghìn tài khoản\n2. Xây dựng hành động chạy tài khoản thông minh\n. Tương tác tự động (like, comment, share)\n4. Đăng bài quảng cáo hàng loạt\n5. Bình luận tự động tiếp cận khách hàng\n6. Nhắn tin tự động cho bạn bè, page, UID\n7. Tìm nhóm, tham gia, mời thành viên\n8. Tăng like, follow, mắt xem, seeding\n9. Quét khách hàng tiềm năng theo đa tiêu chí\n10. Hẹn giờ và lập lịch tự động",
-    "intent": "tinh_nang"
-  },
-  {
-    "user": "phần mềm làm được gì",
-    "bot": "AutoNuoi có 10 tính năng chính:\n1. Quản lý tự động hàng nghìn tài khoản\n2. Xây dựng hành động chạy tài khoản thông minh\n. Tương tác tự động (like, comment, share)\n4. Đăng bài quảng cáo hàng loạt\n5. Bình luận tự động tiếp cận khách hàng\n6. Nhắn tin tự động cho bạn bè, page, UID\n7. Tìm nhóm, tham gia, mời thành viên\n8. Tăng like, follow, mắt xem, seeding\n9. Quét khách hàng tiềm năng theo đa tiêu chí\n10. Hẹn giờ và lập lịch tự động",
-    "intent": "tinh_nang"
-  },
-  {
-    "user": "giá bao nhiêu",
-    "bot": "AutoNuoi có 2 gói bản quyền:\n\n📦 GÓI 6 THÁNG: 2.000.000đ/1 tài khoản\n📦 GÓI 1 NĂM: 3.450.000đ/1 tài khoản\n\nBao gồm:\n✅ Sử dụng đầy đủ tất cả tính năng\n✅ Hướng dẫn và hỗ trợ kỹ thuật\n✅ Cập nhật phiên bản mới miễn phí\n✅ Hỗ trợ thay đổi máy móc làm việc\n\nBạn quan tâm gói nào ạ?",
+    "user": "giá bao nhiêu\nphần mềm có giá là bao nhiêu?\nbản quyền phần mềm giá thế nào?\nchi phí sử dụng phần mềm là bao nhiêu?\nphần mềm bán với giá nào?",
+    "bot": "AutoNuoi có 2 gói bản quyền:\n📦 GÓI 6 THÁNG: 2.000.000đ/1 tài khoản\n📦 GÓI 1 NĂM: 3.450.000đ/1 tài khoản\nBao gồm:\n✅ Sử dụng đầy đủ tất cả tính năng\n✅ Hướng dẫn và hỗ trợ kỹ thuật\n✅ Cập nhật phiên bản mới miễn phí\n✅ Hỗ trợ thay đổi máy móc làm việc\nBạn quan tâm gói nào ạ?",
     "intent": "hoi_gia"
   },
   {
-    "user": "bao nhiêu tiền",
-    "bot": "AutoNuoi có 2 gói bản quyền:\n\n📦 GÓI 6 THÁNG: 2.000.000đ/1 tài khoản\n📦 GÓI 1 NĂM: 3.450.000đ/1 tài khoản\n\nBao gồm:\n✅ Sử dụng đầy đủ tất cả tính năng\n✅ Hướng dẫn và hỗ trợ kỹ thuật\n✅ Cập nhật phiên bản mới miễn phí\n✅ Hỗ trợ thay đổi máy móc làm việc\n\nBạn quan tâm gói nào ạ?",
-    "intent": "hoi_gia"
-  },
-  {
-    "user": "giá cả như thế nào",
-    "bot": "AutoNuoi có 2 gói bản quyền:\n\n📦 GÓI 6 THÁNG: 2.000.000đ/1 tài khoản\n📦 GÓI 1 NĂM: 3.450.000đ/1 tài khoản\n\nBao gồm:\n✅ Sử dụng đầy đủ tất cả tính năng\n✅ Hướng dẫn và hỗ trợ kỹ thuật\n✅ Cập nhật phiên bản mới miễn phí\n✅ Hỗ trợ thay đổi máy móc làm việc\n\nBạn quan tâm gói nào ạ?",
-    "intent": "hoi_gia"
-  },
-  {
-    "user": "có bảng giá không",
-    "bot": "AutoNuoi có 2 gói bản quyền:\n\n📦 GÓI 6 THÁNG: 2.000.000đ/1 tài khoản\n📦 GÓI 1 NĂM: 3.450.000đ/1 tài khoản\n\nBao gồm:\n✅ Sử dụng đầy đủ tất cả tính năng\n✅ Hướng dẫn và hỗ trợ kỹ thuật\n✅ Cập nhật phiên bản mới miễn phí\n✅ Hỗ trợ thay đổi máy móc làm việc\n\nBạn quan tâm gói nào ạ?",
-    "intent": "hoi_gia"
-  },
-  {
-    "user": "liên hệ như thế nào",
-    "bot": "Bạn có thể liên hệ với chúng tôi qua:\n\n📞 Hotline: 0964.386.780 - 0914.107.789\n📧 Email: tudongsohar@gmail.com\n📍 Địa chỉ 1: 239B Nguyễn Phước Nguyên, P.Thanh Khê, TP Đà Nẵng\n📍 Địa chỉ 2: 33 Phần Lăng 2, P.An Khê, TP Đà Nẵng\n🌐 Facebook: fb.com/AutoNuoi\n\nChúng tôi hỗ trợ 24/7. Bạn cần tư vấn về vấn đề gì ạ?",
+    "user": "Số điện thoại\nliên hệ như thế nào\nbạn có thể cho tôi thông tin liên hệ không?\nTôi muốn liên hệ với bạn thì làm sao?\nLàm thế nào để liên hệ với công ty bạn?\nsố điện thoại liên hệ\nemail liên hệ\nđịa chỉ công ty ở đâu?",
+    "bot": "Bạn có thể liên hệ với chúng tôi qua:\n📞 Hotline: 0964.386.780 - 0914.107.789\n📧 Email: tudongsohar@gmail.com\n📍 Địa chỉ 1: 239B Nguyễn Phước Nguyên, P.Thanh Khê, TP Đà Nẵng\n📍 Địa chỉ 2: 33 Phần Lăng 2, P.An Khê, TP Đà Nẵng\n🌐 Facebook: fb.com/AutoNuoi\nChúng tôi hỗ trợ 24/7. Bạn cần tư vấn về vấn đề gì ạ?",
     "intent": "lien_he"
   },
   {
-    "user": "số điện thoại",
-    "bot": "Bạn có thể liên hệ với chúng tôi qua:\n\n📞 Hotline: 0964.386.780 - 0914.107.789\n📧 Email: tudongsohar@gmail.com\n📍 Địa chỉ 1: 239B Nguyễn Phước Nguyên, P.Thanh Khê, TP Đà Nẵng\n📍 Địa chỉ 2: 33 Phần Lăng 2, P.An Khê, TP Đà Nẵng\n🌐 Facebook: fb.com/AutoNuoi\n\nChúng tôi hỗ trợ 24/7. Bạn cần tư vấn về vấn đề gì ạ?",
-    "intent": "lien_he"
-  },
-  {
-    "user": "địa chỉ ở đâu",
-    "bot": "Bạn có thể liên hệ với chúng tôi qua:\n\n📞 Hotline: 0964.386.780 - 0914.107.789\n📧 Email: tudongsohar@gmail.com\n📍 Địa chỉ 1: 239B Nguyễn Phước Nguyên, P.Thanh Khê, TP Đà Nẵng\n📍 Địa chỉ 2: 33 Phần Lăng 2, P.An Khê, TP Đà Nẵng\n🌐 Facebook: fb.com/AutoNuoi\n\nChúng tôi hỗ trợ 24/7. Bạn cần tư vấn về vấn đề gì ạ?",
-    "intent": "lien_he"
-  },
-  {
-    "user": "email là gì",
-    "bot": "Bạn có thể liên hệ với chúng tôi qua:\n\n📞 Hotline: 0964.386.780 - 0914.107.789\n📧 Email: tudongsohar@gmail.com\n📍 Địa chỉ 1: 239B Nguyễn Phước Nguyên, P.Thanh Khê, TP Đà Nẵng\n📍 Địa chỉ 2: 33 Phần Lăng 2, P.An Khê, TP Đà Nẵng\n🌐 Facebook: fb.com/AutoNuoi\n\nChúng tôi hỗ trợ 24/7. Bạn cần tư vấn về vấn đề gì ạ?",
-    "intent": "lien_he"
-  },
-  {
-    "user": "tải phần mềm ở đâu",
-    "bot": "Bạn có thể tải AutoNuoi miễn phí tại:\n\n💻 Phiên bản 64bit: https://www.autonuoi.com/download/AutoNuoix64.zip\n💻 Phiên bản 32bit: https://www.autonuoi.com/download/AutoNuoi.zip\n\nYêu cầu hệ thống: Windows 7 trở lên\n📖 Hướng dẫn sử dụng: autonuoi.com/help-autonuoi.html\n\nSau khi tải về, bạn cần mua bản quyền để kích hoạt đầy đủ tính năng nhé!",
+    "user": "tải phần mềm ở đâu?\nlàm sao để tải phần mềm?\nbạn có thể hướng dẫn tôi tải phần mềm không?\ntôi muốn tải phần mềm thì làm thế nào?\ndownload phần mềm như thế nào?\ncài đặt phần mềm ra sao?",
+    "bot": "Bạn có thể tải AutoNuoi miễn phí tại:\n💻 Phiên bản 64bit: https://www.autonuoi.com/download/AutoNuoix64.zip\n💻 Phiên bản 32bit: https://www.autonuoi.com/download/AutoNuoi.zip\nYêu cầu hệ thống: Windows 7 trở lên\n📖 Hướng dẫn sử dụng: autonuoi.com/help-autonuoi.html\nSau khi tải về, bạn cần mua bản quyền để kích hoạt đầy đủ tính năng nhé!",
     "intent": "tai_phan_mem"
   },
   {
-    "user": "download như thế nào",
-    "bot": "Bạn có thể tải AutoNuoi miễn phí tại:\n\n💻 Phiên bản 64bit: https://www.autonuoi.com/download/AutoNuoix64.zip\n💻 Phiên bản 32bit: https://www.autonuoi.com/download/AutoNuoi.zip\n\nYêu cầu hệ thống: Windows 7 trở lên\n📖 Hướng dẫn sử dụng: autonuoi.com/help-autonuoi.html\n\nSau khi tải về, bạn cần mua bản quyền để kích hoạt đầy đủ tính năng nhé!",
-    "intent": "tai_phan_mem"
+    "user": "có hướng dẫn không?\nbạn có thể hướng dẫn tôi sử dụng phần mềm không?\ntôi muốn biết cách sử dụng phần mềm như thế nào?\nbạn có tài liệu hướng dẫn sử dụng không?\ncách sử dụng phần mềm ra sao?",
+    "bot": "Có ạ! AutoNuoi có hệ thống hướng dẫn rất chi tiết:\n📖 Hướng dẫn trực tuyến: autonuoi.com/help-autonuoi.html\n🎥 Video hướng dẫn chi tiết từng tính năng\n⌨️ Nhấn phím F1 trong phần mềm để xem HDSD\n👨‍💻 Hỗ trợ trực tiếp qua Hotline: 0964.386.780\nĐội ngũ support nhiệt tình 24/7. Bạn cần hướng dẫn về tính năng nào ạ?",
+    "intent": "huong_dan_su_dung_phan_mem"
   },
   {
-    "user": "cài đặt thế nào",
-    "bot": "Bạn có thể tải AutoNuoi miễn phí tại:\n\n💻 Phiên bản 64bit: https://www.autonuoi.com/download/AutoNuoix64.zip\n💻 Phiên bản 32bit: https://www.autonuoi.com/download/AutoNuoi.zip\n\nYêu cầu hệ thống: Windows 7 trở lên\n📖 Hướng dẫn sử dụng: autonuoi.com/help-autonuoi.html\n\nSau khi tải về, bạn cần mua bản quyền để kích hoạt đầy đủ tính năng nhé!",
-    "intent": "tai_phan_mem"
-  },
-  {
-    "user": "có hướng dẫn không",
-    "bot": "Có ạ! AutoNuoi có hệ thống hướng dẫn rất chi tiết:\n\n📖 Hướng dẫn trực tuyến: autonuoi.com/help-autonuoi.html\n🎥 Video hướng dẫn chi tiết từng tính năng\n⌨️ Nhấn phím F1 trong phần mềm để xem HDSD\n👨‍💻 Hỗ trợ trực tiếp qua Hotline: 0964.386.780\n\nĐội ngũ support nhiệt tình 24/7. Bạn cần hướng dẫn về tính năng nào ạ?",
-    "intent": "huong_dan"
-  },
-  {
-    "user": "hướng dẫn sử dụng",
-    "bot": "Có ạ! AutoNuoi có hệ thống hướng dẫn rất chi tiết:\n\n📖 Hướng dẫn trực tuyến: autonuoi.com/help-autonuoi.html\n🎥 Video hướng dẫn chi tiết từng tính năng\n⌨️ Nhấn phím F1 trong phần mềm để xem HDSD\n👨‍💻 Hỗ trợ trực tiếp qua Hotline: 0964.386.780\n\nĐội ngũ support nhiệt tình 24/7. Bạn cần hướng dẫn về tính năng nào ạ?",
-    "intent": "huong_dan"
-  },
-  {
-    "user": "cách dùng ra sao",
-    "bot": "Có ạ! AutoNuoi có hệ thống hướng dẫn rất chi tiết:\n\n📖 Hướng dẫn trực tuyến: autonuoi.com/help-autonuoi.html\n🎥 Video hướng dẫn chi tiết từng tính năng\n⌨️ Nhấn phím F1 trong phần mềm để xem HDSD\n👨‍💻 Hỗ trợ trực tiếp qua Hotline: 0964.386.780\n\nĐội ngũ support nhiệt tình 24/7. Bạn cần hướng dẫn về tính năng nào ạ?",
-    "intent": "huong_dan"
-  },
-  {
-    "user": "có checkpoint không",
-    "bot": "AutoNuoi được thiết kế đặc biệt để GIẢM THIỂU checkpoint:\n\n✅ Hành động khác biệt cho từng tài khoản\n✅ Tự động phát hiện bất thường và chuyển trạng thái\n✅ Quản lý logic, thông minh cho tài khoản\n✅ Hành động ngẫu nhiên theo tỉ lệ thiết lập\n✅ Tỉ lệ checkpoint là HI HỮU\n\nPhần mềm được tối ưu để bảo vệ tài khoản tốt nhất. Bạn yên tâm sử dụng nhé!",
+    "user": "có checkpoint không?\nphần mềm có an toàn không?\ntài khoản có bị khóa không?\ncó an toàn không?\ntôi có bị checkpoint khi dùng phần mềm không?\nbạn có thể đảm bảo an toàn tài khoản không?",
+    "bot": "AutoNuoi được thiết kế đặc biệt để GIẢM THIỂU checkpoint:\n✅ Hành động khác biệt cho từng tài khoản\n✅ Tự động phát hiện bất thường và chuyển trạng thái\n✅ Quản lý logic, thông minh cho tài khoản\n✅ Hành động ngẫu nhiên theo tỉ lệ thiết lập\n✅ Tỉ lệ checkpoint là HI HỮU\nPhần mềm được tối ưu để bảo vệ tài khoản tốt nhất. Bạn yên tâm sử dụng nhé!",
     "intent": "checkpoint"
   },
   {
-    "user": "tài khoản có bị khóa không",
-    "bot": "AutoNuoi được thiết kế đặc biệt để GIẢM THIỂU checkpoint:\n\n✅ Hành động khác biệt cho từng tài khoản\n✅ Tự động phát hiện bất thường và chuyển trạng thái\n✅ Quản lý logic, thông minh cho tài khoản\n✅ Hành động ngẫu nhiên theo tỉ lệ thiết lập\n✅ Tỉ lệ checkpoint là HI HỮU\n\nPhần mềm được tối ưu để bảo vệ tài khoản tốt nhất. Bạn yên tâm sử dụng nhé!",
-    "intent": "checkpoint"
-  },
-  {
-    "user": "có an toàn không",
-    "bot": "AutoNuoi được thiết kế đặc biệt để GIẢM THIỂU checkpoint:\n\n✅ Hành động khác biệt cho từng tài khoản\n✅ Tự động phát hiện bất thường và chuyển trạng thái\n✅ Quản lý logic, thông minh cho tài khoản\n✅ Hành động ngẫu nhiên theo tỉ lệ thiết lập\n✅ Tỉ lệ checkpoint là HI HỮU\n\nPhần mềm được tối ưu để bảo vệ tài khoản tốt nhất. Bạn yên tâm sử dụng nhé!",
-    "intent": "checkpoint"
-  },
-  {
-    "user": "quản lý được bao nhiêu tài khoản",
-    "bot": "AutoNuoi có thể quản lý số lượng tài khoản KHÔNG GIỚI HẠN:\n\n✨ 100, 1000, 50.000, thậm chí 100.000 tài khoản\n✨ Chạy đa luồng nhiều nick cùng lúc\n✨ Mỗi tài khoản có hành động riêng biệt\n✨ Tự động kiểm tra trạng thái từng tài khoản\n✨ Chỉ cần 1 click đăng nhập cả trăm tài khoản\n\nBạn đang có bao nhiêu tài khoản cần quản lý ạ?",
+    "user": "quản lý được bao nhiêu tài khoản?\nphần mềm chạy được bao nhiêu nick?\nbạn có thể quản lý nhiều tài khoản không?\ntôi có thể chạy bao nhiêu nick cùng lúc?",
+    "bot": "AutoNuoi có thể quản lý số lượng tài khoản KHÔNG GIỚI HẠN:\n✨ 100, 1000, 50.000, thậm chí 100.000 tài khoản\n✨ Chạy đa luồng nhiều nick cùng lúc\n✨ Mỗi tài khoản có hành động riêng biệt\n✨ Tự động kiểm tra trạng thái từng tài khoản\n✨ Chỉ cần 1 click đăng nhập cả trăm tài khoản\nBạn đang có bao nhiêu tài khoản cần quản lý ạ?",
     "intent": "quan_ly_tai_khoan"
   },
   {
-    "user": "chạy được bao nhiêu nick",
-    "bot": "AutoNuoi có thể quản lý số lượng tài khoản KHÔNG GIỚI HẠN:\n\n✨ 100, 1000, 50.000, thậm chí 100.000 tài khoản\n✨ Chạy đa luồng nhiều nick cùng lúc\n✨ Mỗi tài khoản có hành động riêng biệt\n✨ Tự động kiểm tra trạng thái từng tài khoản\n✨ Chỉ cần 1 click đăng nhập cả trăm tài khoản\n\nBạn đang có bao nhiêu tài khoản cần quản lý ạ?",
-    "intent": "quan_ly_tai_khoan"
-  },
-  {
-    "user": "có đăng bài tự động không",
-    "bot": "Có ạ! AutoNuoi hỗ trợ đăng bài TỰ ĐỘNG mạnh mẽ:\n\n📝 Đăng lên tường cá nhân nhiều tài khoản cùng lúc\n📝 Đăng tường bạn bè tự động\n📝 Đăng bài vào nhóm số lượng lớn\n📝 Đăng lên nhiều Page cùng lúc\n📝 Share bài viết, share Livestream tự động\n📝 Hẹn giờ đăng bài theo lịch\n📝 Random hình ảnh, video khi đăng\n\nBạn muốn tìm hiểu thêm về tính năng đăng bài không ạ?",
+    "user": "có đăng bài tự động không?\nphần mềm có thể đăng bài tự động không?\ntôi muốn đăng bài tự động thì làm thế nào?\nbạn có thể giúp tôi đăng bài tự động không?\nđăng group tự độnng được không?",
+    "bot": "Có ạ! AutoNuoi hỗ trợ đăng bài TỰ ĐỘNG mạnh mẽ:\n📝 Đăng lên tường cá nhân nhiều tài khoản cùng lúc\n📝 Đăng tường bạn bè tự động\n📝 Đăng bài vào nhóm số lượng lớn\n📝 Đăng lên nhiều Page cùng lúc\n📝 Share bài viết, share Livestream tự động\n📝 Hẹn giờ đăng bài theo lịch\n📝 Random hình ảnh, video khi đăng\nBạn muốn tìm hiểu thêm về tính năng đăng bài không ạ?",
     "intent": "dang_bai"
   },
   {
-    "user": "đăng group tự động",
-    "bot": "Có ạ! AutoNuoi hỗ trợ đăng bài TỰ ĐỘNG mạnh mẽ:\n\n📝 Đăng lên tường cá nhân nhiều tài khoản cùng lúc\n📝 Đăng tường bạn bè tự động\n📝 Đăng bài vào nhóm số lượng lớn\n📝 Đăng lên nhiều Page cùng lúc\n📝 Share bài viết, share Livestream tự động\n📝 Hẹn giờ đăng bài theo lịch\n📝 Random hình ảnh, video khi đăng\n\nBạn muốn tìm hiểu thêm về tính năng đăng bài không ạ?",
-    "intent": "dang_bai"
-  },
-  {
-    "user": "nhắn tin tự động được không",
-    "bot": "Được ạ! AutoNuoi có tính năng nhắn tin TỰ ĐỘNG rất mạnh:\n\n💬 Nhắn tin hàng loạt cho bạn bè\n💬 Nhắn tin cho nhiều Page\n💬 Nhắn tin cho UserID chưa là bạn bè\n💬 Hẹn giờ nhắn tin theo lịch\n💬 Nhắn tin ngẫu nhiên hoặc theo thứ tự\n💬 Random nội dung tin nhắn\n\nRất hiệu quả cho chăm sóc khách hàng và marketing!",
+    "user": "nhắn tin tự động được không?\nphần mềm có thể nhắn tin tự động không?\ntôi muốn nhắn tin tự động thì làm thế nào?\nbạn có thể giúp tôi nhắn tin tự động không?\nnhắn inbox tự động được không?",
+    "bot": "Được ạ! AutoNuoi có tính năng nhắn tin TỰ ĐỘNG rất mạnh:\n💬 Nhắn tin hàng loạt cho bạn bè\n💬 Nhắn tin cho nhiều Page\n💬 Nhắn tin cho UserID chưa là bạn bè\n💬 Hẹn giờ nhắn tin theo lịch\n💬 Nhắn tin ngẫu nhiên hoặc theo thứ tự\n💬 Random nội dung tin nhắn\nRất hiệu quả cho chăm sóc khách hàng và marketing!",
     "intent": "nhan_tin"
   },
   {
-    "user": "inbox tự động",
-    "bot": "Được ạ! AutoNuoi có tính năng nhắn tin TỰ ĐỘNG rất mạnh:\n\n💬 Nhắn tin hàng loạt cho bạn bè\n💬 Nhắn tin cho nhiều Page\n💬 Nhắn tin cho UserID chưa là bạn bè\n💬 Hẹn giờ nhắn tin theo lịch\n💬 Nhắn tin ngẫu nhiên hoặc theo thứ tự\n💬 Random nội dung tin nhắn\n\nRất hiệu quả cho chăm sóc khách hàng và marketing!",
-    "intent": "nhan_tin"
-  },
-  {
-    "user": "tăng like được không",
-    "bot": "Được ạ! AutoNuoi hỗ trợ đầy đủ tính năng TĂNG TƯƠNG TÁC:\n\n👍 Tăng like Fanpage\n👥 Tăng follow tài khoản cá nhân\n❤️ Tăng like bài viết bất kỳ\n💬 Tăng comment bài viết\n👁️ Tăng mắt xem Livestream\n📈 Seeding bài viết chuyên nghiệp\n\nPhù hợp cho chiến dịch marketing và xây dựng uy tín!",
+    "user": "tăng like được không?\ntăng follow được không?\ntăng tương tác như thế nào?\nbạn có thể giúp tôi tăng tương tác không?\ntăng like fanpage được không?\ntăng mắt xem livestream được không?",
+    "bot": "Được ạ! AutoNuoi hỗ trợ đầy đủ tính năng TĂNG TƯƠNG TÁC:\n👍 Tăng like Fanpage\n👥 Tăng follow tài khoản cá nhân\n❤️ Tăng like bài viết bất kỳ\n💬 Tăng comment bài viết\n👁️ Tăng mắt xem Livestream\n📈 Seeding bài viết chuyên nghiệp\nPhù hợp cho chiến dịch marketing và xây dựng uy tín!",
     "intent": "tang_tuong_tac"
   },
   {
-    "user": "tăng view livestream",
-    "bot": "Được ạ! AutoNuoi hỗ trợ đầy đủ tính năng TĂNG TƯƠNG TÁC:\n\n👍 Tăng like Fanpage\n👥 Tăng follow tài khoản cá nhân\n❤️ Tăng like bài viết bất kỳ\n💬 Tăng comment bài viết\n👁️ Tăng mắt xem Livestream\n📈 Seeding bài viết chuyên nghiệp\n\nPhù hợp cho chiến dịch marketing và xây dựng uy tín!",
-    "intent": "tang_tuong_tac"
-  },
-  {
-    "user": "quét khách hàng được không",
-    "bot": "Được ạ! AutoNuoi có tính năng QUÉT KHÁCH HÀNG rất mạnh:\n\n🎯 Quét theo khu vực, độ tuổi, giới tính\n🎯 Quét theo ngành nghề, sở thích\n🎯 Quét bạn của bạn bè\n🎯 Quét khách của đối thủ\n🎯 Quét khách realtime đang online\n🎯 Dữ liệu lớn, chính xác, đầy đủ thông tin\n\nGiúp bạn tìm đúng khách hàng tiềm năng để tiếp cận!",
+    "user": "quét khách hàng được không?\ntôi muốn tìm khách hàng tiềm năng thì làm thế nào?\nbạn có thể giúp tôi quét khách hàng không?\nquét tệp khách hàng như thế nào?\ntìm khách hàng tiềm năng được không?",
+    "bot": "Được ạ! AutoNuoi có tính năng QUÉT KHÁCH HÀNG rất mạnh:\n🎯 Quét theo khu vực, độ tuổi, giới tính\n🎯 Quét theo ngành nghề, sở thích\n🎯 Quét bạn của bạn bè\n🎯 Quét khách của đối thủ\n🎯 Quét khách realtime đang online\n🎯 Dữ liệu lớn, chính xác, đầy đủ thông tin\nGiúp bạn tìm đúng khách hàng tiềm năng để tiếp cận!",
     "intent": "quet_khach_hang"
   },
   {
-    "user": "tìm khách hàng tiềm năng",
-    "bot": "Được ạ! AutoNuoi có tính năng QUÉT KHÁCH HÀNG rất mạnh:\n\n🎯 Quét theo khu vực, độ tuổi, giới tính\n🎯 Quét theo ngành nghề, sở thích\n🎯 Quét bạn của bạn bè\n🎯 Quét khách của đối thủ\n🎯 Quét khách realtime đang online\n🎯 Dữ liệu lớn, chính xác, đầy đủ thông tin\n\nGiúp bạn tìm đúng khách hàng tiềm năng để tiếp cận!",
-    "intent": "quet_khach_hang"
+    "user": "yêu cầu cấu hình máy\ntôi cần máy như thế nào để chạy phần mềm?\nbạn có thể cho tôi biết yêu cầu cấu hình máy không?\ncấu hình máy để chạy phần mềm ra sao?\ntôi cần máy tính như thế nào để sử dụng phần mềm?\nphần mềm chạy trên máy gì?",
+    "bot": "AutoNuoi rất NHẸ, không cần máy cấu hình cao:\n💻 Hệ điều hành: Windows 7 trở lên\n💻 RAM: 2GB trở lên (khuyến nghị 4GB)\n💻 CPU: Intel Core i3 trở lên\n💻 Ổ cứng: 500MB dung lượng trống\n💻 Kết nối Internet ổn định\nPhần mềm tối ưu, chạy mượt mà trên hầu hết máy tính!",
+    "intent": "cau_hinh_may"
   },
   {
-    "user": "yêu cầu cấu hình máy",
-    "bot": "AutoNuoi rất NHẸ, không cần máy cấu hình cao:\n\n💻 Hệ điều hành: Windows 7 trở lên\n💻 RAM: 2GB trở lên (khuyến nghị 4GB)\n💻 CPU: Intel Core i3 trở lên\n💻 Ổ cứng: 500MB dung lượng trống\n💻 Kết nối Internet ổn định\n\nPhần mềm tối ưu, chạy mượt mà trên hầu hết máy tính!",
-    "intent": "cau_hinh"
-  },
-  {
-    "user": "chạy trên máy gì",
-    "bot": "AutoNuoi rất NHẸ, không cần máy cấu hình cao:\n\n💻 Hệ điều hành: Windows 7 trở lên\n💻 RAM: 2GB trở lên (khuyến nghị 4GB)\n💻 CPU: Intel Core i3 trở lên\n💻 Ổ cứng: 500MB dung lượng trống\n💻 Kết nối Internet ổn định\n\nPhần mềm tối ưu, chạy mượt mà trên hầu hết máy tính!",
-    "intent": "cau_hinh"
-  },
-  {
-    "user": "có dùng proxy không",
-    "bot": "Có ạ! AutoNuoi hỗ trợ ĐẦY ĐỦ các loại PROXY:\n\n🔐 Proxy HTTPS\n🔐 Proxy SOCKS 4\n🔐 Proxy SOCKS 5\n🔐 Thiết lập proxy riêng cho từng tài khoản\n🔐 Quản lý proxy thông minh\n🔐 Tự động kiểm tra proxy hoạt động\n\nGiúp bảo vệ tài khoản và chạy nhiều nick an toàn hơn!",
+    "user": "có dùng proxy không?\nphần mềm có hỗ trợ proxy không?\ntôi có cần dùng proxy khi sử dụng phần mềm không?\nbạn có thể cho tôi biết về proxy không?\nphần mềm hỗ trợ proxy như thế nào?",
+    "bot": "Có ạ! AutoNuoi hỗ trợ ĐẦY ĐỦ các loại PROXY:\n🔐 Proxy HTTPS\n🔐 Proxy SOCKS 4\n🔐 Proxy SOCKS 5\n🔐 Thiết lập proxy riêng cho từng tài khoản\n🔐 Quản lý proxy thông minh\n🔐 Tự động kiểm tra proxy hoạt động\nGiúp bảo vệ tài khoản và chạy nhiều nick an toàn hơn!",
     "intent": "proxy"
   },
   {
-    "user": "hỗ trợ proxy nào",
-    "bot": "Có ạ! AutoNuoi hỗ trợ ĐẦY ĐỦ các loại PROXY:\n\n🔐 Proxy HTTPS\n🔐 Proxy SOCKS 4\n🔐 Proxy SOCKS 5\n🔐 Thiết lập proxy riêng cho từng tài khoản\n🔐 Quản lý proxy thông minh\n🔐 Tự động kiểm tra proxy hoạt động\n\nGiúp bảo vệ tài khoản và chạy nhiều nick an toàn hơn!",
-    "intent": "proxy"
-  },
-  {
-    "user": "cảm ơn",
-    "bot": "Rất vui được hỗ trợ bạn! 😊\n\nNếu cần tư vấn thêm về AutoNuoi, đừng ngại liên hệ:\n📞 Hotline: 0964.386.780 - 0914.107.789\n\nChúc bạn thành công với marketing Facebook!",
+    "user": "cảm ơn\nhiều\ncảm ơn bạn\ncảm ơn rất nhiều\nthank you\nthanks\nthankx\nthx a lot\nthank a lot\nthank you very much\nthankx a lot\nthank alot",
+    "bot": "Rất vui được hỗ trợ bạn! 😊\nNếu cần tư vấn thêm về AutoNuoi, đừng ngại liên hệ:\n📞 Hotline: 0964.386.780 - 0914.107.789\nChúc bạn thành công với marketing Facebook!",
     "intent": "cam_on"
   },
   {
-    "user": "thank you",
-    "bot": "Rất vui được hỗ trợ bạn! 😊\n\nNếu cần tư vấn thêm về AutoNuoi, đừng ngại liên hệ:\n📞 Hotline: 0964.386.780 - 0914.107.789\n\nChúc bạn thành công với marketing Facebook!",
-    "intent": "cam_on"
-  },
-  {
-    "user": "thanks",
-    "bot": "Rất vui được hỗ trợ bạn! 😊\n\nNếu cần tư vấn thêm về AutoNuoi, đừng ngại liên hệ:\n📞 Hotline: 0964.386.780 - 0914.107.789\n\nChúc bạn thành công với marketing Facebook!",
-    "intent": "cam_on"
-  },
-  {
-    "user": "tạm biệt",
-    "bot": "Tạm biệt! Hẹn gặp lại bạn. Chúc bạn một ngày tốt lành! 👋\n\nNếu cần hỗ trợ, liên hệ ngay: 0964.386.780",
+    "user": "tạm biệt\nbai\nhẹn gặp lại\nchào tạm biệt\nsee you\nbye\nsee you later\ng9\ngoodnight",
+    "bot": "Tạm biệt! Hẹn gặp lại bạn. Chúc bạn một ngày tốt lành! 👋\nNếu cần hỗ trợ, liên hệ ngay: 0964.386.780",
     "intent": "tam_biet"
   },
   {
-    "user": "bye",
-    "bot": "Tạm biệt! Hẹn gặp lại bạn. Chúc bạn một ngày tốt lành! 👋\n\nNếu cần hỗ trợ, liên hệ ngay: 0964.386.780",
-    "intent": "tam_biet"
-  },
-  {
-    "user": "chào tạm biệt",
-    "bot": "Tạm biệt! Hẹn gặp lại bạn. Chúc bạn một ngày tốt lành! 👋\n\nNếu cần hỗ trợ, liên hệ ngay: 0964.386.780",
-    "intent": "tam_biet"
-  },
-  {
-    "user": "Phần mềm có thể đăng bài lên bao nhiêu nhóm một ngày",
-    "bot": "Đối với 1 tài khoản mạnh thường đăng được 50-100 nhóm/ngày.\n\nAnh nên đăng tăng dần theo biên độ: VD hôm nay đăng 50 nhóm, ngày mai 60 tăng dần 70/80/90/100.\nNhư vậy giảm tối đa rủi ro bị chặn.\n\nNgoài ra, Pm hỗ trợ đăng random nội dung, hình ảnh, giãn cách thời gian đăng.\nAnh có thể chạy nhiều tài khoản cùng lúc để tăng tốc",
+    "user": "Phần mềm có thể đăng bài lên bao nhiêu nhóm một ngày?\nTôi có thể đăng bài lên bao nhiêu nhóm mỗi ngày?\nTôi muốn biết số lượng nhóm có thể đăng mỗi ngày?\nPhần mềm hỗ trợ đăng bài lên bao nhiêu nhóm/ngày?",
+    "bot": "Đối với 1 tài khoản mạnh thường đăng được 50-100 nhóm/ngày.\nAnh nên đăng tăng dần theo biên độ: VD hôm nay đăng 50 nhóm, ngày mai 60 tăng dần 70/80/90/100.\nNhư vậy giảm tối đa rủi ro bị chặn.\nNgoài ra, Pm hỗ trợ đăng random nội dung, hình ảnh, giãn cách thời gian đăng.\nAnh có thể chạy nhiều tài khoản cùng lúc để tăng tốc",
     "intent": "dang_bai_bao_nhieu_nhom_ngay"
   },
   {
-    "user": "Như thế nào là tài khoản mạnh",
-    "bot": "Tài khoản mạnh là tài khoản đã vượt checkpoint ít nhất 3 lần, đã tạo ít nhất 1 tháng.\n\nĐã được bảo mật 5 lớp.Khi anh hợp tác với bên em.\n\nEm sẽ hỗ trợ tất cả các TK của anh thành TK mạnh. Anh cứ yên tâm vấn đề này",
+    "user": "Như thế nào là tài khoản mạnh?\nTài khoản mạnh là gì?\nLàm sao để biết tài khoản mạnh hay yếu?\nTôi muốn biết thế nào là tài khoản mạnh?",
+    "bot": "Tài khoản mạnh là tài khoản đã vượt checkpoint ít nhất 3 lần, đã tạo ít nhất 1 tháng.\nĐã được bảo mật 5 lớp.Khi anh hợp tác với bên mình.\nEm sẽ hỗ trợ tất cả các TK của anh thành TK mạnh. Anh cứ yên tâm vấn đề này",
     "intent": "tai_khoan_manh"
   },
   {
-    "user": "Phần mềm có tự động trả lời bình luận không?",
-    "bot": "Dạ có ạ. Khi có người bình luận, phần mềm sẽ tự động phản hồi ngay theo kịch bản cài sẵn, vừa giữ tương tác, vừa khơi gợi nhu cầu mua hàng của khách. Đây là tính năng nhiều khách bên em dùng để tăng tỷ lệ chốt đơn lên 2-3 lần",
+    "user": "Phần mềm có tự động trả lời bình luận không?\nđó có thể trả lời bình luận tự động được không?\nTôi muốn trả lời bình luận tự động thì làm thế nào?\nBạn có thể giúp tôi trả lời bình luận tự động không?\ntrả lời comment tự động được không?",
+    "bot": "Dạ có ạ. Khi có người bình luận, phần mềm sẽ tự động phản hồi ngay theo kịch bản cài sẵn, vừa giữ tương tác, vừa khơi gợi nhu cầu mua hàng của khách. Đây là tính năng nhiều khách bên mình dùng để tăng tỷ lệ chốt đơn lên 2-3 lần",
     "intent": "Tu_dong_tra_loi_binh_luan"
   },
   {
-    "user": "Phần mềm có kết bạn tự động được không?",
-    "bot": "Dạ, bên em có tính năng tự động kết bạn theo tệp. Anh chỉ cần nhập danh sách UID \n\nHoặc chọn đối tượng theo ngành nghề, khu vực, độ tuổi, giới tính. Phần mềm sẽ gửi lời mời kết bạn tự động, giúp xây tệp khách hàng chất lượng nhanh chóng",
+    "user": "Phần mềm có kết bạn tự động được không?\nđó có thể tự động kết bạn không?\nTôi muốn kết bạn tự động thì làm thế nào?\nBạn có thể giúp tôi kết bạn tự động không?\ntự động kết bạn được không?",
+    "bot": "Dạ, bên mình có tính năng tự động kết bạn theo tệp. Bạn chỉ cần nhập danh sách UID \nHoặc chọn đối tượng theo ngành nghề, khu vực, độ tuổi, giới tính. Phần mềm sẽ gửi lời mời kết bạn tự động, giúp xây tệp khách hàng chất lượng nhanh chóng",
     "intent": "Tu_dong_ket_ban"
   },
   {
-    "user": "Có quản lý nhiều tài khoản cùng lúc không?",
-    "bot": "Phần mềm có thể quản lý nhiều tài khoản cùng lúc, không giới hạn tài khoản chạy trong phần mềm. Anh có bao nhiêu tài khoản cũng quản lý được.\n\nTuy nhiên bên em không cần quá nhiều tài khoản mới chạy hiệu quả. Vì PM bên em khai thác khách hàng theo chiều sâu, đúng tệp, chạy nhiều chức năng.\n\nAnh chỉ cần khoản 6-9 tài khoản là ok.\n\nKhi anh chạy 6 tk nhưng anh thấy rất hiệu quả rồi, lúc đó anh có kinh nghiệm và có thể nuôi thêm tài khoản để chạy",
+    "user": "Có quản lý nhiều tài khoản cùng lúc không?\nPhần mềm có thể chạy nhiều nick cùng lúc không?\nTôi muốn quản lý nhiều tài khoản thì làm thế nào?\nBạn có thể giúp tôi quản lý nhiều tài khoản cùng lúc không?\nquản lý nhiều tài khoản cùng lúc được không?",
+    "bot": "Phần mềm có thể quản lý nhiều tài khoản cùng lúc, không giới hạn tài khoản chạy trong phần mềm. Anh có bao nhiêu tài khoản cũng quản lý được.\nTuy nhiên bên mình không cần quá nhiều tài khoản mới chạy hiệu quả. Vì PM bên mình khai thác khách hàng theo chiều sâu, đúng tệp, chạy nhiều chức năng.\nAnh chỉ cần khoản 6-9 tài khoản là ok.\nKhi anh chạy 6 tk nhưng anh thấy rất hiệu quả rồi, lúc đó anh có kinh nghiệm và có thể nuôi thêm tài khoản để chạy",
     "intent": "Quan_ly_nhieu_tai_khoan_cung_luc"
   },
   {
-    "user": "Tôi sợ mất nick hoặc bị lộ dữ liệu cá nhân",
-    "bot": "Dạ, dữ liệu của anh được lưu trên máy tính cá nhân của anh, bên em không truy cập, không lưu trữ, ko can thiệp được.\n\nVề tài khoản, bên em sẽ bảo mật TK của anh 5 lớp trước khi chạy, đảm bảo an toàn TK cho anh.\n\nNgoài ra Pm bên em có chức năng nuôi, Anh chỉ cần tạo TK bằng Gmail, Pm sẽ nuôi cho anh tự kết bạn, tham gian nhóm.\n\nMỗi tài khoản mới được hiểu như anh tuyển  1 nhân viên để đăng bài. Mọi thông tin hình ảnh, sđt để chào bán đều thực tế của anh.\n\nPM bên em đã được các Cơ quan thẩm quyền cấp phép và cho bán rộng rải nhiều năm",
-    "intent": "Quan_ly_nhieu_tai_khoan_cung_luc"
+    "user": "Tôi sợ mất nick hoặc bị lộ dữ liệu cá nhân\nnếu dùng phần mềm này?\nPhần mềm có an toàn không?\nTôi có bị mất nick khi dùng phần mềm không?\nDữ liệu cá nhân của tôi có bị lộ không?\nTôi có bị hack nick khi dùng phần mềm không?",
+    "bot": "Dạ, dữ liệu của bạn được lưu trên máy tính cá nhân của bạn, bên mình không truy cập, không lưu trữ, ko can thiệp được.\nVề tài khoản, bên mình sẽ bảo mật TK của bạn 5 lớp trước khi chạy, đảm bảo an toàn TK cho bạn.\nNgoài ra Pm bên mình có chức năng nuôi, Bạn chỉ cần tạo TK bằng Gmail, Pm sẽ nuôi cho bạn tự kết bạn, tham gian nhóm.\nMỗi tài khoản mới được hiểu như bạn tuyển  1 nhân viên để đăng bài. Mọi thông tin hình ảnh, sđt để chào bán đều thực tế của bạn.\nPM bên mình đã được các Cơ quan thẩm quyền cấp phép và cho bán rộng rải nhiều năm",
+    "intent": "Mat_nick_hoac_lo_du_lieu_ca_nhan"
   },
   {
-    "user": "Có cần dùng PROXY không",
-    "bot": "Khi anh chạy từ 20 tài khoản trở lên thì mới cần dùng proxy.\n\nCòn dưới 20 thì không cần",
+    "user": "Có cần dùng PROXY không?\nTôi có cần dùng PROXY khi sử dụng phần mềm không?\nBạn có thể cho tôi biết về việc dùng PROXY không?\nPhần mềm hỗ trợ PROXY như thế nào?\nTôi có nên dùng PROXY không?",
+    "bot": "Khi bạn chạy từ 20 tài khoản trở lên thì mới cần dùng proxy.\nCòn dưới 20 thì không cần.",
     "intent": "Dung_nhieu_proxy"
   },
   {
-    "user": "Bên em có bán PROXY không",
-    "bot": "Bên em không bán nhưng khách hàng bên em hay mua trên sàn thương mại điện tử.\n\nKhi anh đăng ký bản quyền em sẽ hướng dẫn anh mua rất đơn giản",
+    "user": "Bên mình có bán PROXY không?\nTôi có thể mua PROXY từ bên mình không?\nBạn có thể cung cấp PROXY cho tôi không?\nTôi muốn mua PROXY thì làm thế nào?\nBên mình có thể bán PROXY cho tôi không?",
+    "bot": "Bên mình không bán nhưng khách hàng bên mình hay mua trên sàn thương mại điện tử.\nKhi anh đăng ký bản quyền mình sẽ hướng dẫn anh mua rất đơn giản",
     "intent": "Ban_proxy"
   },
   {
-    "user": "Có giúp bán được nhiều hàng hơn không em?",
-    "bot": "Phần mềm giúp anh tiếp cận khách hàng tiềm năng nhanh hơn, tăng lượt hiển thị và nhiều người thấy nội dung quảng cáo của anh hơn nên tăng tỷ lệ chốt đơn.\n\nTuy nhiên, hiệu quả tối đa khi kết hợp phần mềm + nội dung bán hàng độc đáo + chăm sóc khách. Bên em sẽ hỗ trợ để anh chạy hiệu quả",
+    "user": "Có giúp bán được nhiều hàng hơn không em?\nPhần mềm có giúp tôi bán được nhiều hàng hơn không?\nTôi có thể bán được nhiều hàng hơn khi dùng phần mềm không?\nBạn có thể giúp tôi bán được nhiều hàng hơn không?\nDùng phần mềm có giúp tôi bán được nhiều hàng hơn không?",
+    "bot": "Phần mềm giúp bạn tiếp cận khách hàng tiềm năng nhanh hơn, tăng lượt hiển thị và nhiều người thấy nội dung quảng cáo của bạn hơn nên tăng tỷ lệ chốt đơn.\nTuy nhiên, hiệu quả tối đa khi kết hợp phần mềm + nội dung bán hàng độc đáo + chăm sóc khách. Bên mình sẽ hỗ trợ để bạn chạy hiệu quả",
     "intent": "Tiep_can_khach_hang_tiem_nang"
   },
   {
-    "user": "Tôi bán nhiều sản phẩm, có chạy cùng lúc được không?",
-    "bot": "Dạ có. Anh có thể tạo nhiều nội dung trọng phần soạn tin.\n\nSau đó mình chạy random, hoặc chọn các nội dung cho từng tài khoản khác nhau để chạy",
+    "user": "Tôi bán nhiều sản phẩm, có chạy cùng lúc được không?\nPhần mềm có thể chạy nhiều nội dung cùng lúc không?\nTôi muốn chạy nhiều nội dung thì làm thế nào?\nBạn có thể giúp tôi chạy nhiều nội dung cùng lúc không?\nChạy nhiều nội dung cùng lúc được không?",
+    "bot": "Dạ có. Bạn có thể tạo nhiều nội dung trọng phần soạn tin.\nSau đó mình chạy random, hoặc chọn các nội dung cho từng tài khoản khác nhau để chạy",
     "intent": "Chay_nhieu_noi_dung_cung_luc"
   },
   {
-    "user": "KHÁCH HÀNG HỎI ĐỊA CHỈ CÔNG TY",
-    "bot": "Công ty em là Công Ty Công Nghệ Phần Mềm Sohar\n\nĐịa chỉ tại 239B Nguyên Phước Nguyên Quận Thanh Khê TPĐN.\n\nKhi nào chị có dịp vào Đà NẴNG, trân trọng mời chị đến Trung Tâm em để tham quan để bên em có dịp giới thiệu 1 vài sản phẩm công nghệ khác cho chị nữa",
+    "user": "KHÁCH HÀNG HỎI ĐỊA CHỈ CÔNG TY\nTôi muốn biết địa chỉ công ty của bạn?\nBạn có thể cho tôi biết địa chỉ công ty không?\nTôi muốn đến thăm công ty của bạn thì làm thế nào?\nĐịa chỉ công ty bạn ở đâu?",
+    "bot": "Công ty mình là Công Ty Công Nghệ Phần Mềm Sohar\nĐịa chỉ tại 239B Nguyên Phước Nguyên Quận Thanh Khê TPĐN.\nKhi nào bạn có dịp vào Đà NẴNG, trân trọng mời bạn đến Trung Tâm mình để tham quan để bên mình có dịp giới thiệu 1 vài sản phẩm công nghệ khác cho bạn nữa",
     "intent": "Dia_chi_cong_ty"
   },
   {
-    "user": "Chị muốn dùng thử được không?",
-    "bot": "Đương nhiên là chị được dùng thử: Trong phiên bản dùng thử chị được: \n\n-Trải nghiệm đăng bài nhóm thực tế, nhắn tin tự động, bình luận, quét khách tiềm năng và rất nhiều chức năng khác.\n\nChị sẽ thấy được nguyên tắt hoạt động của các chức năng trong phần mềm. Chị thấy đáp ứng được nhu cầu của mình, sử dụng đơn giản, hợp lý thì mới hợp tác với bên em về bản quyền.\n\nEm sẽ hỗ trợ chị dùng thử qua ultraviewer",
-    "intent": "Dung_thu"
+    "user": "Chị muốn dùng thử được không?\nTôi có thể dùng thử phần mềm không?\nBạn có cho tôi dùng thử phần mềm không?\nTôi muốn dùng thử phần mềm thì làm thế nào?\nDùng thử phần mềm được không?",
+    "bot": "Đương nhiên là bạn được dùng thử: Trong phiên bản dùng thử bạn được: \n-Trải nghiệm đăng bài nhóm thực tế, nhắn tin tự động, bình luận, quét khách tiềm năng và rất nhiều chức năng khác.\nBạn sẽ thấy được nguyên tắt hoạt động của các chức năng trong phần mềm. Bạn thấy đáp ứng được nhu cầu của mình, sử dụng đơn giản, hợp lý thì mới hợp tác với bên mình về bản quyền.\nMình sẽ hỗ trợ bạn dùng thử qua ultraviewer",
+    "intent": "Dung_thu_duoc_khong"
   },
   {
-    "user": "Dùng thử trong bao lâu?",
-    "bot": "Dùng thử không tốn nhiều thời gian của mình đâu Chị, quan trọng là chị hiểu các chức năng và sử dụng như thế nào. Em sẽ hướng dẫn chị qua ultraviewer tất cả các chức năng: Đăng bài nhóm thực tế, nhắn tin tự động, bình luận, quét khách tiềm năng trong khoảng 1h đồng hồ. Như vậy chị sẽ nắm được hết rồi, thấy được đối tượng thực tế phần mềm tiếp cận và sẽ quyết định được có mua hay không.\n\nEm hướng dẫn 1h bằng chị tự nghiên cứu 10-15 ngày",
-    "intent": "Dung_thu"
+    "user": "Dùng thử trong bao lâu?\nTôi có thể dùng thử phần mềm trong bao lâu?\nBạn cho tôi dùng thử phần mềm trong bao lâu?\nTôi muốn biết thời gian dùng thử phần mềm là bao lâu?\nDùng thử phần mềm trong bao lâu?",
+    "bot": "Dùng thử không tốn nhiều thời gian của mình đâu bạn, quan trọng là bạn hiểu các chức năng và sử dụng như thế nào. Mình sẽ hướng dẫn bạn qua ultraviewer tất cả các chức năng: Đăng bài nhóm thực tế, nhắn tin tự động, bình luận, quét khách tiềm năng trong khoảng 1h đồng hồ. Như vậy bạn sẽ nắm được hết rồi, thấy được đối tượng thực tế phần mềm tiếp cận và sẽ quyết định được có mua hay không.\nMình hướng dẫn 1h bằng bạn tự nghiên cứu 10-15 ngày",
+    "intent": "Dung_thu_bao_lau"
   },
   {
-    "user": "Chị muốn dùng thử 1 tuần để thấy kết quả?",
-    "bot": "Chị không cần phải tốn nhiều thời gian để nghiên cứu phần mềm như vậy, và dùng thử cũng không bao giờ có kết quả, vì phiên bản dùng thử không có bản quyền.\n\nEm sẽ hướng dẫn chị qua ultraviewer tất cả các chức năng: Đăng bài nhóm thực tế, nhắn tin tự động, bình luận, quét khách tiềm năng trong khoảng 1h đồng hồ. Như vậy chị sẽ nắm được hết rồi, thấy các chức năng đơn giản, dễ sử dụng và sẽ quyết định được có mua hay không",
-    "intent": "Dung_thu"
+    "user": "Chị muốn dùng thử 1 tuần để thấy kết quả?\nTôi có thể dùng thử phần mềm trong 1 tuần để thấy kết quả không?\nBạn cho tôi dùng thử phần mềm trong 1 tuần để thấy kết quả được không?\nTôi muốn dùng thử phần mềm trong 1 tuần để thấy kết quả thì làm thế nào?\nDùng thử phần mềm trong 1 tuần để thấy kết quả được không?",
+    "bot": "Bạn không cần phải tốn nhiều thời gian để nghiên cứu phần mềm như vậy, và dùng thử cũng không bao giờ có kết quả, vì phiên bản dùng thử không có bản quyền.\nMình sẽ hướng dẫn bạn qua ultraviewer tất cả các chức năng: Đăng bài nhóm thực tế, nhắn tin tự động, bình luận, quét khách tiềm năng trong khoảng 1h đồng hồ. Như vậy bạn sẽ nắm được hết rồi, thấy các chức năng đơn giản, dễ sử dụng và sẽ quyết định được có mua hay không",
+    "intent": "Dung_thu_1_tuan"
   },
   {
-    "user": "CÓ AI HƯỚNG DẪN CHỊ DÙNG KHÔNG:",
-    "bot": "Về vấn đề sử chị cứ yên tâm vì: \n\n-Phần mềm bên em các chức năng rất rõ ràng, giao diện tiếng việt, thân thiện khách hàng nào cũng dùng được: \n\n-Em chắc chắc với chị một điều rằng kỹ thuật bên em  sẽ hướng dẫn chị sử dụng thành thạo, thông qua chương trình điều khiến máy tính từ xa teamviewer hay ultraviewer, giống như 2 người đang ngồi cạnh nhau, nên việc hướng dẫn là rất đơn giản \n\n- Và không chỉ hướng dẫn chị ngay lúc chị ký hợp đồng mà trong suốt quá trình sử dụng, bên em liên tục chăm sóc chị để chị hài lòng về phần mềm",
-    "intent": "Su_dung"
+    "user": "CÓ AI HƯỚNG DẪN CHỊ DÙNG KHÔNG\nTôi có được ai hướng dẫn sử dụng không nếu tôi mua phần mềm?\nBạn có ai hướng dẫn tôi sử dụng không nếu tôi mua phần mềm?\nTôi muốn biết có ai hướng dẫn tôi sử dụng không nếu tôi mua phần mềm?\nCó ai hướng dẫn tôi sử dụng không nếu tôi mua phần mềm?",
+    "bot": "Về vấn đề sử bạn cứ yên tâm vì: \n-Phần mềm bên mình các chức năng rất rõ ràng, giao diện tiếng việt, thân thiện khách hàng nào cũng dùng được: \n-Mình chắc chắc với bạn một điều rằng kỹ thuật bên mình  sẽ hướng dẫn bạn sử dụng thành thạo, thông qua chương trình điều khiến máy tính từ xa teamviewer hay ultraviewer, giống như 2 người đang ngồi cạnh nhau, nên việc hướng dẫn là rất đơn giản \n- Và không chỉ hướng dẫn bạn ngay lúc bạn ký hợp đồng mà trong suốt quá trình sử dụng, bên mình liên tục chăm sóc bạn để bạn hài lòng về phần mềm",
+    "intent": "Huong_dan_su_dung_phan_mem"
   },
   {
-    "user": "PHẦN MỀM NÀY SỬ DỤNG CÓ AN TOÀN/ CHECKPOINT/ SPAM/BLOCK/HACK/ KHÓA NICK FB KHÔNG",
-    "bot": "Bên em cam kết với chị về sự an toàn của tài khoản khi chạy trong phần mềm vì: \n\n- Phần mềm bên em đã được: Cục sở hữu trí tuệ công nhận là phần mềm thông minh. Có giấy chứng nhận xuất bản của BỘ THÔNG TIN TRUYỀN THÔNG về phần mềm an toàn cho phép triển khai rộng rãi.\n\nHơn nữa : \n\n- Có Chức năng soạn tin 1 lần đăng 200 lần nd tự động khác nhau \n\n-Lập trình Đăng bài random hình ảnh, nội dung, nội dung liên tục khách nhau trên các nhóm \n\n-Cơ chế đăng bài bằng công nghệ trình duyệt là công nghệ hiện đại nhất trên thế giới \n\n-Vậy nên khóa là hy hữu gần như không có.\n\nChị yên tâm khi sử dụng phần mềm bên em nhé",
+    "user": "PHẦN MỀM NÀY SỬ DỤNG CÓ AN TOÀN/ CHECKPOINT/ SPAM/BLOCK/HACK/ KHÓA NICK FB KHÔNG?\nPhần mềm có an toàn không?\nTôi có bị mất nick khi dùng phần mềm không?\nTôi có bị hack nick khi dùng phần mềm không?\nTài khoản của tôi có bị khóa khi dùng phần mềm không?\nTôi có bị checkpoint khi dùng phần mềm không?",
+    "bot": "Bên mình cam kết với bạn về sự an toàn của tài khoản khi chạy trong phần mềm vì: \n- Phần mềm bên mình đã được: Cục sở hữu trí tuệ công nhận là phần mềm thông minh. Có giấy chứng nhận xuất bản của BỘ THÔNG TIN TRUYỀN THÔNG về phần mềm an toàn cho phép triển khai rộng rãi.\nHơn nữa : \n- Có Chức năng soạn tin 1 lần đăng 200 lần nd tự động khác nhau \n-Lập trình Đăng bài random hình ảnh, nội dung, nội dung liên tục khách nhau trên các nhóm \n-Cơ chế đăng bài bằng công nghệ trình duyệt là công nghệ hiện đại nhất trên thế giới \n-Vậy nên khóa là hy hữu gần như không có.\nBạn yên tâm khi sử dụng phần mềm bên mình nhé",
     "intent": "Checkpoint"
   },
   {
-    "user": "GIÁ PHẦN MỀM FBGLOBAL",
-    "bot": "Hiện nay công ty đang triển khai 3 gói giá ưu đãi: \n\nGói 6 tháng: 2.000.000đ/6 tháng/1 máy.\n\nGói 1 năm: 3.450.000đ/1 năm/1 máy.\n\nGói 2 năm: 4.500.000đ/2 năm/1 máy. (Gói này có thể cài 2 máy và mỗi máy 1 năm) \n\nGiá gói này Anh được: \n\n-Đăng tải hình ảnh và nội dung không giới hạn và không tốn thêm chi phí gì.\n\n-Được chia sẻ bài viết vào các hội nhóm, nhắn tin, bình luận số lượng lớn.\n\n-Được quét khách tiềm năng, khách đối thủ, khách theo khu vực, sở thích.\n\n-Được úp tin đẩy bài viết lên top đầu của nhóm cả ngày lẫn đêm.\n\n-Được hỗ trợ chỉnh sửa bài viết đúng chính sách FB.\n\n-Đánh giá Fanpage, tư vấn khoanh vùng những đối tượng khách hàng tiềm năng mà đơn vị mình đang hướng đến.\n\n-Hỗ trợ trong suốt quá trình anh sử dụng",
-    "intent": "Gia_Cac_van_de_ve_gia"
+    "user": "GIÁ PHẦN MỀM FBGLOBAL\nPhần mềm có giá là bao nhiêu?\nTôi muốn biết giá phần mềm là bao nhiêu?\nBạn có thể cho tôi biết giá phần mềm không?\nPhần mềm bán với giá nào?",
+    "bot": "Hiện nay công ty đang triển khai 3 gói giá ưu đãi: \nGói 6 tháng: 2.000.000đ/6 tháng/1 máy.\nGói 1 năm: 3.450.000đ/1 năm/1 máy.\nGói 2 năm: 4.500.000đ/2 năm/1 máy. (Gói này có thể cài 2 máy và mỗi máy 1 năm) \nGiá gói này bạn được: \n-Đăng tải hình ảnh và nội dung không giới hạn và không tốn thêm chi phí gì.\n-Được chia sẻ bài viết vào các hội nhóm, nhắn tin, bình luận số lượng lớn.\n-Được quét khách tiềm năng, khách đối thủ, khách theo khu vực, sở thích.\n-Được úp tin đẩy bài viết lên top đầu của nhóm cả ngày lẫn đêm.\n-Được hỗ trợ chỉnh sửa bài viết đúng chính sách FB.\n-Đánh giá Fanpage, tư vấn khoanh vùng những đối tượng khách hàng tiềm năng mà đơn vị mình đang hướng đến.\n-Hỗ trợ trong suốt quá trình bạn sử dụng",
+    "intent": "Gia_phan_mem_Fbglobal"
   },
   {
-    "user": "Bên em có thể giảm giá.",
-    "bot": "Dạ em không thể bán cho anh 1 phần mềm kém chất lượng, nếu có thể giảm giá cho anh, bên em đã giảm giá rồi.\n\nTuy nhiên khi anh mua phần mềm bên em. Anh được phục vụ như 1 khách VIP, lúc nào anh cần là bên em hỗ trợ ngay.\n\nHơn nữa phần mềm bên em là tổng hợp của 7 phần mềm nhỏ.\n\nTất cả các chức năng đã được thẩm định chạy tốt trong thời gian dài.\n\nKhi anh mua FBglobal anh không cần phải mua thêm bất cứ phần mềm nào nữa.\n\nChỉ cần 1 phần mềm này thôi là đủ tất cả các kênh để anh chạy quảng cáo hiệu quả.\n\nVậy nên giá bên em bán cho anh là rất rẻ rồi anh ạ",
-    "intent": "Gia_Cac_van_de_ve_gia"
+    "user": "Bên mình có thể giảm giá.\nTôi muốn được giảm giá phần mềm.\nBạn có thể giảm giá phần mềm cho tôi không?\nTôi muốn mua phần mềm với giá rẻ hơn.\nBên mình có thể bán phần mềm với giá rẻ hơn không?",
+    "bot": "Dạ mình không thể bán cho bạn 1 phần mềm kém chất lượng, nếu có thể giảm giá cho bạn, bên mình đã giảm giá rồi.\nTuy nhiên khi bạn mua phần mềm bên mình. Bạn được phục vụ như 1 khách VIP, lúc nào bạn cần là bên mình hỗ trợ ngay.\nHơn nữa phần mềm bên mình là tổng hợp của 7 phần mềm nhỏ.\nTất cả các chức năng đã được thẩm định chạy tốt trong thời gian dài.\nKhi bạn mua FBglobal bạn không cần phải mua thêm bất cứ phần mềm nào nữa.\nChỉ cần 1 phần mềm này thôi là đủ tất cả các kênh để bạn chạy quảng cáo hiệu quả.\nVậy nên giá bên mình bán cho bạn là rất rẻ rồi bạn ạ",
+    "intent": "Giam_gia"
   },
   {
-    "user": "A Quảng cáo 1 tháng 10,50 triệu, bên em sao giá rẻ thế.",
-    "bot": "-Rẻ vì bên em viết ra và bán cho nhiều khách, nên giá rẻ là do bán số lượng nhiều. Nếu chỉ bán cho 1 khách thì giá là 5 tỷ \n\n-Hiện nay  có 02 kiểu làm quảng cáo: \n\nChị đang bỏ tiền vào thẻ VISA hoặc đưa nội dung cho các đơn vị tự chạy quảng cáo cho chị.\n\nBên em ngược lại: cung cấp công cụ là phần mềm, các diễn đàn nhóm, page để chị tự chạy quảng cáo.\n\nNên 2 kiểu làm này chi phí khác nhau, nhưng đối tượng tiếp cận khách hàng là như nhau",
-    "intent": "Gia_Cac_van_de_ve_gia"
+    "user": "A Quảng cáo 1 tháng 10,50 triệu, bên mình sao giá rẻ thế.\nTôi thấy bên khác quảng cáo 1 tháng 10,50 triệu, sao bên mình giá rẻ thế?\nBạn có thể giải thích tại sao bên mình giá rẻ hơn bên khác không?\nTôi muốn biết lý do tại sao bên mình giá rẻ hơn bên khác?\nTại sao bên mình bán phần mềm với giá rẻ như vậy?",
+    "bot": "-Rẻ vì bên mình viết ra và bán cho nhiều khách, nên giá rẻ là do bán số lượng nhiều. Nếu chỉ bán cho 1 khách thì giá là 5 tỷ \n-Hiện nay  có 02 kiểu làm quảng cáo: \nChị đang bỏ tiền vào thẻ VISA hoặc đưa nội dung cho các đơn vị tự chạy quảng cáo cho chị.\nBên mình ngược lại: cung cấp công cụ là phần mềm, các diễn đàn nhóm, page để chị tự chạy quảng cáo.\nNên 2 kiểu làm này chi phí khác nhau, nhưng đối tượng tiếp cận khách hàng là như nhau",
+    "intent": "Gia_re_hon_ben_khac"
   },
   {
-    "user": "Sử dụng phần mềm có hiệu quả hay không?",
-    "bot": "-Phần mềm bên em có rất nhiều chức năng thông minh để chạy quảng cáo. Chỉ khi có phần mềm rồi mà chị ko đăng quảng cáo, như vậy mới không hiệu quả.\n\n-Bên em cam kết với chị về hiệu quả, sẽ thay đổi nhiều chiến lượt marketing trên phần mềm, thay đổi tệp khách hàng và hướng dẫn chị cho đến khi chị có nhiều khách hàng mới thôi \n\n-Hiệu quả mà chị nhận được từ phần mềm này cao hơn gấp nhiều lần số tiền chị bỏ ra để mua nó đấy ạ",
+    "user": "Sử dụng phần mềm có hiệu quả hay không?\nPhần mềm có giúp tôi bán được nhiều hàng hơn không?\nTôi có thể bán được nhiều hàng hơn khi dùng phần mềm không?\nBạn có thể giúp tôi bán được nhiều hàng hơn không?\nDùng phần mềm có giúp tôi bán được nhiều hàng hơn không?",
+    "bot": "-Phần mềm bên mình có rất nhiều chức năng thông minh để chạy quảng cáo. Chỉ khi có phần mềm rồi mà bạn ko đăng quảng cáo, như vậy mới không hiệu quả.\n-Bên mình cam kết với bạn về hiệu quả, sẽ thay đổi nhiều chiến lượt marketing trên phần mềm, thay đổi tệp khách hàng và hướng dẫn bạn cho đến khi bạn có nhiều khách hàng mới thôi \n-Hiệu quả mà bạn nhận được từ phần mềm này cao hơn gấp nhiều lần số tiền bạn bỏ ra để mua nó đấy ạ",
     "intent": "Hieu_qua"
   },
   {
-    "user": "KHÁCH HÀNG ĐANG PHÂN VÂN CHƯA TIN TƯỞNG.",
-    "bot": "-Thưa chị. Khi chị dùng bản quyền các chức năng giống y như phiên bản demo chị đã dùng thử. Bên em cam kết với chị là đúng y như vậy.\n\n-Hơn nữa trong giai đoạn đầu tiên chị sử dụng, bên em liên tục hỗ trợ cho đến khi nào chị có  thêm nhiều khách hàng mới thì thôi.\n\n-Bên em cam kết các chức năng của phần mềm chạy tốt và ổn định trong suốt thời gian chị mua phần mềm.\n\n-Chị cứ tin em 1 lần ko để chị phải lo lắng gì đâu. Em chỉ là nhân viên và ko có lý lo gì để nói ko đúng sự thật. Niềm vui của chị khi có thêm nhiều khách hàng mới cũng là niềm vui trong công việc của em",
+    "user": "KHÁCH HÀNG ĐANG PHÂN VÂN CHƯA TIN TƯỞNG.\nTôi chưa tin tưởng phần mềm này.\nTôi chưa chắc chắn về phần mềm này.\nBạn có thể làm gì để tôi tin tưởng phần mềm này không?\nTôi muốn biết lý do để tin tưởng phần mềm này?",
+    "bot": "-Thưa bạn. Khi bạn dùng bản quyền các chức năng giống y như phiên bản demo bạn đã dùng thử. Bên mình cam kết với bạn là đúng y như vậy.\n-Hơn nữa trong giai đoạn đầu tiên bạn sử dụng, bên mình liên tục hỗ trợ cho đến khi nào bạn có  thêm nhiều khách hàng mới thì thôi.\n-Bên mình cam kết các chức năng của phần mềm chạy tốt và ổn định trong suốt thời gian bạn mua phần mềm.\n-Bạn cứ tin mình 1 lần ko để bạn phải lo lắng gì đâu. Mình chỉ là nhân viên và ko có lý lo gì để nói ko đúng sự thật. Niềm vui của bạn khi có thêm nhiều khách hàng mới cũng là niềm vui trong công việc của mình",
     "intent": "Chua_tin_tuong"
   },
   {
-    "user": "Chưa có nhu cầu, để chị nghiên cứu",
-    "bot": "Thưa chị đảm bảo chị ko thất vọng khi nghiên cứu phần mềm bên em. Các kênh quảng cáo trong phần mềm sẽ giúp chị có thêm nhiều khách hàng mới.\n\n-Rất nhiều khách hàng ngành nghề như chị, sử dụng phần mềm bên em chạy rất hiệu quả.\n\nEm xin phép gửi thông tin. Khi nào chị rảnh cứ nhắn em tư vấn cụ thể hơn nhé",
+    "user": "Chưa có nhu cầu, để chị nghiên cứu nhiều hơn.\nTôi chưa có nhu cầu, để tôi nghiên cứu nhiều hơn.\nBạn có thể cho tôi thêm thời gian để nghiên cứu không?\nTôi muốn nghiên cứu thêm về phần mềm này thì làm thế nào?\nTôi chưa có nhu cầu, để tôi nghiên cứu thêm về phần mềm này.",
+    "bot": "Thưa bạn đảm bảo bạn ko thất vọng khi nghiên cứu phần mềm bên mình. Các kênh quảng cáo trong phần mềm sẽ giúp bạn có thêm nhiều khách hàng mới.\n-Rất nhiều khách hàng ngành nghề như bạn, sử dụng phần mềm bên mình chạy rất hiệu quả.\nEm xin phép gửi thông tin. Khi nào bạn rảnh cứ nhắn em tư vấn cụ thể hơn nhé",
     "intent": "Chua_co_nhu_cau"
   },
   {
-    "user": "Bên em có chi nhánh tại HCM, HN… không?",
-    "bot": "Trụ sở bên em tại Đà Nẵng và hiện nay khách hàng bên em triển khai trên 34 tỉnh thành, đặc biệt ở Hà Nội và HCM rất nhiều.\n\nTất cả các vấn đề đều được xử lý qua Utraviewer rất nhanh chóng, giống như đang ngồi bên cạnh để hỗ trợ chị.\n\nQuan trọng con người làm việc với nhau thế nào thôi chị, Chị cứ tin tưởng bên em, đảm bảo không làm chị thất vọng",
+    "user": "Bên mình có chi nhánh tại HCM, HN… không?\nTôi có thể đến chi nhánh tại HCM, HN… của bạn không?\nBạn có chi nhánh tại HCM, HN… không?\nTôi muốn biết chi nhánh tại HCM, HN… của bạn ở đâu?\nBên mình có chi nhánh tại HCM, HN… không?",
+    "bot": "Trụ sở bên mình tại Đà Nẵng và hiện nay khách hàng bên mình triển khai trên 34 tỉnh thành, đặc biệt ở Hà Nội và HCM rất nhiều.\nTất cả các vấn đề đều được xử lý qua Utraviewer rất nhanh chóng, giống như đang ngồi bên cạnh để hỗ trợ bạn.\nQuan trọng con người làm việc với nhau thế nào thôi bạn, Bạn cứ tin tưởng bên mình, đảm bảo không làm bạn thất vọng",
     "intent": "Co_chi_nhanh_tai_HCM_HN_khong"
   },
   {
-    "user": "FEEDBACK KHÁCH HÀNG",
-    "bot": "-Phản hồi của khách hàng SOHAR là kết quả gia hạn, có nghĩa là dùng hiệu quả và tiếp tục dùng, có khách đã dùng nhiều năm và còn mua thêm nhiều máy khác cho nhân viên, triển khai cho cả hệ thống.\n\n-Mỗi người dùng cảm nhận sự hài lòng về phần mềm khác nhau, không ai nói dùng phần mềm này xịn lắm, ngon lắm....\n\nMà chỉ nói “Tôi muốn mua thêm, tôi muốn gian hạn” là feeback thực tế của SOHAR.\n\nEm gửi anh link feedback của khách hàng nhé: \n\nhttps://drive.google.com/drive/folders/177UjwkJQraoTFsG-kc4e3kI0ulMjeDLu?usp=drive_link",
+    "user": "FEEDBACK KHÁCH HÀNG\nTôi muốn xem phản hồi của khách hàng về phần mềm này?\nBạn có thể cho tôi xem phản hồi của khách hàng về phần mềm này không?\nTôi muốn biết phản hồi của khách hàng về phần mềm này?\nPhản hồi của khách hàng về phần mềm này như thế nào?",
+    "bot": "-Phản hồi của khách hàng SOHAR là kết quả gia hạn, có nghĩa là dùng hiệu quả và tiếp tục dùng, có khách đã dùng nhiều năm và còn mua thêm nhiều máy khác cho nhân viên, triển khai cho cả hệ thống.\n-Mỗi người dùng cảm nhận sự hài lòng về phần mềm khác nhau, không ai nói dùng phần mềm này xịn lắm, ngon lắm....\nMà chỉ nói “Tôi muốn mua thêm, tôi muốn gian hạn” là feeback thực tế của SOHAR.\nEm gửi anh link feedback của khách hàng nhé: \nhttps://drive.google.com/drive/folders/177UjwkJQraoTFsG-kc4e3kI0ulMjeDLu?usp=drive_link",
     "intent": "FEEDBACK"
   },
   {
-    "user": "Bên em có phiên bản vĩnh viễn không?",
-    "bot": "Bên em không có phiên bản vĩnh viễn chỉ có phiên bản 20 năm hoặc 30 năm \n\n-Tuy nhiên công nghệ thay đổi từng ngày. 3 năm nữa chị sẽ được dùng 1 PM với công nghệ  hoàn toàn khác và chắc chắn chị sẽ ko dùng pm này nữa.\n\n-Và chi phí hàng năm để vận hành phần mềm là rất lớn.\n\n-Cũng không có ai sống vĩnh viễn để phục vụ nhau, nên không thể là vĩnh viễn được chị ạ.\n\nKhái niệm này chỉ làm cho khách hàng nhầm tưởng rằng được mua phần mềm với giá rẻ mà thôi",
+    "user": "Bên mình có phiên bản vĩnh viễn không?\nTôi có thể mua phần mềm với phiên bản vĩnh viễn không?\nBạn có bán phần mềm với phiên bản vĩnh viễn không?\nTôi muốn mua phần mềm với phiên bản vĩnh viễn thì làm thế nào?\nBên mình có bán phần mềm với phiên bản vĩnh viễn không?",
+    "bot": "Bên mình không có phiên bản vĩnh viễn chỉ có phiên bản 20 năm hoặc 30 năm \n-Tuy nhiên công nghệ thay đổi từng ngày. 3 năm nữa bạn sẽ được dùng 1 PM với công nghệ  hoàn toàn khác và chắc chắn bạn sẽ ko dùng pm này nữa.\n-Và chi phí hàng năm để vận hành phần mềm là rất lớn.\n-Cũng không có ai sống vĩnh viễn để phục vụ nhau, nên không thể là vĩnh viễn được bạn ạ.\nKhái niệm này chỉ làm cho khách hàng nhầm tưởng rằng được mua phần mềm với giá rẻ mà thôi",
     "intent": "Ban_vinh_vien"
   },
   {
-    "user": "Ở xa vậy sao hỗ trợ, không có chi nhánh tại tỉnh của chị à?",
-    "bot": "Thưa chị, bây giờ thương mại điện tử phát triển. Quan trọng là con người phục vụ với nhau như thế nào thôi chị ơi.\n\nThông qua chương trình điều khiển máy tính từ xa Utraviewer, teamviewer. Giống như 2 người đang ngồi cạnh nhau để hỗ trợ.\n\nNên việc hướng dẫn rất là đơn giản chị ạ.\n\nKhi chị yêu cầu 5 phút sau bên em đã hỗ trợ ngay",
-    "intent": "O_xa_khong_co_chi_nhanh"
+    "user": "Ở xa vậy sao hỗ trợ, không có chi nhánh tại tỉnh của chị à?\nTôi ở xa vậy sao bạn hỗ trợ tôi được?\nBạn có chi nhánh tại tỉnh của tôi không?\nTôi muốn biết bạn hỗ trợ tôi như thế nào khi tôi ở xa?\nỞ xa vậy sao bạn hỗ trợ tôi được?",
+    "bot": "Thưa bạn, bây giờ thương mại điện tử phát triển. Quan trọng là con người phục vụ với nhau như thế nào thôi bạn ơi.\nThông qua chương trình điều khiển máy tính từ xa Utraviewer, teamviewer. Giống như 2 người đang ngồi cạnh nhau để hỗ trợ.\nNên việc hướng dẫn rất là đơn giản bạn ạ.\nKhi bạn yêu cầu 5 phút sau bên mình đã hỗ trợ ngay",
+    "intent": "Ho_tro_khi_o_xa"
   },
   {
-    "user": "Option 1",
-    "bot": "Em tổng hợp 4 kênh quảng cáo của phần mềm để anh dễ hình dung ạ \n\nĐối với ngành BẤT ĐỘNG SẢN, phần mềm bên em có 04 kênh quảng cáo chính và rất nhiều khách hàng sử dụng hiệu quả \n\nThứ nhất: Nhóm \n\nPhần mềm có thể tự động tham gia nhiều nhóm MUA BÁN BẤT ĐỘNG SẢN, MUA BÁN NHÀ ĐẤT, KÝ GỬI NHÀ ĐẤT, NHÀ ĐẤT GIÁ RẺ,… và đăng tường lên nhóm số lượng lớn, Sau đó úp tin làm mới để tiếp cận nhiều thành viên trên nhóm nhất.\n\nThứ 2: Fanpage \n\nPhần mềm có thể sử dụng tư cách của Page BẤT ĐỘNG SẢN để làm quảng cáo, tham gia nhóm và đăng tường tăng lượt tiếp cận. Ngoài ra có thể tìm rất nhiều fanpage khác để nhắn tin hàng loạt \n\nThứ 3: Quét số điện thoại/email/bình luận/quét bình luận ẩn \n\nPhần mềm có thể quét được rất nhiều số điện thoại và email của các tệp khách hàng có nhu cầu. Đó là những khách hàng có nguồn tài chính thu nhập cao như GIÁM ĐỐC CÔNG TY, CHỦ DOANH NGHIỆP, CHỦ KHÁCH SẠN, NHÀ HÀNG ,…  \n\nNgoài ra phần mềm có thể quét được bình luận của ĐỐI THỦ CẠNH TRANH. Quét xong tích hợp userID nhắn tin hàng loạt.\n\nCuối cùng: Mở rộng tương tác",
+    "user": "Option 1\nTôi muốn biết các kênh quảng cáo của phần mềm?\nBạn có thể cho tôi biết các kênh quảng cáo của phần mềm không?\nTôi muốn biết cách phần mềm quảng cáo như thế nào?\nPhần mềm quảng cáo qua những kênh nào?",
+    "bot": "Mình tổng hợp 4 kênh quảng cáo của phần mềm để bạn dễ hình dung ạ.\nĐối với ngành BẤT ĐỘNG SẢN, phần mềm bên mình có 04 kênh quảng cáo chính và rất nhiều khách hàng sử dụng hiệu quả \nThứ nhất: Nhóm \nPhần mềm có thể tự động tham gia nhiều nhóm MUA BÁN BẤT ĐỘNG SẢN, MUA BÁN NHÀ ĐẤT, KÝ GỬI NHÀ ĐẤT, NHÀ ĐẤT GIÁ RẺ,… và đăng tường lên nhóm số lượng lớn, Sau đó úp tin làm mới để tiếp cận nhiều thành viên trên nhóm nhất.\nThứ 2: Fanpage \nPhần mềm có thể sử dụng tư cách của Page BẤT ĐỘNG SẢN để làm quảng cáo, tham gia nhóm và đăng tường tăng lượt tiếp cận. Ngoài ra có thể tìm rất nhiều fanpage khác để nhắn tin hàng loạt \nThứ 3: Quét số điện thoại/email/bình luận/quét bình luận ẩn \nPhần mềm có thể quét được rất nhiều số điện thoại và email của các tệp khách hàng có nhu cầu. Đó là những khách hàng có nguồn tài chính thu nhập cao như GIÁM ĐỐC CÔNG TY, CHỦ DOANH NGHIỆP, CHỦ KHÁCH SẠN, NHÀ HÀNG ,…  \nNgoài ra phần mềm có thể quét được bình luận của ĐỐI THỦ CẠNH TRANH. Quét xong tích hợp userID nhắn tin hàng loạt.\nCuối cùng: Mở rộng tương tác",
     "intent": "4_kenh_quang_cao"
   },
   {
-    "user": "Option 2",
-    "bot": "Em chia sẻ các chức năng chính của phần mềm quảng cáo ngành ĐỒNG PHỤC của bên mình cho anh dễ hình dung: \n\n1. Quảng cáo Nhóm: \n\nPhần mềm có thể tự động tham gia nhiều nhóm: VỀ MAY ĐỒNG PHỤC/ HỘI DOANH NGHIỆP   và đăng tường lên nhóm số lượng lớn, Sau đó úp tin làm mới, đẩy bài lên TOP đầu của nhóm để tiếp cận nhiều thành viên trên nhóm nhất.\n\n2 Quảng cáo Fanpage \n\nBên em sẽ chuẩn SEO Page ĐỒNG PHỤC bên mình và tăng lượt like và share bài viết thực tế trên page để tiếp cận khách hàng. Dùng Page để bình luận các bài viết trên nhóm và các Page khác để tăng tiếp cận trên Page \n\n Quảng cáo Messenger:  \n\nPhần mềm có thể quét được tệp khách hàng tiềm năng về Đồng Phục như: NHÀ HÀNG, QUÁN ĂN,CÔNG TY, NGÂN HÀNG, TRƯỜNG MẦM NON . Quét xong nhắn tin vào messenger để quảng cáo.\n\n4.Quét số điện thoại/email/quét bình luận ẩn \n\n*Phần mềm có thể quét được khách hàng của những công ty công ty Đồng Phục khác, ….Quét xong nhắn tin tự động hàng loạt để tiếp cận.\n\n*Phần mềm còn quét được rất nhiều số điện thoại  của các quán cà phê, giám đốc công ty, xưởng sản xuất, chủ khách sạn và các tệp khách khác để Anh/chị kết nối zalo tiếp cận.\n\nCuối cùng: Bình luận tự động và Mở rộng tương tác \n\n*Phần mềm có thể bình luận các bài viết trên nhóm, trên page, trang cá nhân để quảng cáo nội dung tiếp cận khách",
+    "user": "Option 2\nTôi muốn biết các kênh quảng cáo của phần mềm?\nBạn có thể cho tôi biết các kênh quảng cáo của phần mềm không?\nTôi muốn biết cách phần mềm quảng cáo như thế nào?\nPhần mềm quảng cáo qua những kênh nào?",
+    "bot": "Mình chia sẻ các chức năng chính của phần mềm quảng cáo ngành ĐỒNG PHỤC của bên mình cho bạn dễ hình dung: \n1. Quảng cáo Nhóm: \nPhần mềm có thể tự động tham gia nhiều nhóm: VỀ MAY ĐỒNG PHỤC/ HỘI DOANH NGHIỆP   và đăng tường lên nhóm số lượng lớn, Sau đó úp tin làm mới, đẩy bài lên TOP đầu của nhóm để tiếp cận nhiều thành viên trên nhóm nhất.\n2 Quảng cáo Fanpage \nBên mình sẽ chuẩn SEO Page ĐỒNG PHỤC bên mình và tăng lượt like và share bài viết thực tế trên page để tiếp cận khách hàng. Dùng Page để bình luận các bài viết trên nhóm và các Page khác để tăng tiếp cận trên Page \n3. Quảng cáo Messenger:  \nPhần mềm có thể quét được tệp khách hàng tiềm năng về Đồng Phục như: NHÀ HÀNG, QUÁN ĂN,CÔNG TY, NGÂN HÀNG, TRƯỜNG MẦM NON . Quét xong nhắn tin vào messenger để quảng cáo.\n4.Quét số điện thoại/email/quét bình luận ẩn \n*Phần mềm có thể quét được khách hàng của những công ty công ty Đồng Phục khác, ….Quét xong nhắn tin tự động hàng loạt để tiếp cận.\n*Phần mềm còn quét được rất nhiều số điện thoại  của các quán cà phê, giám đốc công ty, xưởng sản xuất, chủ khách sạn và các tệp khách khác để bạn kết nối zalo tiếp cận.\nCuối cùng: Bình luận tự động và Mở rộng tương tác \n*Phần mềm có thể bình luận các bài viết trên nhóm, trên page, trang cá nhân để quảng cáo nội dung tiếp cận khách",
     "intent": "4_kenh_quang_cao"
   },
   {
-    "user": "HỎI KHU VỰC:",
-    "bot": "Thưa anh mình quảng cáo theo khu vực hay trên toàn quốc để em tư vấn chính xác kênh tiếp cận cho bên mình ạ \n\nAnh kinh doanh khu vực, phần mềm bên em tiếp cận như sau \n\n𝟏. Đ𝐚̆𝐧𝐠 𝐛𝐚̀𝐢 𝐧𝐡𝐨́𝐦 𝐬𝐨̂́ 𝐥ư𝐨̛̣𝐧𝐠 𝐥𝐨̛́𝐧 \n\n-PM tự động tham gia nhóm, đăng bài lên nhóm số lượng lớn, sau đó úp tin đẩy bài lên TOP để tiếp cận nhiều người trên nhóm nhất.\n\n-Ngoài ra còn bình luận nhóm, quét thành viên, kéo thành viên vào nhóm \n\n𝟐 𝐐𝐮𝐚̉𝐧𝐠 𝐜𝐚́𝐨 𝐅𝐚𝐧𝐩𝐚𝐠𝐞 \n\n-Sử dụng Page để đăng bài nhóm, bình luận, like các Page khác để tăng lượt like thực tế \n\n-Hỗ trợ đăng bài liên nhiều Page đồng thời. Soạn bài 1 lần đăng 200 lần khác nhau \n\n𝟑. 𝐍𝐡𝐚̆́𝐧 𝐭𝐢𝐧 𝐭𝐮̛̣ đ𝐨̣̂𝐧𝐠 𝐌𝐞𝐬𝐬𝐞𝐧𝐠𝐞𝐫 \n\n-PM có thể nhắn tin tự động hàng loạt đến Page, bạn bè, UID bất kỳ, khách đối thủ,..\n\n𝟒.𝐍𝐮𝐨̂𝐢 𝐧𝐢𝐜𝐤, 𝐭𝐚̆𝐧𝐠 𝐥𝐢𝐤𝐞-𝐜𝐨𝐦𝐦𝐞𝐧𝐭, 𝐬𝐞𝐞𝐝𝐢𝐧𝐠 𝐛𝐚̀𝐢 𝐯𝐢𝐞̂́𝐭 \n\n- Nuôi nhiều nick đồng thời.\n\n- Kết bạn tự động, tăng like page, comment bài viết bất kỳ \n\n𝟓. 𝐁𝐢̀𝐧𝐡 𝐥𝐮𝐚̣̂𝐧 𝐭𝐮̛̣ đ𝐨̣̂𝐧𝐠 & 𝐦𝐨̛̉ 𝐫𝐨̣̂𝐧𝐠 𝐭ư𝐨̛𝐧𝐠 𝐭𝐚́𝐜 \n\n-PM có thể bình luận các bài viết trên nhóm, page, trang cá nhân để tăng tương tác",
+    "user": "HỎI KHU VỰC\nTôi muốn quảng cáo theo khu vực.\nBạn có thể giúp tôi quảng cáo theo khu vực không?\nTôi muốn biết cách quảng cáo theo khu vực thì làm thế nào?\nQuảng cáo theo khu vực được không?",
+    "bot": "Thưa bạn, mình quảng cáo theo khu vực hay trên toàn quốc để em tư vấn chính xác kênh tiếp cận cho bên mình ạ \nAnh kinh doanh khu vực, phần mềm bên mình tiếp cận như sau \n𝟏. Đ𝐚̆𝐧𝐠 𝐛𝐚̀𝐢 𝐧𝐡𝐨́𝐦 𝐬𝐨̂́ 𝐥ư𝐨̛̣𝐧𝐠 𝐥𝐨̛́𝐧 \n-PM tự động tham gia nhóm, đăng bài lên nhóm số lượng lớn, sau đó úp tin đẩy bài lên TOP để tiếp cận nhiều người trên nhóm nhất.\n-Ngoài ra còn bình luận nhóm, quét thành viên, kéo thành viên vào nhóm \n𝟐 𝐐𝐮𝐚̉𝐧𝐠 𝐜𝐚́𝐨 𝐅𝐚𝐧𝐩𝐚𝐠𝐞 \n-Sử dụng Page để đăng bài nhóm, bình luận, like các Page khác để tăng lượt like thực tế \n-Hỗ trợ đăng bài liên nhiều Page đồng thời. Soạn bài 1 lần đăng 200 lần khác nhau \n𝟑. 𝐍𝐡𝐚̆́𝐧 𝐭𝐢𝐧 𝐭𝐮̛̣ đ𝐨̣̂𝐧𝐠 𝐌𝐞𝐬𝐬𝐞𝐧𝐠𝐞𝐫 \n-PM có thể nhắn tin tự động hàng loạt đến Page, bạn bè, UID bất kỳ, khách đối thủ,..\n𝟒.𝐍𝐮𝐨̂𝐢 𝐧𝐢𝐜𝐤, 𝐭𝐚̆𝐧𝐠 𝐥𝐢𝐤𝐞-𝐜𝐨𝐦𝐦𝐞𝐧𝐭, 𝐬𝐞𝐞𝐝𝐢𝐧𝐠 𝐛𝐚̀𝐢 𝐯𝐢𝐞̂́𝐭 \n- Nuôi nhiều nick đồng thời.\n- Kết bạn tự động, tăng like page, comment bài viết bất kỳ \n𝟓. 𝐁𝐢̀𝐧𝐡 𝐥𝐮𝐚̣̂𝐧 𝐭𝐮̛̣ đ𝐨̣̂𝐧𝐠 & 𝐦𝐨̛̉ 𝐫𝐨̣̂𝐧𝐠 𝐭ư𝐨̛𝐧𝐠 𝐭𝐚́𝐜 \n-PM có thể bình luận các bài viết trên nhóm, page, trang cá nhân để tăng tương tác",
     "intent": "Hoi_khu_vuc"
   },
   {
-    "user": "HỎI NGÀNH NGHỀ",
-    "bot": "Thưa anh, ngành nghề mình kinh doanh là gì để em tư vấn tệp khách hàng tiếp cận cho mình ạ \n\nĐầu tiên: \n\nPhần mềm có thể tìm được rất nhiều nhóm về ngành nghề của chị nhưBất động sản, mua bán nhà đất, kí gửi nhà đất \n\nĐặc biêt tìm được nhóm cho phép đăng bài thành công mà không bị admin phê duyệt. Sau khi tìm xong phần mềm tự động thanh gia nhóm và tự động đăng bài lên nhóm số lượng lớn để tiếp cận.\n\nĐăng xong úp tin bình luận đẩy bài liên lục lên top đầu cho nhiều người biết đến chị nhé \n\nThứ 2: \n\nNgành Bất động sản để quảng cáo hiệu quả cần phải hướng đến chính xác một tiệp khách hàng: Đó là những người  có nhu cầu về bất động sản và có tiềm năng tài chính như Giám đốc công ty, chủ shop, chủ đại lý, doanh nghiệp…..\n\nPhần mềm quét được tệp khách này có đầy đủ số điện thoại, địa chỉ và facebook của họ.\n\nKhi quét xong có thể nhắn tin trực tiếp vào Facebook của họ để tiếp cận",
+    "user": "HỎI NGÀNH NGHỀ\nTôi muốn quảng cáo theo ngành nghề.\nBạn có thể giúp tôi quảng cáo theo ngành nghề không?\nTôi muốn biết cách quảng cáo theo ngành nghề thì làm thế nào?\nQuảng cáo theo ngành nghề được không?",
+    "bot": "Thưa bạn, ngành nghề mình kinh doanh là gì để em tư vấn tệp khách hàng tiếp cận cho mình ạ \nĐầu tiên: \nPhần mềm có thể tìm được rất nhiều nhóm về ngành nghề của chị nhưBất động sản, mua bán nhà đất, kí gửi nhà đất \nĐặc biêt tìm được nhóm cho phép đăng bài thành công mà không bị admin phê duyệt. Sau khi tìm xong phần mềm tự động thanh gia nhóm và tự động đăng bài lên nhóm số lượng lớn để tiếp cận.\nĐăng xong úp tin bình luận đẩy bài liên lục lên top đầu cho nhiều người biết đến chị nhé \nThứ 2: \nNgành Bất động sản để quảng cáo hiệu quả cần phải hướng đến chính xác một tiệp khách hàng: Đó là những người  có nhu cầu về bất động sản và có tiềm năng tài chính như Giám đốc công ty, chủ shop, chủ đại lý, doanh nghiệp…..\nPhần mềm quét được tệp khách này có đầy đủ số điện thoại, địa chỉ và facebook của họ.\nKhi quét xong có thể nhắn tin trực tiếp vào Facebook của họ để tiếp cận",
     "intent": "Hoi_nganh_nghe"
   },
   {
-    "user": "II Một tệp khách hàng cho các ngành nghề khác nhau (PAGE)",
-    "bot": "1. Ngành Nội thất:  Người đang có nhu cầu về nội thất/ Người đang đi xây nhà( Thầu xây dựng, công ty xây dựng, công ty thi công thiết kế, chủ nhà đang xây dựng) \n\n2. Ngành Ô tô: Người đang có nhu cầu về ô tô/Người giàu có ( chủ khách sạn, nhà hàng, đại lý, Công ty...) \n\n. Ngành spa: Người đang có nhu cầu làm đẹp/phụ nữ có tiền (phụ nữ thích hàng hiệu, phụ nữ thích spa, phụ nữ thích xe hơi, phụ nữ thích bất động sản) \n\n4. Sim số đẹp: Người đang có nhu cầu mua sim/Người làm kinh doanh (bất động sản, cho vay, bảo hiểm, spa, khách sạn, taxi, ô tô) \n\n5. Thời trang:Người đang có nhu cầu mua thời trang/phụ nữ, mẹ bĩm sữa \n\n6. Cho vay:Người đang có nhu cầu đi vay (Doanh nghiệp/sinh viên/người kinh doanh, tiểu thương, kinh doanh nhỏ lẻ) \n\n7. Thực phẩm khô:Tạp hóa, siêu thị, quán ăn, nhà hàng, khách sạn, trà sữa… \n\n8. Phụ tùng ô tô: Gara ô tô, auto ô tô, sửa chữa ô tô, công ty vận chuyển,Những người có xe ô tô \n\n9. Mỹ phẩm: Những người có nhu cầu về mỹ phẩm: spa, thẩm mỹ viên, shop bán mỹ phẩm khác, khách hàng của các spa, phụ nữ \n\n10. Du lịch: Công ty, trường học, cư dân, người thích đi du lịch",
-    "intent": "Tep_khach_hang_cho_nganh_nghe_khac_nhau"
+    "user": "II Một tệp khách hàng cho các ngành nghề khác nhau (PAGE)\nTôi muốn có một tệp khách hàng cho các ngành nghề khác nhau.\nBạn có thể cung cấp cho tôi một tệp khách hàng cho các ngành nghề khác nhau không?\nTôi muốn biết cách có một tệp khách hàng cho các ngành nghề khác nhau thì làm thế nào?\nLàm thế nào để có một tệp khách hàng cho các ngành nghề khác nhau?",
+    "bot": "1. Ngành Nội thất: Người đang có nhu cầu về nội thất/ Người đang đi xây nhà( Thầu xây dựng, công ty xây dựng, công ty thi công thiết kế, chủ nhà đang xây dựng) \n2. Ngành Ô tô: Người đang có nhu cầu về ô tô/Người giàu có ( chủ khách sạn, nhà hàng, đại lý, Công ty...) \n. Ngành spa: Người đang có nhu cầu làm đẹp/phụ nữ có tiền (phụ nữ thích hàng hiệu, phụ nữ thích spa, phụ nữ thích xe hơi, phụ nữ thích bất động sản) \n4. Sim số đẹp: Người đang có nhu cầu mua sim/Người làm kinh doanh (bất động sản, cho vay, bảo hiểm, spa, khách sạn, taxi, ô tô) \n5. Thời trang:Người đang có nhu cầu mua thời trang/phụ nữ, mẹ bĩm sữa \n6. Cho vay:Người đang có nhu cầu đi vay (Doanh nghiệp/sinh viên/người kinh doanh, tiểu thương, kinh doanh nhỏ lẻ) \n7. Thực phẩm khô:Tạp hóa, siêu thị, quán ăn, nhà hàng, khách sạn, trà sữa… \n8. Phụ tùng ô tô: Gara ô tô, auto ô tô, sửa chữa ô tô, công ty vận chuyển,Những người có xe ô tô \n9. Mỹ phẩm: Những người có nhu cầu về mỹ phẩm: spa, thẩm mỹ viên, shop bán mỹ phẩm khác, khách hàng của các spa, phụ nữ \n10. Du lịch: Công ty, trường học, cư dân, người thích đi du lịch",
+    "intent": "Hoi_tep_khach_hang"
   },
   {
-    "user": "Thưa anh, Fanpage của anh đã được nhiều khách tương tác chưa ạ?",
-    "bot": "-Phần mềm bên em có thể sử dụng Fanpage để tham gia nhóm, đăng bài lên nhóm số lượng lớn.\n\n-Sử dụng Fanpage để like và bình luận các bài đã đăng trên nhóm giúp tăng lượt like thực tế \n\n-Chia sẻ bài viết trên page để nhiều người biết đên Page của anh hơn \n\n-Anh chưa có Fanpage bên em sẽ tạo miễn phí cho anh \n\nVậy nên khi anh dùng phần mềm bên em page của anh sẽ được mở rộng tương tác rất tốt ạ",
+    "user": "Thưa anh, Fanpage của anh đã được nhiều khách tương tác chưa ạ?\nTôi muốn biết cách sử dụng Fanpage để quảng cáo thì làm thế nào?\nBạn có thể hướng dẫn tôi cách sử dụng Fanpage để quảng cáo không?\nLàm thế nào để sử dụng Fanpage để quảng cáo?",
+    "bot": "-Phần mềm bên mình có thể sử dụng Fanpage để tham gia nhóm, đăng bài lên nhóm số lượng lớn.\n-Sử dụng Fanpage để like và bình luận các bài đã đăng trên nhóm giúp tăng lượt like thực tế \n-Chia sẻ bài viết trên page để nhiều người biết đến Page của anh hơn \n-Anh chưa có Fanpage bên mình sẽ tạo miễn phí cho anh \nVậy nên khi anh dùng phần mềm bên mình page của anh sẽ được mở rộng tương tác rất tốt ạ",
     "intent": "Hoi_Fanpage"
   },
   {
-    "user": "Thưa anh, mình đã đăng quảng cáo lên facebook nhiều chưa ạ?",
-    "bot": "Dạ em đang giới thiệu về Phần mềm quảng cáo facebook FBGlobal. Phần mềm được cài đặt trên máy tính của mình và tất cả chức năng đều lập trình tự động hóa. Chỉ cần thao tác lệnh 5 phút, phần mềm sẽ chạy cả ngày. Quảng cáo sản phẩm dịch vụ của anh lên facebook cho nhiều người biết đến.\n\n-Phần mềm bên em lập trình đăng bài quảng cáo tự động lên nhiều diễn đàn trên facebook anh ạ \n\n-Đăng lên nhóm, đăng lên Fanpage, nhắn tin tự động và bình luận tự động.\n\n-Đăng xong úp tin đẩy bài liên tục cho nhiều người biết đến nhất.\n\n-Đặc biệt, có chức năng soạn tin 1 lần đăng 200 lần nội dung khác nhau, giúp cho bài đăng của anh khác nhau trên các diễn đàn",
+    "user": "Thưa anh, mình đã đăng quảng cáo lên facebook nhiều chưa ạ?\nTôi muốn biết cách đăng quảng cáo lên facebook thì làm thế nào?\nBạn có thể hướng dẫn tôi cách đăng quảng cáo lên facebook không?\nLàm thế nào để đăng quảng cáo lên facebook?",
+    "bot": "Dạ mình đang giới thiệu về Phần mềm quảng cáo facebook FBGlobal. Phần mềm được cài đặt trên máy tính của mình và tất cả chức năng đều lập trình tự động hóa. Chỉ cần thao tác lệnh 5 phút, phần mềm sẽ chạy cả ngày. Quảng cáo sản phẩm dịch vụ của anh lên facebook cho nhiều người biết đến.\n-Phần mềm bên mình lập trình đăng bài quảng cáo tự động lên nhiều diễn đàn trên facebook anh ạ \n-Đăng lên nhóm, đăng lên Fanpage, nhắn tin tự động và bình luận tự động.\n-Đăng xong úp tin đẩy bài liên tục cho nhiều người biết đến nhất.\n-Đặc biệt, có chức năng soạn tin 1 lần đăng 200 lần nội dung khác nhau, giúp cho bài đăng của anh khác nhau trên các diễn đàn",
     "intent": "Hoi_dang_bai"
   },
   {
-    "user": "Thưa anh, mình có hay nhắn tin cho khách hàng ko anh?",
-    "bot": "Dạ, bên em có tính năng gửi tin nhắn tự động cho 1 tệp khách hàng bất kỳ dù người đó chưa phải là bạn bè anh.\n\nAnh có thể soạn trước kịch bản và phần mềm sẽ nhắn tin hàng loạt, giúp tiết kiệm thời gian chăm sóc khách",
+    "user": "Thưa anh, mình có hay nhắn tin cho khách hàng ko anh?\nTôi muốn biết cách nhắn tin cho khách hàng thì làm thế nào?\nBạn có thể hướng dẫn tôi cách nhắn tin cho khách hàng không?\nLàm thế nào để nhắn tin cho khách hàng?",
+    "bot": "Dạ, bên mình có tính năng gửi tin nhắn tự động cho 1 tệp khách hàng bất kỳ dù người đó chưa phải là bạn bè của bạn.\nBạn có thể soạn trước kịch bản và phần mềm sẽ nhắn tin hàng loạt, giúp tiết kiệm thời gian chăm sóc khách",
     "intent": "Hoi_nhan_tin"
   },
   {
-    "user": "Bên em quét được rất nhiều số điện thoại, mình có quan tâm không ạ?",
-    "bot": "Phần mềm bên em quét được rất nhiều số điện thoại anh ạ: \n\nQuét số điện thoại của khách hàng theo ngành nghề, theo tệp khách hàng, theo khu vực, theo từ khóa và quét được số chính xác 100%.\n\nAnh có thể dùng số này để kết nối zalo tiếp cận.\n\nHoặc dùng số này để chạy ads facebook mà không phải chạy theo độ tuổi, sở thích như trước đây",
+    "user": "Bên mình quét được rất nhiều số điện thoại, mình có quan tâm không ạ?\nTôi muốn biết bên mình quét được những số điện thoại nào?\nBạn có thể cho tôi biết bên mình quét được những số điện thoại nào không?\nBên mình quét được những số điện thoại nào?",
+    "bot": "Phần mềm bên mình quét được rất nhiều số điện thoại anh ạ: \nQuét số điện thoại của khách hàng theo ngành nghề, theo tệp khách hàng, theo khu vực, theo từ khóa và quét được số chính xác 100%.\nAnh có thể dùng số này để kết nối zalo tiếp cận.\nHoặc dùng số này để chạy ads facebook mà không phải chạy theo độ tuổi, sở thích như trước đây",
     "intent": "Hoi_quet_SDT"
   },
   {
-    "user": "Anh cho em hỏi mình có hay livestream không ạ?",
-    "bot": "Phần mềm bên em có thể phát livestream từ 1 video có sẳn, thát từ link của youtube.\n\nHoặc phát lại livestream \n\nAnh chỉ cần quay 1video, sau đó phần mềm sẽ tự động phát lặp đi lặp lại nhiều lần.\n\nVà phát lên trang cá nhân/ group/Fanpage, hoặc lên kênh youtube.\n\nĐây cũng là 1 chiến lược quảng cáo được rất nhiều khách hàng triển khai hiện nay đó anh ạ",
+    "user": "Anh cho em hỏi mình có hay livestream không ạ?\nTôi muốn biết cách livestream thì làm thế nào?\nBạn có thể hướng dẫn tôi cách livestream không?\nLàm thế nào để livestream?",
+    "bot": "Phần mềm bên mình có thể phát livestream từ 1 video có sẳn, thát từ link của youtube.\nHoặc phát lại livestream \nBạn chỉ cần quay 1video, sau đó phần mềm sẽ tự động phát lặp đi lặp lại nhiều lần.\nVà phát lên trang cá nhân/ group/Fanpage, hoặc lên kênh youtube.\nĐây cũng là 1 chiến lược quảng cáo được rất nhiều khách hàng triển khai hiện nay đó anh ạ",
     "intent": "Hoi_livestream"
   },
   {
-    "user": "Thưa anh Anh có hay lọc khách tiềm năng không ạ?",
-    "bot": "Phần mềm có tính năng lọc khách hàng theo từ khóa, khu vực, ngành nghề, nhóm, trang, hoặc tương tác, đảm bảo chỉ tiếp cận đúng khách tiềm năng, tiết kiệm thời gian và công sức.\n\nVD Anh bán BĐS mình chỉ tiếp cận những người có tiền: người chơi golf, giám đốc, chủ khách sạn..\n\nVí dụ: \n\n1. Ngành Nội thất:   Thầu xây dựng, công ty xây dựng, công ty thi công thiết kế, chủ nhà đang xây dựng) \n\n2. Ngành Ô tô: Người giàu có ( chủ khách sạn, nhà hàng, đại lý, Công ty...) \n\n. Ngành spa: Người đang có nhu cầu làm đẹp/phụ nữ có tiền (phụ nữ thích hàng hiệu, phụ nữ thích spa, phụ nữ thích xe hơi, phụ nữ thích bất động sản) \n\n4. Sim số đẹp: Người đang có nhu cầu mua sim/Người làm kinh doanh (bất động sản, cho vay, bảo hiểm, spa, khách sạn, taxi, ô tô) \n\n5. Thời trang:Người đang có nhu cầu mua thời trang/phụ nữ, mẹ bĩm sữa \n\n6. Cho vay:Người đang có nhu cầu đi vay (Doanh nghiệp/sinh viên/người kinh doanh, tiểu thương, kinh doanh nhỏ lẻ) \n\n7. Thực phẩm khô:Tạp hóa, siêu thị, quán ăn, nhà hàng, khách sạn, trà sữa… \n\n8. Phụ tùng ô tô: Gara ô tô, auto ô tô, sửa chữa ô tô, công ty vận chuyển,Những người có xe ô tô \n\n9. Mỹ phẩm: Những người có nhu cầu về mỹ phẩm: spa, thẩm mỹ viên, shop bán mỹ phẩm khác, khách hàng của các spa, phụ nữ \n\n10. Du lịch: Công ty, trường học, cư dân, người thích đi du lịch",
+    "user": "Thưa anh Anh có hay lọc khách tiềm năng không ạ?\nTôi muốn biết cách lọc khách tiềm năng thì làm thế nào?\nBạn có thể hướng dẫn tôi cách lọc khách tiềm năng không?\nLàm thế nào để lọc khách tiềm năng?",
+    "bot": "Phần mềm có tính năng lọc khách hàng theo từ khóa, khu vực, ngành nghề, nhóm, trang, hoặc tương tác, đảm bảo chỉ tiếp cận đúng khách tiềm năng, tiết kiệm thời gian và công sức.\nVD Anh bán BĐS mình chỉ tiếp cận những người có tiền: người chơi golf, giám đốc, chủ khách sạn..\nVí dụ: \n1. Ngành Nội thất:   Thầu xây dựng, công ty xây dựng, công ty thi công thiết kế, chủ nhà đang xây dựng) \n2. Ngành Ô tô: Người giàu có ( chủ khách sạn, nhà hàng, đại lý, Công ty...) \n. Ngành spa: Người đang có nhu cầu làm đẹp/phụ nữ có tiền (phụ nữ thích hàng hiệu, phụ nữ thích spa, phụ nữ thích xe hơi, phụ nữ thích bất động sản) \n4. Sim số đẹp: Người đang có nhu cầu mua sim/Người làm kinh doanh (bất động sản, cho vay, bảo hiểm, spa, khách sạn, taxi, ô tô) \n5. Thời trang:Người đang có nhu cầu mua thời trang/phụ nữ, mẹ bĩm sữa \n6. Cho vay:Người đang có nhu cầu đi vay (Doanh nghiệp/sinh viên/người kinh doanh, tiểu thương, kinh doanh nhỏ lẻ) \n7. Thực phẩm khô:Tạp hóa, siêu thị, quán ăn, nhà hàng, khách sạn, trà sữa… \n8. Phụ tùng ô tô: Gara ô tô, auto ô tô, sửa chữa ô tô, công ty vận chuyển,Những người có xe ô tô \n9. Mỹ phẩm: Những người có nhu cầu về mỹ phẩm: spa, thẩm mỹ viên, shop bán mỹ phẩm khác, khách hàng của các spa, phụ nữ \n10. Du lịch: Công ty, trường học, cư dân, người thích đi du lịch",
     "intent": "Hoi_khach_tiem_nang"
   },
   {
-    "user": "Anh đã bảo mật tài khoản 5 lớp chưa?",
-    "bot": "Thưa anh, việc sử dụng facebook một cách an toàn và hiệu quả thì cần phải biết cách bảo mật 5 lớp.\n\nKhi anh hợp tác với bên em. Bên em sẽ hướng dẫn anh bảo mật tài khoản thật tốt để các hacker không thể tấn công tài khoản của anh được.\n\nĐiều này sẽ giúp anh có một tài khoản mạnh, không bao giờ bị khóa",
+    "user": "Anh đã bảo mật tài khoản 5 lớp chưa?\nTôi muốn biết cách bảo mật tài khoản 5 lớp thì làm thế nào?\nBạn có thể hướng dẫn tôi cách bảo mật tài khoản 5 lớp không?\nLàm thế nào để bảo mật tài khoản 5 lớp?",
+    "bot": "Thưa anh, việc sử dụng facebook một cách an toàn và hiệu quả thì cần phải biết cách bảo mật 5 lớp.\nKhi anh hợp tác với bên mình. Bên mình sẽ hướng dẫn anh bảo mật tài khoản thật tốt để các hacker không thể tấn công tài khoản của anh được.\nĐiều này sẽ giúp anh có một tài khoản mạnh, không bao giờ bị khóa",
     "intent": "Hoi_bao_mat_5_lop"
   },
   {
-    "user": "Có bao giờ anh nghĩ đến tệp khách của đối thủ ?",
-    "bot": "Phần mềm bên em có thể quét được khách của đối thủ thông qua quét bài viết.\n\nQuét được lượt like và bình luận của 1 bài viết bất kỳ \n\nQuét xong nhắn tin tự động hàng loạt nội dung quảng cáo của anh đến với đối tượng này để tiếp cận \n\n-Đặt biệt quét được bình luận ẩn của 1 bài viết bất kỳ.\n\nCó nghĩa là nếu đối thủ của anh có ẩn bình luận thì phần mềm bên em vẫn quét được",
+    "user": "Có bao giờ anh nghĩ đến tệp khách của đối thủ?\nBạn có bao giờ nghĩ đến tệp khách của đối thủ không?\nTôi muốn biết cách tiếp cận tệp khách của đối thủ thì làm thế nào?\nLàm thế nào để tiếp cận tệp khách của đối thủ?",
+    "bot": "Phần mềm bên mình có thể quét được khách của đối thủ thông qua quét bài viết.\nQuét được lượt like và bình luận của 1 bài viết bất kỳ \nQuét xong nhắn tin tự động hàng loạt nội dung quảng cáo của anh đến với đối tượng này để tiếp cận \n-Đặt biệt quét được bình luận ẩn của 1 bài viết bất kỳ.\nCó nghĩa là nếu đối thủ của anh có ẩn bình luận thì phần mềm bên mình vẫn quét được",
     "intent": "Hoi_khach_doi_thu"
   },
   {
-    "user": "Anh đã hiểu được cơ chế vận hành của phần mềm em tư vấn chưa ạ?",
-    "bot": "Anh đã hiểu được cơ chế vận hành của phần mềm em tư vấn chưa ạ? \n\n-Em đang giới thiệu với anh phần mềm FBGlobal là phần mềm tự động hóa tất cả các chức năng.\n\n-Được cài trên máy tính hệ điều hành windows và chạy trên nền tảng TK FB cá nhân hoặc TK Fanpage của anh.\n\nMỗi ngày anh chỉ cần bỏ ra 5 phút để thao tác lệnh, phần mềm sẽ chạy quảng cáo, tương tác, đăng bài, úp tin cả ngày cả đêm.\n\nNhư vậy anh sẽ tiết kiệm được rất nhiều công sức và giảm chi phí làm marketing",
+    "user": "Anh đã hiểu được cơ chế vận hành của phần mềm em tư vấn chưa ạ?\nTôi muốn biết cơ chế vận hành của phần mềm em tư vấn như thế nào?\nBạn có thể giải thích cho tôi cơ chế vận hành của phần mềm em tư vấn không?\nLàm thế nào để hiểu được cơ chế vận hành của phần mềm em tư vấn?",
+    "bot": "Anh đã hiểu được cơ chế vận hành của phần mềm em tư vấn chưa ạ? \n-Em đang giới thiệu với anh phần mềm FBGlobal là phần mềm tự động hóa tất cả các chức năng.\n-Được cài trên máy tính hệ điều hành windows và chạy trên nền tảng TK FB cá nhân hoặc TK Fanpage của anh.\nMỗi ngày anh chỉ cần bỏ ra 5 phút để thao tác lệnh, phần mềm sẽ chạy quảng cáo, tương tác, đăng bài, úp tin cả ngày cả đêm.\nNhư vậy anh sẽ tiết kiệm được rất nhiều công sức và giảm chi phí làm marketing",
     "intent": "Hoi_co_che_van_hanh"
   },
   {
-    "user": "Thưa anh, Facebook mình có bị mất tương tác?",
-    "bot": "Thưa anh ngoài việc xây dựng các chức năng quảng cáo chính, phần mềm bên em hướng đến mở rộng tương tác tự động.\n\nVì hiện nay facebook bóp tương tác rất nhiều. Kỹ sư lập trình mở rộng tương tác bằng cách like và bình luận bài viết của bạn bè tự động, bình luận bài viết trong nhóm tự động",
-    "intent": "Hoi_mat_tuong_tac"
+    "user": "Thưa anh, Facebook mình có bị mất tương tác?\nTôi muốn biết cách tăng tương tác trên facebook thì làm thế nào?\nBạn có thể giúp tôi tăng tương tác trên facebook không?\nLàm thế nào để tăng tương tác trên facebook?",
+    "bot": "Thưa anh ngoài việc xây dựng các chức năng quảng cáo chính, phần mềm bên mình hướng đến mở rộng tương tác tự động.\nVì hiện nay facebook bóp tương tác rất nhiều. Kỹ sư lập trình mở rộng tương tác bằng cách like và bình luận bài viết của bạn bè tự động, bình luận bài viết trong nhóm tự động",
+    "intent": "Hoi_tuong_tac"
   },
   {
-    "user": "Thưa anh, anh đã đến TP Đà Nẵng xinh đẹp?",
-    "bot": "Công ty em tại 239B Nguyễn Phước Nguyên Quận Thanh Khê ĐN. Trân trọng kính mời anh, khi nào có dịp vào Đn đến thăm công ty em, để bên em có dịp giới thiệu nhiều sản phẩm công nghệ khác cho anh nữa",
+    "user": "Thưa anh, anh đã đến TP Đà Nẵng xinh đẹp?\nTôi muốn mời anh đến TP Đà Nẵng xinh đẹp.\nBạn có thể đến TP Đà Nẵng xinh đẹp không?\nTôi muốn biết khi nào anh đến TP Đà Nẵng xinh đẹp?\nKhi nào anh đến TP Đà Nẵng xinh đẹp?",
+    "bot": "Công ty mình tại 239B Nguyễn Phước Nguyên Quận Thanh Khê ĐN. Trân trọng kính mời anh, khi nào có dịp vào Đn đến thăm công ty mình, để bên mình có dịp giới thiệu nhiều sản phẩm công nghệ khác cho anh nữa",
     "intent": "Moi_khach_den_Da_Nang"
+  },
+  {
+    "user": "Thưa anh, anh có quan tâm đến bản quyền phần mềm không ạ?\nTôi muốn biết về bản quyền phần mềm.\nBạn có thể cho tôi biết về bản quyền phần mềm không?\nBản quyền phần mềm như thế nào?",
+    "bot": "Thưa anh, phần mềm bên mình đã được: Cục sở hữu trí tuệ công nhận là phần mềm thông minh. Có giấy chứng nhận xuất bản của BỘ THÔNG TIN TRUYỀN THÔNG về phần mềm an toàn cho phép triển khai rộng rãi.\nHơn nữa phần mềm bên mình có bản quyền đầy đủ, nên khi anh mua phần mềm bên mình sẽ yên tâm sử dụng không lo vi phạm bản quyền phần mềm nhé",
+    "intent": "Ban_quyen_phan_mem"
   }
 ]
