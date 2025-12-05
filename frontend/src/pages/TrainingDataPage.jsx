@@ -1137,22 +1137,34 @@ const TrainingDataPage = () => {
         okButtonProps={{ loading }}
       >
         <div style={{ marginBottom: 16 }}>
-          <Space>
-            {previewMode === 'upload' && uploadFile && (
-              <>
-                <Tag color="blue">{uploadFile.name}</Tag>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+            <Space>
+              {previewMode === 'upload' && uploadFile && (
+                <>
+                  <Tag color="blue">{uploadFile.name}</Tag>
+                  <span style={{ color: '#666' }}>
+                    {previewData.length} items will be added
+                  </span>
+                </>
+              )}
+              {previewMode === 'add' && (
                 <span style={{ color: '#666' }}>
-                  {previewData.length} items will be added
+                  {previewData.length} items ready to save
                 </span>
-              </>
-            )}
-            {previewMode === 'add' && (
-              <span style={{ color: '#666' }}>
-                {previewData.length} items ready to save
-              </span>
-            )}
+              )}
+            </Space>
             <Button 
               type="primary" 
+              icon={<UploadOutlined />}
+              onClick={handleConfirmUpload}
+              loading={loading}
+            >
+              {previewMode === 'upload' ? 'Upload Now' : 'Save All'}
+            </Button>
+          </div>
+          <Space>
+            <Button 
+              type="default" 
               size="small" 
               icon={<PlusOutlined />}
               onClick={handleAddPreviewRow}
