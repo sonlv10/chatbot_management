@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import {
   Card,
   Table,
@@ -8,6 +9,7 @@ import {
   Space,
   Popconfirm,
   Select,
+  AutoComplete,
   Typography,
   Spin,
   Modal,
@@ -38,8 +40,19 @@ const { Title } = Typography;
 const { TextArea } = Input;
 
 const TrainingDataPage = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [bots, setBots] = useState([]);
-  const [selectedBotId, setSelectedBotId] = useState(null);
+  const [selectedBotId, setSelectedBotId] = useState(() => {
+    // Check if bot ID is passed from navigation state
+    if (location.state?.botId) {
+      return location.state.botId;
+    }
+    // Otherwise, load from localStorage
+    const saved = localStorage.getItem('selectedBotId');
+    return saved ? parseInt(saved) : null;
+  });
   const [trainingData, setTrainingData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -55,6 +68,14 @@ const TrainingDataPage = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const [filteredInfo, setFilteredInfo] = useState({});
   const [sortedInfo, setSortedInfo] = useState({});
+  const [currentPage, setCurrentPage] = useState(() => {
+    const page = searchParams.get('page');
+    return page ? parseInt(page) : 1;
+  });
+  const [pageSize, setPageSize] = useState(() => {
+    const size = searchParams.get('pageSize');
+    return size ? parseInt(size) : 10;
+  });
   const [serverFilters, setServerFilters] = useState({
     user_message: '',
     bot_response: '',
@@ -62,6 +83,7 @@ const TrainingDataPage = () => {
     sort_by: 'created_at',
     sort_order: 'desc'
   });
+  const [intentOptions, setIntentOptions] = useState([]); // Store intent and bot_response pairs
   const [form] = Form.useForm();
   
   // Training states
@@ -78,11 +100,50 @@ const TrainingDataPage = () => {
 
   useEffect(() => {
     loadBots();
+    
+    // Reload bots when returning to this page to detect deleted bots
+    const handleVisibilityChange = () => {
+      if (!document.hidden) {
+        loadBots();
+      }
+    };
+    
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
   }, []);
+
+  // Handle bot selection from navigation state
+  useEffect(() => {
+    if (location.state?.botId && location.state.botId !== selectedBotId) {
+      setSelectedBotId(location.state.botId);
+    }
+  }, [location.state?.botId]);
+
+  // Sync URL params with pagination state
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (currentPage > 1) {
+      params.set('page', currentPage.toString());
+    }
+    if (pageSize !== 10) {
+      params.set('pageSize', pageSize.toString());
+    }
+    
+    const newSearch = params.toString();
+    const currentSearch = window.location.search.slice(1);
+    
+    if (newSearch !== currentSearch) {
+      navigate(`${location.pathname}?${newSearch}`, { replace: true });
+    }
+  }, [currentPage, pageSize]);
 
   useEffect(() => {
     if (selectedBotId) {
       loadTrainingData();
+      // Save selected bot to localStorage
+      localStorage.setItem('selectedBotId', selectedBotId.toString());
     }
   }, [selectedBotId, serverFilters]);
 
@@ -90,8 +151,22 @@ const TrainingDataPage = () => {
     try {
       const data = await botsAPI.getAllBots();
       setBots(data);
-      if (data.length > 0 && !selectedBotId) {
+      
+      if (data.length === 0) {
+        // No bots available, clear selection
+        setSelectedBotId(null);
+        localStorage.removeItem('selectedBotId');
+        setTrainingData([]);
+      } else if (!selectedBotId) {
+        // Has bots but no selection, select first bot
         setSelectedBotId(data[0].id);
+      } else {
+        // Check if selected bot still exists
+        const botExists = data.some(bot => bot.id === selectedBotId);
+        if (!botExists) {
+          // Selected bot was deleted, select first available bot
+          setSelectedBotId(data[0].id);
+        }
       }
     } catch (error) {
       message.error('Failed to load bots');
@@ -115,6 +190,11 @@ const TrainingDataPage = () => {
   };
 
   const loadTrainingData = async () => {
+    if (!selectedBotId) {
+      setTrainingData([]);
+      return;
+    }
+    
     setLoading(true);
     try {
       const data = await trainingAPI.getTrainingData(selectedBotId, serverFilters);
@@ -158,15 +238,31 @@ const TrainingDataPage = () => {
       setLoading(true);
       
       if (previewMode === 'add') {
-        // Batch add multiple items
+        // Batch add multiple items with merge logic
         for (const item of previewData) {
-          await trainingAPI.addTrainingData(selectedBotId, {
-            user_message: item.user,
-            bot_response: item.bot,
-            intent: item.intent,
-          });
+          // Check if intent and bot_response already exist
+          const existingData = trainingData.find(
+            data => data.intent === item.intent && data.bot_response === item.bot
+          );
+          
+          if (existingData) {
+            // Merge: append user message with newline
+            const mergedUserMessage = existingData.user_message + '\n' + item.user;
+            await trainingAPI.updateTrainingData(selectedBotId, existingData.id, {
+              user_message: mergedUserMessage,
+              bot_response: item.bot,
+              intent: item.intent,
+            });
+          } else {
+            // Add new entry
+            await trainingAPI.addTrainingData(selectedBotId, {
+              user_message: item.user,
+              bot_response: item.bot,
+              intent: item.intent,
+            });
+          }
         }
-        message.success(`${previewData.length} items added successfully`);
+        message.success(`${previewData.length} items processed successfully`);
       } else {
         // Upload from file
         const formData = new FormData();
@@ -451,13 +547,37 @@ const TrainingDataPage = () => {
     }
   };
 
+  const loadIntentOptions = () => {
+    // Extract unique intent-bot_response pairs from training data
+    const intentMap = new Map();
+    trainingData.forEach(item => {
+      if (item.intent && item.bot_response) {
+        const key = item.intent;
+        if (!intentMap.has(key)) {
+          intentMap.set(key, item.bot_response);
+        }
+      }
+    });
+    
+    const options = Array.from(intentMap.entries()).map(([intent, bot_response]) => ({
+      value: intent,
+      label: intent,
+      bot_response: bot_response
+    }));
+    
+    setIntentOptions(options);
+  };
+
   const showAddModal = () => {
+    // Load intent options before showing modal
+    loadIntentOptions();
+    
     // Use preview modal for batch adding
     setPreviewData([
       {
         user: '',
         bot: '',
-        intent: 'unknown',
+        intent: '',
         isNew: true,
       }
     ]);
@@ -543,6 +663,18 @@ const TrainingDataPage = () => {
     setFilteredInfo(filters);
     setSortedInfo(sorter);
     
+    // Update pagination state
+    if (pagination.current) {
+      setCurrentPage(pagination.current);
+    }
+    if (pagination.pageSize) {
+      setPageSize(pagination.pageSize);
+      // Reset to page 1 if page size changes
+      if (pagination.pageSize !== pageSize) {
+        setCurrentPage(1);
+      }
+    }
+    
     // Update server filters for intent
     if (filters.intent && filters.intent.length > 0) {
       setServerFilters(prev => ({ ...prev, intent: filters.intent[0] }));
@@ -570,6 +702,7 @@ const TrainingDataPage = () => {
   const handleResetFilters = () => {
     setFilteredInfo({});
     setSortedInfo({});
+    setCurrentPage(1); // Reset to page 1 when filters reset
     setServerFilters({
       user_message: '',
       bot_response: '',
@@ -588,6 +721,7 @@ const TrainingDataPage = () => {
           onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
           onPressEnter={() => {
             confirm();
+            setCurrentPage(1);
             setServerFilters(prev => ({ ...prev, user_message: selectedKeys[0] || '' }));
           }}
           style={{ marginBottom: 8, display: 'block' }}
@@ -597,6 +731,7 @@ const TrainingDataPage = () => {
             type="primary"
             onClick={() => {
               confirm();
+              setCurrentPage(1);
               setServerFilters(prev => ({ ...prev, user_message: selectedKeys[0] || '' }));
             }}
             icon={<SearchOutlined />}
@@ -609,6 +744,7 @@ const TrainingDataPage = () => {
             onClick={() => {
               clearFilters && clearFilters();
               confirm({ closeDropdown: true });
+              setCurrentPage(1);
               setServerFilters(prev => ({ ...prev, user_message: '' }));
             }}
             size="small"
@@ -636,6 +772,7 @@ const TrainingDataPage = () => {
           onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
           onPressEnter={() => {
             confirm();
+            setCurrentPage(1);
             setServerFilters(prev => ({ ...prev, bot_response: selectedKeys[0] || '' }));
           }}
           style={{ marginBottom: 8, display: 'block' }}
@@ -645,6 +782,7 @@ const TrainingDataPage = () => {
             type="primary"
             onClick={() => {
               confirm();
+              setCurrentPage(1);
               setServerFilters(prev => ({ ...prev, bot_response: selectedKeys[0] || '' }));
             }}
             icon={<SearchOutlined />}
@@ -657,6 +795,7 @@ const TrainingDataPage = () => {
             onClick={() => {
               clearFilters && clearFilters();
               confirm({ closeDropdown: true });
+              setCurrentPage(1);
               setServerFilters(prev => ({ ...prev, bot_response: '' }));
             }}
             size="small"
@@ -792,6 +931,8 @@ const TrainingDataPage = () => {
               style={{ width: 300 }}
               value={selectedBotId}
               onChange={setSelectedBotId}
+              placeholder={bots.length === 0 ? "No bots available" : "Select a bot"}
+              disabled={bots.length === 0}
               options={bots.map((bot) => ({
                 label: bot.name,
                 value: bot.id,
@@ -801,7 +942,7 @@ const TrainingDataPage = () => {
               type="primary"
               icon={<RocketOutlined />}
               onClick={handleTrain}
-              disabled={!selectedBotId}
+              disabled={!selectedBotId || bots.length === 0}
             >
               Train Bot
             </Button>
@@ -844,7 +985,16 @@ const TrainingDataPage = () => {
         </Space>
       </Card>
 
-      {selectedBotId && (
+      {bots.length === 0 ? (
+        <Card>
+          <div style={{ textAlign: 'center', padding: '40px 0' }}>
+            <Title level={4} type="secondary">No bots available</Title>
+            <p style={{ color: '#999', marginBottom: 16 }}>
+              Please create a bot first from the "My Bots" page before you can add training data.
+            </p>
+          </div>
+        </Card>
+      ) : selectedBotId && (
         <Tabs
           activeKey={activeTab}
           onChange={setActiveTab}
@@ -902,9 +1052,11 @@ const TrainingDataPage = () => {
               rowKey="id"
               onChange={handleTableChange}
               pagination={{ 
-                pageSize: 10,
+                current: currentPage,
+                pageSize: pageSize,
                 showSizeChanger: true,
                 showTotal: (total) => `Total ${total} items`,
+                pageSizeOptions: ['10', '20', '50', '100'],
               }}
               bordered
             />
@@ -969,10 +1121,10 @@ const TrainingDataPage = () => {
             ]}
           >
             <TextArea 
-              rows={3} 
+              rows={4} 
               placeholder="Enter user message..."
               showCount
-              maxLength={500}
+              maxLength={10000}
             />
           </Form.Item>
 
@@ -985,10 +1137,10 @@ const TrainingDataPage = () => {
             ]}
           >
             <TextArea 
-              rows={3} 
+              rows={8} 
               placeholder="Enter bot response..."
               showCount
-              maxLength={500}
+              maxLength={10000}
             />
           </Form.Item>
 
@@ -1006,7 +1158,7 @@ const TrainingDataPage = () => {
             <Input 
               placeholder="e.g., greeting, price_inquiry"
               showCount
-              maxLength={50}
+              maxLength={200}
             />
           </Form.Item>
         </Form>
@@ -1027,22 +1179,34 @@ const TrainingDataPage = () => {
         okButtonProps={{ loading }}
       >
         <div style={{ marginBottom: 16 }}>
-          <Space>
-            {previewMode === 'upload' && uploadFile && (
-              <>
-                <Tag color="blue">{uploadFile.name}</Tag>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+            <Space>
+              {previewMode === 'upload' && uploadFile && (
+                <>
+                  <Tag color="blue">{uploadFile.name}</Tag>
+                  <span style={{ color: '#666' }}>
+                    {previewData.length} items will be added
+                  </span>
+                </>
+              )}
+              {previewMode === 'add' && (
                 <span style={{ color: '#666' }}>
-                  {previewData.length} items will be added
+                  {previewData.length} items ready to save
                 </span>
-              </>
-            )}
-            {previewMode === 'add' && (
-              <span style={{ color: '#666' }}>
-                {previewData.length} items ready to save
-              </span>
-            )}
+              )}
+            </Space>
             <Button 
               type="primary" 
+              icon={<UploadOutlined />}
+              onClick={handleConfirmUpload}
+              loading={loading}
+            >
+              {previewMode === 'upload' ? 'Upload Now' : 'Save All'}
+            </Button>
+          </div>
+          <Space>
+            <Button 
+              type="default" 
               size="small" 
               icon={<PlusOutlined />}
               onClick={handleAddPreviewRow}
@@ -1062,7 +1226,7 @@ const TrainingDataPage = () => {
                 if (editingPreviewKey === index) {
                   return (
                     <Input.TextArea
-                      defaultValue={text}
+                      value={record.user}
                       autoSize={{ minRows: 2, maxRows: 4 }}
                       onChange={(e) => {
                         const newData = [...previewData];
@@ -1084,7 +1248,7 @@ const TrainingDataPage = () => {
                 if (editingPreviewKey === index) {
                   return (
                     <Input.TextArea
-                      defaultValue={text}
+                      value={record.bot}
                       autoSize={{ minRows: 2, maxRows: 4 }}
                       onChange={(e) => {
                         const newData = [...previewData];
@@ -1105,13 +1269,31 @@ const TrainingDataPage = () => {
               render: (text, record, index) => {
                 if (editingPreviewKey === index) {
                   return (
-                    <Input
-                      defaultValue={text}
-                      onChange={(e) => {
+                    <AutoComplete
+                      value={text}
+                      placeholder="Select or type intent"
+                      style={{ width: '100%' }}
+                      options={intentOptions}
+                      onChange={(value) => {
                         const newData = [...previewData];
-                        newData[index] = { ...newData[index], intent: e.target.value };
+                        newData[index] = { ...newData[index], intent: value || '' };
                         setPreviewData(newData);
                       }}
+                      onSelect={(value) => {
+                        const newData = [...previewData];
+                        newData[index] = { ...newData[index], intent: value };
+                        
+                        // Auto-fill bot response if intent is selected
+                        const selectedIntent = intentOptions.find(opt => opt.value === value);
+                        if (selectedIntent && selectedIntent.bot_response) {
+                          newData[index].bot = selectedIntent.bot_response;
+                        }
+                        
+                        setPreviewData(newData);
+                      }}
+                      filterOption={(inputValue, option) =>
+                        option.value.toLowerCase().indexOf(inputValue.toLowerCase()) !== -1
+                      }
                     />
                   );
                 }

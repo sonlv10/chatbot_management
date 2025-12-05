@@ -137,7 +137,7 @@ const BotsPage = () => {
           <Button
             size="small"
             icon={<RocketOutlined />}
-            onClick={() => navigate('/dashboard/training')}
+            onClick={() => navigate('/dashboard/training', { state: { botId: record.id } })}
           >
             Train
           </Button>

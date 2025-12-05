@@ -44,7 +44,9 @@ backend/rasa_bots/
 backend/models/
 *.tar.gz
 
-rasa/models/
+# Rasa models directory - keep structure but ignore model files
+rasa/models/*
+!rasa/models/.gitkeep
 
 # Logs
 logs/

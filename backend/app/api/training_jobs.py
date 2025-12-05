@@ -50,8 +50,10 @@ def run_rasa_training(job_id: int, bot_id: int, db_connection_string: str):
         )
         conn.commit()
         
-        # Create bot-specific training directory
-        bot_dir = f"/app/models/bot_{bot_id}"
+        # Create bot-specific training directory in rasa/models
+        # Get project root directory (backend/../rasa/models)
+        project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
+        bot_dir = os.path.join(project_root, "rasa", "models", f"bot_{bot_id}")
         os.makedirs(bot_dir, exist_ok=True)
         
         # Export training data from database to NLU format
@@ -95,23 +97,27 @@ def run_rasa_training(job_id: int, bot_id: int, db_connection_string: str):
         for intent, examples in intent_examples.items():
             nlu_content += f"\n- intent: {intent}\n  examples: |\n"
             for example in examples:
-                # Try to detect and annotate entities automatically
-                annotated_example = example
+                # Split multiline user messages into separate examples
+                lines = [line.strip() for line in example.split('\n') if line.strip()]
                 
-                # Simple entity detection patterns (can be enhanced)
-                import re
-                
-                # Phone number pattern
-                phone_pattern = r'(\d{10,11}|\d{3}[-.\s]?\d{3}[-.\s]?\d{4})'
-                if re.search(phone_pattern, example):
-                    annotated_example = re.sub(phone_pattern, r'[\1](phone_number)', annotated_example)
-                
-                # Email pattern
-                email_pattern = r'([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})'
-                if re.search(email_pattern, example):
-                    annotated_example = re.sub(email_pattern, r'[\1](email)', annotated_example)
-                
-                nlu_content += f"    - {annotated_example}\n"
+                for line in lines:
+                    # Try to detect and annotate entities automatically
+                    annotated_example = line
+                    
+                    # Simple entity detection patterns (can be enhanced)
+                    import re
+                    
+                    # Phone number pattern
+                    phone_pattern = r'(\d{10,11}|\d{3}[-.\s]?\d{3}[-.\s]?\d{4})'
+                    if re.search(phone_pattern, line):
+                        annotated_example = re.sub(phone_pattern, r'[\1](phone_number)', annotated_example)
+                    
+                    # Email pattern
+                    email_pattern = r'([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})'
+                    if re.search(email_pattern, line):
+                        annotated_example = re.sub(email_pattern, r'[\1](email)', annotated_example)
+                    
+                    nlu_content += f"    - {annotated_example}\n"
         
         # Add lookup tables for common entities
         nlu_content += """
@@ -180,7 +186,7 @@ pipeline:
   - name: ResponseSelector
     epochs: 100
   - name: FallbackClassifier
-    threshold: 0.7
+    threshold: 0.3
 
 policies:
   - name: MemoizationPolicy
@@ -190,7 +196,7 @@ policies:
     epochs: 100
     constrain_similarities: true
   - name: RulePolicy
-    core_fallback_threshold: 0.4
+    core_fallback_threshold: 0.2
     core_fallback_action_name: "action_default_fallback"
   - name: UnexpecTEDIntentPolicy
     max_history: 5
@@ -213,13 +219,24 @@ policies:
             if response_text and response_text not in [r['text'] for r in intent_responses[intent]]:
                 intent_responses[intent].append({'text': response_text})
         
-        # Build responses section
+        # Build responses section with literal block scalar for multiline support
         responses_content = ""
         for intent in intents:
             responses_content += f"  utter_{intent}:\n"
             if intent in intent_responses and intent_responses[intent]:
                 for response in intent_responses[intent]:
-                    responses_content += f"    - text: \"{response['text']}\"\n"
+                    response_text = response['text'].replace('\r\n', '\n').replace('\r', '\n')
+                    # Use literal block scalar for better multiline support
+                    if '\n' in response_text or len(response_text) > 80:
+                        # Multiline or long text - use | format
+                        responses_content += f"    - text: |\n"
+                        for line in response_text.split('\n'):
+                            responses_content += f"        {line}\n"
+                    else:
+                        # Single line short text - use quoted format
+                        # Escape quotes in text
+                        escaped_text = response_text.replace('"', '\\"')
+                        responses_content += f"    - text: \"{escaped_text}\"\n"
             else:
                 responses_content += f"    - text: \"Xin lỗi, tôi chưa có câu trả lời cho {intent}.\"\n"
         
@@ -500,6 +517,11 @@ stories:
                 # Make datetime timezone-aware to match database timestamp
                 from datetime import timezone
                 now = datetime.now(timezone.utc)
+                
+                # If started_at is timezone-naive, make it timezone-aware (assuming UTC)
+                if started_at.tzinfo is None:
+                    started_at = started_at.replace(tzinfo=timezone.utc)
+                
                 duration = int((now - started_at).total_seconds())
                 
                 # Update job as completed

@@ -2,8 +2,15 @@
 Rasa interaction service - Chat with trained models
 """
 import os
+import sys
 import requests
 from typing import Dict, List, Optional
+
+# Fix encoding issues on Windows when handling Vietnamese text
+if sys.platform == 'win32':
+    import io
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
 
 
 class RasaService:
@@ -29,11 +36,11 @@ class RasaService:
         # Use bot-specific sender to maintain separate conversation contexts
         bot_sender_id = f"bot_{bot_id}_{sender_id}"
         
-        # First, parse message to get intent classification
-        parse_endpoint = f"{self.rasa_url}/model/parse"
-        parse_payload = {
-            "text": message,
-            "message_id": f"{bot_sender_id}_{message[:20]}"
+        # Get bot response via webhook (includes intent in response)
+        webhook_endpoint = f"{self.rasa_url}/webhooks/rest/webhook"
+        webhook_payload = {
+            "sender": bot_sender_id,
+            "message": message
         }
         
         intent = None
@@ -41,28 +48,28 @@ class RasaService:
         entities = []
         
         try:
-            parse_response = requests.post(parse_endpoint, json=parse_payload, timeout=5)
-            if parse_response.status_code == 200:
-                parse_data = parse_response.json()
-                intent_data = parse_data.get('intent', {})
-                intent = intent_data.get('name')
-                confidence = intent_data.get('confidence')
-                entities = parse_data.get('entities', [])
-        except Exception as e:
-            print(f"[WARN] Failed to parse intent: {str(e)}")
-        
-        # Then get bot response via webhook
-        webhook_endpoint = f"{self.rasa_url}/webhooks/rest/webhook"
-        webhook_payload = {
-            "sender": bot_sender_id,
-            "message": message
-        }
-        
-        try:
-            response = requests.post(webhook_endpoint, json=webhook_payload, timeout=10)
+            response = requests.post(webhook_endpoint, json=webhook_payload, timeout=30)
             response.raise_for_status()
             
             data = response.json()
+            
+            # Try to get intent from tracker (fast, non-blocking)
+            try:
+                tracker_endpoint = f"{self.rasa_url}/conversations/{bot_sender_id}/tracker"
+                tracker_response = requests.get(tracker_endpoint, timeout=2)
+                if tracker_response.status_code == 200:
+                    tracker_data = tracker_response.json()
+                    latest_event = tracker_data.get('latest_message', {})
+                    intent_data = latest_event.get('intent', {})
+                    intent = intent_data.get('name')
+                    confidence = intent_data.get('confidence')
+                    entities = latest_event.get('entities', [])
+            except Exception as e:
+                # Safely print error message
+                try:
+                    print(f"[DEBUG] Could not get intent from tracker: {repr(e)}")
+                except:
+                    pass
             
             # Parse response
             if data and len(data) > 0:
@@ -88,16 +95,20 @@ class RasaService:
                 }
         
         except requests.RequestException as e:
+            # Safely encode error message to handle Vietnamese characters
+            error_msg = repr(e) if isinstance(e, Exception) else str(e)
             return {
                 "status": "error",
-                "error_message": f"Failed to connect to Rasa: {str(e)}",
+                "error_message": f"Failed to connect to Rasa: {error_msg}",
                 "intent": intent,
                 "confidence": confidence
             }
         except Exception as e:
+            # Safely encode error message to handle Vietnamese characters
+            error_msg = repr(e) if hasattr(e, '__repr__') else "Unknown error"
             return {
                 "status": "error",
-                "error_message": str(e),
+                "error_message": error_msg,
                 "intent": intent,
                 "confidence": confidence
             }
@@ -108,26 +119,81 @@ class RasaService:
         
         Args:
             bot_id: Bot ID
-            model_path: Path to model file (absolute path in container)
+            model_path: Path to model file (absolute path from database)
         
         Returns:
             Dict with status
         """
         endpoint = f"{self.rasa_url}/model"
         
-        # Convert backend path to Rasa path
-        # Backend: /app/models/bot_X/models/bot_X.tar.gz
-        # Rasa:    /models/bot_X/models/bot_X.tar.gz
-        rasa_model_path = model_path.replace('/app/models', '/models')
+        # Model path is stored as: C:\chatbot_management\rasa\models\bot_X\modelfile.tar.gz
+        # If Rasa runs from project root: use rasa/models/bot_X/modelfile.tar.gz
+        # If Rasa runs from rasa/ directory: use models/bot_X/modelfile.tar.gz
         
-        # Check if this model is already loaded
+        print(f"[DEBUG] Original model_path: {model_path}")
+        
+        # Get project root (backend's parent directory)
+        project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
+        rasa_dir = os.path.join(project_root, "rasa")
+        print(f"[DEBUG] Project root: {project_root}")
+        print(f"[DEBUG] Rasa directory: {rasa_dir}")
+        
+        # Convert to absolute path first
+        if os.path.isabs(model_path):
+            abs_model_path = os.path.abspath(model_path)
+        else:
+            abs_model_path = os.path.abspath(os.path.join(project_root, model_path))
+        
+        print(f"[DEBUG] Absolute model path: {abs_model_path}")
+        
+        # Determine if path is inside rasa directory
+        # If yes, make path relative to rasa directory (for when Rasa runs from rasa/)
+        try:
+            if abs_model_path.startswith(rasa_dir):
+                # Path is inside rasa/, make it relative to rasa/
+                rasa_model_path = os.path.relpath(abs_model_path, rasa_dir).replace("\\", "/")
+                print(f"[DEBUG] Path relative to rasa/: {rasa_model_path}")
+            else:
+                # Path outside rasa/, make it relative to project root
+                rasa_model_path = os.path.relpath(abs_model_path, project_root).replace("\\", "/")
+                print(f"[DEBUG] Path relative to project: {rasa_model_path}")
+        except ValueError:
+            # If on different drives, use absolute path
+            rasa_model_path = abs_model_path.replace("\\", "/")
+        
+        print(f"[DEBUG] Final rasa_model_path: {rasa_model_path}")
+        
+        # Check if this model is already loaded in memory cache
         if self._loaded_model_path == rasa_model_path:
-            print(f"[DEBUG] Model {rasa_model_path} already loaded, skipping")
+            print(f"[DEBUG] Model {rasa_model_path} already loaded (cached), skipping")
             return {
                 "status": "success",
                 "message": f"Model already loaded for bot {bot_id}",
                 "model_path": rasa_model_path
             }
+        
+        # Check if model is already loaded in Rasa server
+        try:
+            status_response = requests.get(f"{self.rasa_url}/status", timeout=5)
+            if status_response.status_code == 200:
+                status_data = status_response.json()
+                loaded_model = status_data.get('model_file', '')
+                # Extract just the filename from our path
+                our_model_file = os.path.basename(rasa_model_path)
+                if loaded_model == our_model_file:
+                    print(f"[DEBUG] Model {our_model_file} already loaded in Rasa server, updating cache")
+                    self._loaded_model_path = rasa_model_path
+                    return {
+                        "status": "success",
+                        "message": f"Model already loaded for bot {bot_id}",
+                        "model_path": rasa_model_path
+                    }
+        except Exception as e:
+            # Safely print error message
+            try:
+                print(f"[WARN] Could not check Rasa status: {repr(e)}")
+            except:
+                pass
         
         # Rasa expects the model path
         payload = {
@@ -136,11 +202,11 @@ class RasaService:
         
         try:
             print(f"[DEBUG] Loading NEW model: {rasa_model_path}")
-            # PUT request to load new model
+            # PUT request to load new model (may take long time for first load)
             response = requests.put(
                 endpoint,
                 json=payload,
-                timeout=30
+                timeout=120  # Increased to 120s for slow model loading
             )
             
             if response.status_code == 204:

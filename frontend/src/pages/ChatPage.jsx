@@ -43,7 +43,11 @@ const ChatPage = () => {
 
   const { botId: urlBotId } = useParams();
   const [bots, setBots] = useState([]);
-  const [selectedBotId, setSelectedBotId] = useState(urlBotId || null);
+  const [selectedBotId, setSelectedBotId] = useState(() => {
+    if (urlBotId) return urlBotId;
+    const saved = localStorage.getItem('selectedBotId');
+    return saved ? parseInt(saved) : null;
+  });
   const [sessionId, setSessionId] = useState(null);
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
@@ -88,6 +92,13 @@ const ChatPage = () => {
   useEffect(() => {
     localStorage.setItem('chatIsSave', JSON.stringify(isSave));
   }, [isSave]);
+
+  // Save selectedBotId to localStorage whenever it changes
+  useEffect(() => {
+    if (selectedBotId) {
+      localStorage.setItem('selectedBotId', selectedBotId.toString());
+    }
+  }, [selectedBotId]);
 
   useEffect(() => {
     return () => {

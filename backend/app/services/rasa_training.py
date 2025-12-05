@@ -12,7 +12,11 @@ from datetime import datetime
 class RasaTrainingService:
     """Service to convert training data to Rasa format and train models"""
     
-    def __init__(self, base_path: str = "/app/models"):
+    def __init__(self, base_path: str = None):
+        if base_path is None:
+            # Use rasa/models directory relative to project root
+            project_root = Path(__file__).parent.parent.parent.parent
+            base_path = project_root / "rasa" / "models"
         self.base_path = Path(base_path)
         self.base_path.mkdir(parents=True, exist_ok=True)
     
