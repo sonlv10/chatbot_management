@@ -9,6 +9,7 @@ import {
   Space,
   Popconfirm,
   Select,
+  AutoComplete,
   Typography,
   Spin,
   Modal,
@@ -82,6 +83,7 @@ const TrainingDataPage = () => {
     sort_by: 'created_at',
     sort_order: 'desc'
   });
+  const [intentOptions, setIntentOptions] = useState([]); // Store intent and bot_response pairs
   const [form] = Form.useForm();
   
   // Training states
@@ -236,15 +238,31 @@ const TrainingDataPage = () => {
       setLoading(true);
       
       if (previewMode === 'add') {
-        // Batch add multiple items
+        // Batch add multiple items with merge logic
         for (const item of previewData) {
-          await trainingAPI.addTrainingData(selectedBotId, {
-            user_message: item.user,
-            bot_response: item.bot,
-            intent: item.intent,
-          });
+          // Check if intent and bot_response already exist
+          const existingData = trainingData.find(
+            data => data.intent === item.intent && data.bot_response === item.bot
+          );
+          
+          if (existingData) {
+            // Merge: append user message with newline
+            const mergedUserMessage = existingData.user_message + '\n' + item.user;
+            await trainingAPI.updateTrainingData(selectedBotId, existingData.id, {
+              user_message: mergedUserMessage,
+              bot_response: item.bot,
+              intent: item.intent,
+            });
+          } else {
+            // Add new entry
+            await trainingAPI.addTrainingData(selectedBotId, {
+              user_message: item.user,
+              bot_response: item.bot,
+              intent: item.intent,
+            });
+          }
         }
-        message.success(`${previewData.length} items added successfully`);
+        message.success(`${previewData.length} items processed successfully`);
       } else {
         // Upload from file
         const formData = new FormData();
@@ -529,13 +547,37 @@ const TrainingDataPage = () => {
     }
   };
 
+  const loadIntentOptions = () => {
+    // Extract unique intent-bot_response pairs from training data
+    const intentMap = new Map();
+    trainingData.forEach(item => {
+      if (item.intent && item.bot_response) {
+        const key = item.intent;
+        if (!intentMap.has(key)) {
+          intentMap.set(key, item.bot_response);
+        }
+      }
+    });
+    
+    const options = Array.from(intentMap.entries()).map(([intent, bot_response]) => ({
+      value: intent,
+      label: intent,
+      bot_response: bot_response
+    }));
+    
+    setIntentOptions(options);
+  };
+
   const showAddModal = () => {
+    // Load intent options before showing modal
+    loadIntentOptions();
+    
     // Use preview modal for batch adding
     setPreviewData([
       {
         user: '',
         bot: '',
-        intent: 'unknown',
+        intent: '',
         isNew: true,
       }
     ]);
@@ -1184,7 +1226,7 @@ const TrainingDataPage = () => {
                 if (editingPreviewKey === index) {
                   return (
                     <Input.TextArea
-                      defaultValue={text}
+                      value={record.user}
                       autoSize={{ minRows: 2, maxRows: 4 }}
                       onChange={(e) => {
                         const newData = [...previewData];
@@ -1206,7 +1248,7 @@ const TrainingDataPage = () => {
                 if (editingPreviewKey === index) {
                   return (
                     <Input.TextArea
-                      defaultValue={text}
+                      value={record.bot}
                       autoSize={{ minRows: 2, maxRows: 4 }}
                       onChange={(e) => {
                         const newData = [...previewData];
@@ -1227,13 +1269,31 @@ const TrainingDataPage = () => {
               render: (text, record, index) => {
                 if (editingPreviewKey === index) {
                   return (
-                    <Input
-                      defaultValue={text}
-                      onChange={(e) => {
+                    <AutoComplete
+                      value={text}
+                      placeholder="Select or type intent"
+                      style={{ width: '100%' }}
+                      options={intentOptions}
+                      onChange={(value) => {
                         const newData = [...previewData];
-                        newData[index] = { ...newData[index], intent: e.target.value };
+                        newData[index] = { ...newData[index], intent: value || '' };
                         setPreviewData(newData);
                       }}
+                      onSelect={(value) => {
+                        const newData = [...previewData];
+                        newData[index] = { ...newData[index], intent: value };
+                        
+                        // Auto-fill bot response if intent is selected
+                        const selectedIntent = intentOptions.find(opt => opt.value === value);
+                        if (selectedIntent && selectedIntent.bot_response) {
+                          newData[index].bot = selectedIntent.bot_response;
+                        }
+                        
+                        setPreviewData(newData);
+                      }}
+                      filterOption={(inputValue, option) =>
+                        option.value.toLowerCase().indexOf(inputValue.toLowerCase()) !== -1
+                      }
                     />
                   );
                 }
